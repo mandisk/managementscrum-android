@@ -3,5 +3,13 @@
     <string name="app_name">Scrum</string>
     <string name="login_button">Login</string>
     <string name="login_hint_email">Enter you email...</string>
+    <string name="Register">Registro</string>
+    <string name="RegNombre">Nombre</string>
+    <string name="RegisName">Introduzca su nombre aqui</string>
+    <string name="RegApellido">Apellido</string>
+    <string name="RegLastName">Introduzca su apellido aqui</string>
+    <string name="RegPass">Introduzca su contraseña</string>
+    <string name="RegContras">Contraseña</string>
+    <string name="Registrar">Registrar</string>
 
 </resources>
