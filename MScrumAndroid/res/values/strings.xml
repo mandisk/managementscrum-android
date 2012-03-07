@@ -15,4 +15,13 @@
     <string name="LoginTitle">Login</string>
     <string name="RInport">Importar</string>
 
+     <string-array name="title_names">
+        <item>Bahrain</item>
+        <item>Bangladesh</item>
+        <item>Barbados</item>
+        <item>Belarus</item>
+        <item>Belgium</item>
+        <item>Belize</item>
+        <item>Benin</item>
+    </string-array>
 </resources>
