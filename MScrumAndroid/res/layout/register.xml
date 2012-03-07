@@ -32,12 +32,13 @@
             android:layout_height="wrap_content"
             android:text="@string/RegNombre"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/RegisName" >
+
         </EditText>
 
         <TextView
@@ -46,9 +47,9 @@
             android:layout_height="wrap_content"
             android:text="@string/RegApellido"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/apellido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/RegLastName" />
@@ -59,9 +60,9 @@
             android:layout_height="wrap_content"
             android:text="@string/Email"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/login_hint_email"
@@ -73,9 +74,9 @@
             android:layout_height="wrap_content"
             android:text="@string/RegContras"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/RegPass"
@@ -91,12 +92,19 @@
         android:layout_height="wrap_content"
         android:baselineAligned="false"
         android:gravity="center_horizontal" >
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/RInport" />
 
         <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Registrar" />
+            android:text="@string/Registrar" 
+            android:onClick="importDate"/>
     </LinearLayout>
 
 </LinearLayout>
