@@ -94,17 +94,18 @@
         android:gravity="center_horizontal" >
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/RInport" />
-
-        <Button
             android:id="@+id/button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Registrar" 
+            android:text="@string/RInport" 
             android:onClick="importDate"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Registrar" 
+            android:onClick="registerData"/>
     </LinearLayout>
 
 </LinearLayout>
