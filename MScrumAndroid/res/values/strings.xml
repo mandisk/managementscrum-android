@@ -11,5 +11,8 @@
     <string name="RegPass">Introduzca su contraseña</string>
     <string name="RegContras">Contraseña</string>
     <string name="Registrar">Registrar</string>
+    <string name="Email">Email</string>
+    <string name="LoginTitle">Login</string>
+    <string name="RInport">Importar</string>
 
 </resources>
