@@ -1,6 +1,5 @@
 package org.minftel.mscrum.activities;
 
-import java.util.concurrent.ExecutionException;
 
 import org.minftel.mscrum.tasks.LoginTask;
 import org.minftel.mscrum.utils.ScrumConstants;
@@ -9,10 +8,8 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 	
@@ -39,8 +36,7 @@ public class LoginActivity extends Activity {
     	String sPassword = password.getText().toString();
     	
 		LoginTask loginTask = new LoginTask(this);
-		loginTask.execute(sEmail, sPassword);
-		
+		loginTask.execute(sEmail, sPassword);	
     }
     
     public Editor getEditor() {
