@@ -70,9 +70,9 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 			connection = null;
 			
 		} catch (MalformedURLException e) {
-			Log.e(ScrumConstants.TAG, e.getMessage());
+			Log.e(ScrumConstants.TAG, "MalformedURLException: " + e.getMessage());
 		} catch (IOException e) {
-			Log.e(ScrumConstants.TAG, e.getMessage());
+			Log.e(ScrumConstants.TAG, "IOException: " + e.getMessage());
 		}
 		
 		return result;
@@ -85,6 +85,11 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 		}
 		
 		if (result != null) {
+			
+			if (result.equals(ScrumConstants.ERROR_LOGIN)) {
+				Toast.makeText(this.activity, "Wrong user or password", Toast.LENGTH_SHORT).show();
+				return;
+			}
 			
 			try {
 				JSONObject json = new JSONObject(result);
@@ -120,6 +125,8 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 				
 				this.activity.getEditor().putString(ScrumConstants.SESSION_ID, json.getString("session"));
 				this.activity.getEditor().commit();
+				
+				Toast.makeText(this.activity, "User logged", Toast.LENGTH_SHORT).show();
 				
 			} catch (JSONException e) {
 				Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
