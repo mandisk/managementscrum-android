@@ -8,23 +8,21 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.Contacts;
-import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class Register extends Activity {
 
 	private static final int CONTACT_PICKER_RESULT = 0;
 	private EditText nombre;
-	private EditText apellido;
 	private EditText email;
+	//private EditText apellido;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
 		nombre = (EditText) findViewById(R.id.nombre);
-		apellido = (EditText) findViewById(R.id.apellido);
+		//apellido = (EditText) findViewById(R.id.apellido);
 		email = (EditText) findViewById(R.id.email);
 
 	}
