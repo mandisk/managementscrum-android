@@ -13,6 +13,9 @@ public class ScrumConstants {
 //	private static String DIRECCION_IP_SERVER = "192.168.1.134";
 	public static String BASE_URL = "http://" + DIRECCION_IP_SERVER + ":8080/MScrum-war/Dispatcher";
 	
-	// ACCIONES
+	// ACTIONS
 	public static final int ACTION_LOGIN = 0;
+	
+	// SERVER RESPONSES
+	public static final String ERROR_LOGIN = "ERROR_LOGIN";
 }
