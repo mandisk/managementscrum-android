@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.minftel.mscrum.activities.LoginActivity;
+import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
@@ -39,6 +40,7 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 		String result = null;
 		
 		try {
+			Log.i(ScrumConstants.TAG, "Logging user");
 
 			URL urlDispatcher = new URL(ScrumConstants.BASE_URL);
 			URLConnection connection = urlDispatcher.openConnection();
@@ -82,15 +84,19 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 		if (result != null) {
 			
 			if (result.equals(ScrumConstants.ERROR_LOGIN)) {
-				Toast.makeText(this.activity, "Wrong user or password", Toast.LENGTH_SHORT).show();
+				Toast.makeText(
+						activity, 
+						activity.getResources().getString(R.string.login_error), 
+						Toast.LENGTH_SHORT).show();
+				
+				Log.i(ScrumConstants.TAG, "Error login");
+				
 				return;
 			}
 			
 			try {
 				JSONObject json = new JSONObject(result);
 				JSONArray jsonProjects = json.getJSONArray("projects");
-				
-				Log.i(ScrumConstants.TAG, "Session id: " + json.getString("session"));
 				
 				// Save SESSION ID in SharedPreferences
 				this.activity.getEditor().putString(ScrumConstants.SESSION_ID, json.getString("session"));
@@ -103,6 +109,8 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_PROJECTS);
 				broadCastIntent.putExtra("projects", jsonProjects.toString());
 				this.activity.sendBroadcast(broadCastIntent);
+				
+				Log.i(ScrumConstants.TAG, "User logged");
 				
 			} catch (JSONException e) {
 				Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
