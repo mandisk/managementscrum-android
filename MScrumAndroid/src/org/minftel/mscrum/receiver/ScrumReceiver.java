@@ -11,8 +11,8 @@ public class ScrumReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		// Go to ProjectActivity
 		if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_PROJECTS)) {
-			
 			// Create Intent to start activity
 			Intent projectIntent = new Intent(context, ProjectActivity.class);
 			projectIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
