@@ -9,21 +9,16 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.minftel.mscrum.activities.LoginActivity;
-import org.minftel.mscrum.model.ProjectDetail;
-import org.minftel.mscrum.model.UserDetail;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -95,38 +90,19 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 				JSONObject json = new JSONObject(result);
 				JSONArray jsonProjects = json.getJSONArray("projects");
 				
-				List<ProjectDetail> projects = new ArrayList<ProjectDetail>();
-				
-				for (int i = 0; i < jsonProjects.length(); i++) {
-					JSONObject project = jsonProjects.getJSONObject(i);
-					
-					ProjectDetail projectDetail = new ProjectDetail();
-					projectDetail.setIdProject(project.getInt("id"));
-					projectDetail.setName(project.getString("name"));
-					projectDetail.setDescription(project.getString("description"));
-					projectDetail.setInitialDate(new Date(project.getLong("initialdate")));
-					projectDetail.setEndDate(new Date(project.getLong("enddate")));
-					
-					JSONObject scrumMaster = project.getJSONObject("scrummaster");
-					
-					UserDetail userDetail = new UserDetail();
-					userDetail.setName(scrumMaster.getString("name"));
-					userDetail.setSurname(scrumMaster.getString("surname"));
-					userDetail.setEmail(scrumMaster.getString("email"));
-					userDetail.setPhone(scrumMaster.getString("phone"));
-					
-					projectDetail.setScrumMaster(userDetail);
-					
-					projects.add(projectDetail);
-				}
-				
 				Log.i(ScrumConstants.TAG, "Session id: " + json.getString("session"));
-				Log.i(ScrumConstants.TAG, "Projects: " + projects.toString());
 				
+				// Save SESSION ID in SharedPreferences
 				this.activity.getEditor().putString(ScrumConstants.SESSION_ID, json.getString("session"));
 				this.activity.getEditor().commit();
 				
 				Toast.makeText(this.activity, "User logged", Toast.LENGTH_SHORT).show();
+				
+				// Send broadcast to open ProjectActivity
+				Intent broadCastIntent = new Intent();
+				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_PROJECTS);
+				broadCastIntent.putExtra("projects", jsonProjects.toString());
+				this.activity.sendBroadcast(broadCastIntent);
 				
 			} catch (JSONException e) {
 				Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
