@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.model.SprintDetail;
+import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.model.UserDetail;
 
 public class JSONConverter {
@@ -86,7 +87,7 @@ public class JSONConverter {
 	/**
 	 * Convert JSON String to SprintDetail list
 	 * @param json String
-	 * @return ProjectDetail list
+	 * @return SprintDetail list
 	 * @throws JSONException
 	 */
 	public static List<SprintDetail> fromJSONtoSprintList(String json) throws JSONException {
@@ -118,6 +119,46 @@ public class JSONConverter {
 		sprintDetail.setProject((jsonObject.getInt("idproject")));
 		
 		return sprintDetail;
+	}
+	
+	/**
+	 * Convert JSON String to TaskDetail list
+	 * @param json String
+	 * @return TaskDetail list
+	 * @throws JSONException
+	 */
+	public static List<TaskDetail> fromJSONtoTaskList(String json) throws JSONException {
+		JSONArray jsonSprints = new JSONArray(json);
+		List<TaskDetail> tasks = new ArrayList<TaskDetail>();
+		
+		for (int i = 0; i < jsonSprints.length(); i++) {
+			JSONObject task = jsonSprints.getJSONObject(i);
+			TaskDetail taskDetail = fromJSONObjectToTaskDetail(task);
+			
+			tasks.add(taskDetail);
+		}
+		
+		return tasks;
+	}
+	
+	/**
+	 * Convert JSON String to TaskDetail
+	 * @param jsonObject
+	 * @return
+	 * @throws JSONException
+	 */
+	public static TaskDetail fromJSONObjectToTaskDetail(JSONObject jsonObject) throws JSONException {
+		TaskDetail taskDetail = new TaskDetail();
+		taskDetail.setIdTask(jsonObject.getInt("id"));
+		taskDetail.setState(jsonObject.getString("state").charAt(0));
+		taskDetail.setDescription(jsonObject.getString("description"));
+		taskDetail.setTime(jsonObject.getInt("time"));
+		
+		UserDetail userDetail = fromJSONObjectToUserDetail(jsonObject.getJSONObject("user"));
+		
+		taskDetail.setUser(userDetail);
+		
+		return taskDetail;
 	}
 	
 }
