@@ -32,7 +32,7 @@ public class LoginActivity extends Activity {
     }
     
     public void doLogin(View view) {
-    	String sEmail = email.getText().toString();
+    	String sEmail = email.getText().toString().trim();
     	String sPassword = password.getText().toString();
     	
 		LoginTask loginTask = new LoginTask(this);
