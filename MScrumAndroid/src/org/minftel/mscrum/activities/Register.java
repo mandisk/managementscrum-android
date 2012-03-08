@@ -85,18 +85,23 @@ public class Register extends Activity {
 
 	public void registerData(View view) {
 
-		String n = nombre.getText().toString();
-		String sn = apellido.getText().toString();
-		String correo = email.getText().toString();
-		String pass = password.getText().toString();
+		String n = nombre.getText().toString().trim();
+		String sn = apellido.getText().toString().trim();
+		String correo = email.getText().toString().trim();
+		String pass = password.getText().toString().trim();
 
 		if (n == null || n.equals("") || sn == null || sn.equals("")
 				|| correo == null || correo.equals("") || pass == null
 				|| pass.equals("")) {
 			Toast.makeText(this, getResources().getString(R.string.login_empty_fields), Toast.LENGTH_SHORT).show();
 		} else {
-			RegisterTask Rtask = new RegisterTask(this);
-			Rtask.execute(n, sn, correo, pass);
+			if(!correo.contentEquals("@")){
+				Toast.makeText(this, getResources().getString(R.string.EmailError), Toast.LENGTH_SHORT).show();
+			}else{
+				RegisterTask Rtask = new RegisterTask(this);
+				Rtask.execute(n, sn, correo, pass);
+			}
+		
 		}
 	}
 }
