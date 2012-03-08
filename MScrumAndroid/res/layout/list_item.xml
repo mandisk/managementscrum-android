@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android">
         <TextView
            android:id="@+id/option_text"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
             android:textSize="16dp" >
         </TextView>
-</LinearLayout>
+         <TextView
+           android:id="@+id/option_text_scrum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/option_text"
+            android:textSize="12dp" 
+            android:text="Prueba Scrum Master">
+        </TextView>
+</RelativeLayout>
+ 
