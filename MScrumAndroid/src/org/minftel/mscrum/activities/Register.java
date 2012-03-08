@@ -1,8 +1,10 @@
 package org.minftel.mscrum.activities;
 
+
 import org.minftel.mscrum.tasks.RegisterTask;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -80,8 +82,25 @@ public class Register extends Activity {
 	}
 	
 	public void registerData(View view){
-		
+		String n = nombre.getText().toString();
+		String sn = apellido.getText().toString();
+		String correo = email.getText().toString();
+		String pass = password.getText().toString();
+		Log.d("","------------------->>>"+n);
+		if(n== null || n.equals("")  || sn == null || sn.equals("")  || correo == null || correo.equals("")  || pass == null || pass.equals("") )
+		{
+			Log.d("","dentro del if");
+			new AlertDialog.Builder(this)
+			// discapacitados
+			.setMessage("Rellena los campos en blancos, por favor")
+			.setPositiveButton("Ok", null)
+			.show();
+		}
+		else
+		{
+			Log.d("","dentro del else");
 		RegisterTask Rtask = new RegisterTask(this);
-		Rtask.execute(nombre.getText().toString(), apellido.getText().toString(), email.getText().toString(),password.getText().toString() );	
+		Rtask.execute(n,sn ,correo ,pass );	
+		}
 	}
 }
