@@ -11,6 +11,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.minftel.mscrum.activities.LoginActivity;
+import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.activities.Register;
 import org.minftel.mscrum.utils.ScrumConstants;
 
@@ -20,6 +21,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.text.Editable;
 import android.util.Log;
+import android.widget.Toast;
 
 public class RegisterTask extends AsyncTask<String, Integer, String> {
 	
@@ -88,6 +90,8 @@ public class RegisterTask extends AsyncTask<String, Integer, String> {
 			broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_LOGIN);
 			this.activity.sendBroadcast(broadCastIntent);
 			
+		}else{
+			Toast.makeText(this.activity, "User already register", Toast.LENGTH_SHORT).show();
 		}
 	}
 
