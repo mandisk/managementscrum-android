@@ -15,10 +15,12 @@ public class ScrumConstants {
 	
 	// ACTIONS
 	public static final int ACTION_LOGIN = 0;
+	public static final int ACTION_REGISTER = 1;
 	
 	// SERVER RESPONSES
 	public static final String ERROR_LOGIN = "ERROR_LOGIN";
 	
 	// RECEIVERS ACTIONS
 	public static final String BROADCAST_GO_PROJECTS = "org.minftel.receiver.action.GO_PROJECTS";
+	public static final String BROADCAST_GO_LOGIN = "org.minftel.receiver.action.GO_LOGIN";
 }
