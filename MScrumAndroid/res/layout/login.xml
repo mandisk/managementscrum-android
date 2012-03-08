@@ -30,4 +30,14 @@
         android:onClick="doLogin"
         android:text="@string/login_button" />
 
+    <TextView
+        android:id="@+id/textViewRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_get_account"
+        android:clickable="true"
+        android:onClick="getAccount"
+        android:paddingTop="30dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 </LinearLayout>
