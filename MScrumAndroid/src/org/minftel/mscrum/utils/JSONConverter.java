@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.minftel.mscrum.model.ProjectDetail;
+import org.minftel.mscrum.model.SprintDetail;
 import org.minftel.mscrum.model.UserDetail;
 
 public class JSONConverter {
@@ -81,4 +82,35 @@ public class JSONConverter {
 		
 		return userDetail;
 	}
+	
+	/**
+	 * Convert JSON String to ProjectDetail list
+	 * @param json String
+	 * @return ProjectDetail list
+	 * @throws JSONException
+	 */
+	public static List<SprintDetail> fromJSONtoSprintList(String json) throws JSONException {
+		JSONArray jsonSprints = new JSONArray(json);
+		List<SprintDetail> sprints = new ArrayList<SprintDetail>();
+		
+		for (int i = 0; i < jsonSprints.length(); i++) {
+			JSONObject sprint = jsonSprints.getJSONObject(i);
+			SprintDetail sprintDetail = fromJSONObjectToSprintDetail(sprint);
+			
+			sprints.add(sprintDetail);
+		}
+		
+		return sprints;
+	}
+	
+	public static SprintDetail fromJSONObjectToSprintDetail(JSONObject jsonObject) throws JSONException {
+		SprintDetail sprintDetail = new SprintDetail();
+		sprintDetail.setSprintNumber((jsonObject.getInt("sprintnumber")));
+		sprintDetail.setInitialDate(new Date((jsonObject.getLong("initialdate"))));
+		sprintDetail.setEndDate(new Date(jsonObject.getLong("enddate")));
+		sprintDetail.setProject((jsonObject.getInt("idproject")));
+		
+		return sprintDetail;
+	}
+	
 }
