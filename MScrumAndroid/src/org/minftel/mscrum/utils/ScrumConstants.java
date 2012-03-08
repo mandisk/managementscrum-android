@@ -9,8 +9,8 @@ public class ScrumConstants {
 	public static final String SESSION_ID = "session_id";
 	
 	// DIRECCION SERVLET FRONTAL
-	private static String DIRECCION_IP_SERVER = "192.168.1.118";
-//	private static String DIRECCION_IP_SERVER = "192.168.1.134";
+//	private static String DIRECCION_IP_SERVER = "192.168.1.118";
+	private static String DIRECCION_IP_SERVER = "192.168.1.134";
 	public static String BASE_URL = "http://" + DIRECCION_IP_SERVER + ":8080/MScrum-war/Dispatcher";
 	
 	// ACTIONS
@@ -18,4 +18,7 @@ public class ScrumConstants {
 	
 	// SERVER RESPONSES
 	public static final String ERROR_LOGIN = "ERROR_LOGIN";
+	
+	// RECEIVERS ACTIONS
+	public static final String BROADCAST_GO_PROJECTS = "org.minftel.receiver.action.GO_PROJECTS";
 }
