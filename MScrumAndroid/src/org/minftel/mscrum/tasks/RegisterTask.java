@@ -11,20 +11,23 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.minftel.mscrum.activities.LoginActivity;
+import org.minftel.mscrum.activities.Register;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.text.Editable;
 import android.util.Log;
 
 public class RegisterTask extends AsyncTask<String, Integer, String> {
 	
-	private LoginActivity activity;
+	private	Register activity;
 	private ProgressDialog progressDialog;
 	
 	public RegisterTask(Activity activity) {
-		this.activity = (LoginActivity) activity;
+		this.activity = (Register) activity;
 		this.progressDialog = new ProgressDialog(activity);
 	}
 
@@ -77,6 +80,13 @@ public class RegisterTask extends AsyncTask<String, Integer, String> {
 		}
 		
 		if (result != null) {
+			// Send broadcast to open ProjectActivity
+			//--------
+			//Para un segundo sprint podriamos pasar nombre y contraseña registradas.
+			//--------
+			Intent broadCastIntent = new Intent();
+			broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_LOGIN);
+			this.activity.sendBroadcast(broadCastIntent);
 			
 		}
 	}
@@ -86,5 +96,6 @@ public class RegisterTask extends AsyncTask<String, Integer, String> {
 		progressDialog.setMessage("Loading...");
 		progressDialog.show();
 	}
+
 
 }
