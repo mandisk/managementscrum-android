@@ -25,6 +25,7 @@
             </intent-filter>
         </receiver>
         <activity android:name="ProjectActivity"></activity>
+        <activity android:name="Register"></activity>
     </application>
 
 </manifest>

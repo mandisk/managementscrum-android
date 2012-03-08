@@ -5,11 +5,13 @@ import org.minftel.mscrum.tasks.LoginTask;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 	
@@ -35,8 +37,18 @@ public class LoginActivity extends Activity {
     	String sEmail = email.getText().toString().trim();
     	String sPassword = password.getText().toString();
     	
+    	if (sEmail.isEmpty() || sPassword.isEmpty()) {
+    		Toast.makeText(this, getResources().getString(R.string.login_empty_fields), Toast.LENGTH_SHORT).show();
+    		return;
+    	}
+    	
 		LoginTask loginTask = new LoginTask(this);
 		loginTask.execute(sEmail, sPassword);	
+    }
+    
+    public void getAccount(View view) {
+    	Intent intent = new Intent(this, Register.class);
+    	startActivity(intent);
     }
     
     public Editor getEditor() {

@@ -12,7 +12,9 @@
     <string name="RegContras">Contraseña</string>
     <string name="Registrar">Registrar</string>
     <string name="Email">Email</string>
-    <string name="LoginTitle">Login</string>
+    <string name="login_error">Wrong user or password</string>
+    <string name="login_empty_fields">Fields not filled</string>
+    <string name="login_get_account">Get an account</string>
     <string name="RInport">Importar</string>
 
      <string-array name="title_names">
