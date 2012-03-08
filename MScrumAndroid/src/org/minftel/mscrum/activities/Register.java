@@ -1,6 +1,5 @@
 package org.minftel.mscrum.activities;
 
-
 import org.minftel.mscrum.tasks.RegisterTask;
 
 import android.app.Activity;
@@ -31,7 +30,7 @@ public class Register extends Activity {
 		apellido = (EditText) findViewById(R.id.apellido);
 		email = (EditText) findViewById(R.id.email);
 		password = (EditText) findViewById(R.id.pass);
-		 
+
 	}
 
 	public void importDate(View view) {
@@ -42,65 +41,64 @@ public class Register extends Activity {
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		String correo="";
-		
+		String correo = "";
+
 		if (resultCode == RESULT_OK) {
 			switch (requestCode) {
 			case CONTACT_PICKER_RESULT:
-				
-				 Uri result = data.getData();  
-				 String id = result.getLastPathSegment();  
-				 Cursor c = managedQuery(result, null, null, null, null);
-				 
-				//Recupera el nombre del contacto
-                 c.moveToFirst();
-                 String name = c.getString(c.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-               Log.d("",""+name);
-               
-                 c=null;
-                 //Recupera email de contacto
-                 c = getContentResolver().query(Email.CONTENT_URI,  
-                         null, Email.CONTACT_ID + "=?", new String[] { id },  
-                         null);  
-   
-                 int emaildx = c.getColumnIndex(Email.DATA);  
-                 
-                 if (c.moveToFirst()) {  
-                  correo = c.getString(emaildx);  
-                 }
-                 //String lastName = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
 
-                 nombre.setText(name); 
-                 email.setText(correo);
-                // apellido.setText(lastName);
-                 if (c != null) {  
-                     c.close();  
-                 }  
-			break;
+				Uri result = data.getData();
+				String id = result.getLastPathSegment();
+				Cursor c = managedQuery(result, null, null, null, null);
+
+				// Recupera el nombre del contacto
+				c.moveToFirst();
+				String name = c
+						.getString(c
+								.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
+				Log.d("", "" + name);
+
+				c = null;
+				// Recupera email de contacto
+				c = getContentResolver().query(Email.CONTENT_URI, null,
+						Email.CONTACT_ID + "=?", new String[] { id }, null);
+
+				int emaildx = c.getColumnIndex(Email.DATA);
+
+				if (c.moveToFirst()) {
+					correo = c.getString(emaildx);
+				}
+				// String lastName =
+				// c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
+
+				nombre.setText(name);
+				email.setText(correo);
+				// apellido.setText(lastName);
+				if (c != null) {
+					c.close();
+				}
+				break;
 			}
 		}
 	}
-	
-	public void registerData(View view){
+
+	public void registerData(View view) {
+
 		String n = nombre.getText().toString();
 		String sn = apellido.getText().toString();
 		String correo = email.getText().toString();
 		String pass = password.getText().toString();
-		Log.d("","------------------->>>"+n);
-		if(n== null || n.equals("")  || sn == null || sn.equals("")  || correo == null || correo.equals("")  || pass == null || pass.equals("") )
-		{
-			Log.d("","dentro del if");
+
+		if (n == null || n.equals("") || sn == null || sn.equals("")
+				|| correo == null || correo.equals("") || pass == null
+				|| pass.equals("")) {
 			new AlertDialog.Builder(this)
-			// discapacitados
-			.setMessage("Rellena los campos en blancos, por favor")
-			.setPositiveButton("Ok", null)
-			.show();
-		}
-		else
-		{
-			Log.d("","dentro del else");
-		RegisterTask Rtask = new RegisterTask(this);
-		Rtask.execute(n,sn ,correo ,pass );	
+					// discapacitados
+					.setMessage("Rellena los campos en blancos, por favor")
+					.setPositiveButton("Ok", null).show();
+		} else {
+			RegisterTask Rtask = new RegisterTask(this);
+			Rtask.execute(n, sn, correo, pass);
 		}
 	}
 }
