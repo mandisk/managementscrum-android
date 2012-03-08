@@ -1,5 +1,6 @@
 package org.minftel.mscrum.receiver;
 
+import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
 
@@ -21,6 +22,12 @@ public class ScrumReceiver extends BroadcastReceiver {
 			projectIntent.putExtra("projects", json);
 			
 			// ProjectActivity starts
+			context.startActivity(projectIntent);
+			
+		}else if(intent.getAction().equals(ScrumConstants.BROADCAST_GO_LOGIN)){
+			// Create Intent to start activity
+			Intent projectIntent = new Intent(context, LoginActivity.class);
+			projectIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(projectIntent);
 		}
 	}
