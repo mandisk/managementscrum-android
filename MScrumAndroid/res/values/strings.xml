@@ -35,5 +35,6 @@
         <item>Sprint 6</item>
         <item>Sprint 7</item>
     </string-array>
+     <string name="EmailError">Please introduce an email valid</string>
      
 </resources>
