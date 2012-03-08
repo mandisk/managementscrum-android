@@ -14,6 +14,7 @@ import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Register extends Activity {
 
@@ -92,10 +93,7 @@ public class Register extends Activity {
 		if (n == null || n.equals("") || sn == null || sn.equals("")
 				|| correo == null || correo.equals("") || pass == null
 				|| pass.equals("")) {
-			new AlertDialog.Builder(this)
-					// discapacitados
-					.setMessage("Rellena los campos en blancos, por favor")
-					.setPositiveButton("Ok", null).show();
+			Toast.makeText(this, getResources().getString(R.string.login_empty_fields), Toast.LENGTH_SHORT).show();
 		} else {
 			RegisterTask Rtask = new RegisterTask(this);
 			Rtask.execute(n, sn, correo, pass);
