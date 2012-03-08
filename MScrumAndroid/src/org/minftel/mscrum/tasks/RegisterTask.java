@@ -48,7 +48,7 @@ public class RegisterTask extends AsyncTask<String, Integer, String> {
 			DataOutputStream dos = new DataOutputStream(out);
 			
 			
-			dos.writeInt(ScrumConstants.ACTION_REGISTER);
+//			dos.writeInt(ScrumConstants.ACTION_REGISTER);
 			dos.writeUTF(params[0]);	// Nombre
 			dos.writeUTF(params[1]);	// Apellido
 			dos.writeUTF(params[2]);	// Email
