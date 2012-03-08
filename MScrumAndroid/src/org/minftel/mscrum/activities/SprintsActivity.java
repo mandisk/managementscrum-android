@@ -19,7 +19,7 @@ public class SprintsActivity extends ListActivity {
 
 		String[] countries = getResources().getStringArray(
 				R.array.sprintsList);
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.list_sprints,
+		setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item,
 				countries));
 
 		ListView lv = getListView();
