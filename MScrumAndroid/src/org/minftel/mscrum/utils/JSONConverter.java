@@ -84,7 +84,7 @@ public class JSONConverter {
 	}
 	
 	/**
-	 * Convert JSON String to ProjectDetail list
+	 * Convert JSON String to SprintDetail list
 	 * @param json String
 	 * @return ProjectDetail list
 	 * @throws JSONException
@@ -103,8 +103,15 @@ public class JSONConverter {
 		return sprints;
 	}
 	
+	/**
+	 * Convert JSON String to SprintDetail
+	 * @param jsonObject
+	 * @return
+	 * @throws JSONException
+	 */
 	public static SprintDetail fromJSONObjectToSprintDetail(JSONObject jsonObject) throws JSONException {
 		SprintDetail sprintDetail = new SprintDetail();
+		sprintDetail.setIdSprint(jsonObject.getInt("id"));
 		sprintDetail.setSprintNumber((jsonObject.getInt("sprintnumber")));
 		sprintDetail.setInitialDate(new Date((jsonObject.getLong("initialdate"))));
 		sprintDetail.setEndDate(new Date(jsonObject.getLong("enddate")));
