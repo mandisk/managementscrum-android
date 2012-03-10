@@ -41,5 +41,6 @@
      <string name="initialDateAddProject">Initial date</string>
      <string name="endDateAddProject">End date</string>
      <string name="buttonAddProject">Add project</string>
+     <string name="dialog_loading">Loading</string>
      
 </resources>
