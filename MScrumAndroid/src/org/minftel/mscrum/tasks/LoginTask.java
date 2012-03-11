@@ -120,7 +120,7 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 
 	@Override
 	protected void onPreExecute() {
-		progressDialog.setMessage("Loading...");
+		progressDialog.setMessage(activity.getResources().getString(R.string.dialog_loading));
 		progressDialog.show();
 	}
 
