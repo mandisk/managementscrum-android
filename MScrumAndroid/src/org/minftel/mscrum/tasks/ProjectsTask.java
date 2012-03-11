@@ -9,14 +9,20 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.minftel.mscrum.activities.ProjectActivity;
+import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.activities.SprintsActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 public class ProjectsTask extends AsyncTask<String, Integer, String> {
 	
@@ -44,9 +50,8 @@ public class ProjectsTask extends AsyncTask<String, Integer, String> {
 			DataOutputStream dos = new DataOutputStream(out);
 
 			dos.writeInt(ScrumConstants.ACTION_REQUEST_LIST_SPRINTS);
-			dos.writeUTF(params[0]); // Email
-			dos.writeUTF(params[1]); // Password
-
+			dos.writeUTF(params[0]); // Project ID
+			
 			// Receive from server
 			InputStream in = connection.getInputStream();
 			DataInputStream dis = new DataInputStream(in);
@@ -66,6 +71,57 @@ public class ProjectsTask extends AsyncTask<String, Integer, String> {
 
 		return result;
 	}
+	
+
+	@Override
+	protected void onPostExecute(String result) {
+		if (progressDialog.isShowing()) {
+			progressDialog.dismiss();
+		}
+		
+		if (result != null) {
+			
+			if (result.equals(ScrumConstants.ERROR_LOGIN)) {
+				Toast.makeText(
+						activity, 
+						activity.getResources().getString(R.string.login_error), 
+						Toast.LENGTH_SHORT).show();
+				
+				Log.i(ScrumConstants.TAG, "Error login");
+				
+				return;
+			}
+			
+			try {
+				JSONObject json = new JSONObject(result);
+				JSONArray jsonProjects = json.getJSONArray("sprints");
+				
+				// Save SESSION ID in SharedPreferences
+				//this.activity.getEditor().putString(ScrumConstants.SESSION_ID, json.getString("session"));
+				//this.activity.getEditor().commit();
+				
+				//Toast.makeText(this.activity, "User logged", Toast.LENGTH_SHORT).show();
+				
+				// Send broadcast to open ProjectActivity
+				Intent broadCastIntent = new Intent();
+				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_SPRINTS);
+				broadCastIntent.putExtra("sprints", jsonProjects.toString());
+				this.activity.sendBroadcast(broadCastIntent);
+				
+				Log.i(ScrumConstants.TAG, "Project selected");
+				
+			} catch (JSONException e) {
+				Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
+			}
+		}
+	}
+
+	@Override
+	protected void onPreExecute() {
+		progressDialog.setMessage(activity.getResources().getString(R.string.dialog_loading));
+		progressDialog.show();
+	}
+
 
 
 }

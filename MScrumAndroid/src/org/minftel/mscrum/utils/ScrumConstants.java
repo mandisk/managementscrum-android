@@ -17,6 +17,7 @@ public class ScrumConstants {
 	public static final int ACTION_LOGIN = 0;	
 	public static final int ACTION_REGISTER = 1;
 	public static final int ACTION_REQUEST_LIST_SPRINTS = 2;
+	public static final int ACTION_REQUEST_LIST_TASKS = 3;
 	
 	// SERVER RESPONSES
 	public static final String ERROR_LOGIN = "ERROR_LOGIN";
@@ -24,4 +25,6 @@ public class ScrumConstants {
 	// RECEIVERS ACTIONS
 	public static final String BROADCAST_GO_PROJECTS = "org.minftel.receiver.action.GO_PROJECTS";
 	public static final String BROADCAST_GO_LOGIN = "org.minftel.receiver.action.GO_LOGIN";
+	public static final String BROADCAST_GO_SPRINTS = "org.minftel.receiver.action.GO_SPRINTS";
+	public static final String BROADCAST_GO_TASKS = "org.minftel.receiver.action.GO_TASKS";
 }
