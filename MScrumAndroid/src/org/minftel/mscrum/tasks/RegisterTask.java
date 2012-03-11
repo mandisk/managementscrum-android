@@ -10,7 +10,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.activities.Register;
 import org.minftel.mscrum.utils.ScrumConstants;
@@ -19,7 +18,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.text.Editable;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -97,7 +95,7 @@ public class RegisterTask extends AsyncTask<String, Integer, String> {
 
 	@Override
 	protected void onPreExecute() {
-		progressDialog.setMessage("Loading...");
+		progressDialog.setMessage(activity.getResources().getString(R.string.dialog_loading));
 		progressDialog.show();
 	}
 

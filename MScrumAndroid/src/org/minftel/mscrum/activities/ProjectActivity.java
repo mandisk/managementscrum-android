@@ -1,72 +1,98 @@
 package org.minftel.mscrum.activities;
 
 import android.app.ListActivity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.minftel.mscrum.model.ProjectDetail;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.minftel.mscrum.tasks.ProjectsTask;
 import org.minftel.mscrum.utils.JSONConverter;
+import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
 
 public class ProjectActivity extends ListActivity {
-	/** Called when the activity is first created. */
+	
+	private List<ProjectDetail> projectList;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.project);
-
-		Context ctx = getApplicationContext();
-
-		int i = 0;
-		Intent intent = getIntent();
-		Bundle datos = intent.getExtras();
-		String json = datos.getString("projects");
-		List<ProjectDetail> projects = new ArrayList<ProjectDetail>();
+		// PRUEBA
+		registerForContextMenu(getListView());
+		// FIN PRUEBA
+		
+		// Get Project List
+		String json = getIntent().getExtras().getString("projects");
 		
 		try {
-			projects = JSONConverter.fromJSONtoProjecList(json);
+			projectList = JSONConverter.fromJSONtoProjecList(json);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
 		}
-
-		// Initialize Array String
-		String[] options = new String[projects.size()];
-
-		for (ProjectDetail project : projects) {
+		
+		int size = projectList.size();
+		
+		String[] options = new String[size];
+		
+		for (int i = 0; i < size; i++) {
+			ProjectDetail project = projectList.get(i);
 			options[i] = project.getName();
-			i++;
 		}
 
 		// Load data in ListAdapter
-		setListAdapter(new TextAdapter(ctx, R.layout.list_item, options));
+		setListAdapter(new TextAdapter(this, R.layout.list_item, options));
 
 	}
 
-	public void onListItemClick(ListView parent, View v, int position, long id) {
-		//Intent intent = null;
-		// Show position clicked
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.menu_ctx_projects, menu);
+	}
 
-		Toast.makeText(getApplicationContext(),
-				"You have selected " + (position + 1) + "th item",
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		ProjectDetail projectDetail = this.projectList.get(info.position);
+		switch(item.getItemId()) {
+		case R.id.ctx_menu_view_users:
+			// View Users
+			return true;
+		case R.id.ctx_menu_delete:
+			// Delete Project
+			return true;
+		default:
+			return super.onContextItemSelected(item);
+		}
+	}
+
+	public void onListItemClick(ListView parent, View v, int position, long id) {
+		
+		// Get selected project
+		ProjectDetail selectedProject = this.projectList.get(position);
+
+		Toast.makeText(this,
+				"Project selected: " +  selectedProject.getName() + 
+				" [ ID: " + selectedProject.getIdProject() + " ]",
 				Toast.LENGTH_SHORT).show();
-		//Alejandro
-		//  String projectName = ((TextView) v).getText().toString();
           
-        //   ProjectsTask projectTask = new ProjectsTask(this);
-       //   projectTask.execute(projectName);       
+//        ProjectsTask projectTask = new ProjectsTask(this);
+//        projectTask.execute(projectName);       
 
 	}
 

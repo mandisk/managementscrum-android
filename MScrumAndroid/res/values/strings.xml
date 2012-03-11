@@ -42,5 +42,7 @@
      <string name="endDateAddProject">End date</string>
      <string name="buttonAddProject">Add project</string>
      <string name="dialog_loading">Loading</string>
+     <string name="menu_view_users">View users</string>
+     <string name="menu_delete_project">Delete project</string>
      
 </resources>

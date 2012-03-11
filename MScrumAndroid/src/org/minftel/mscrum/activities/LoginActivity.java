@@ -46,6 +46,7 @@ public class LoginActivity extends Activity {
 		loginTask.execute(sEmail, sPassword);	
     }
     
+    /** Start Register Activity. */
     public void getAccount(View view) {
     	Intent intent = new Intent(this, Register.class);
     	startActivity(intent);
