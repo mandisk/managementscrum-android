@@ -44,5 +44,10 @@
      <string name="dialog_loading">Loading</string>
      <string name="menu_view_users">View users</string>
      <string name="menu_delete_project">Delete project</string>
+      <string name="addTask">Add Task</string>
+     <string name="TaskName">Enter name:</string>
+     <string name="taskDescription">Enter description</string>
+     <string name="TimeTask">Enter time:</string>
+     <string name="AddTask">Add Task</string>
      
 </resources>
