@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Scrum</string>
     <string name="login_button">Login</string>
     <string name="login_hint_email">Enter you email</string>
@@ -16,38 +17,21 @@
     <string name="login_empty_fields">Fields not filled</string>
     <string name="login_get_account">Get an account</string>
     <string name="RInport">Importar</string>
+    <string name="EmailError">Please introduce an email valid</string>
+    <string name="nameAddProject">Name of Project</string>
+    <string name="descriptionAddProject">Description of project</string>
+    <string name="initialDateAddProject">Initial date:</string>
+    <string name="endDateAddProject">End date:</string>
+    <string name="buttonAddProject">Add project</string>
+    <string name="dialog_loading">Loading</string>
+    <string name="menu_view_users">View users</string>
+    <string name="menu_delete_project">Delete project</string>
+    <string name="addTask">Add Task</string>
+    <string name="TaskName">Enter name:</string>
+    <string name="taskDescription">Enter description</string>
+    <string name="TimeTask">Enter time:</string>
+    <string name="AddTask">Add Task</string>
+    <string name="sprints_error">Sprints badly loaded</string>
+    <string name="tasks_error">Tasks badly loaded</string>
 
-     <string-array name="title_names">
-        <item>Bahrain</item>
-        <item>Bangladesh</item>
-        <item>Barbados</item>
-        <item>Belarus</item>
-        <item>Belgium</item>
-        <item>Belize</item>
-        <item>Benin</item>
-    </string-array>
-     <string-array name="sprintsList">
-        <item>Sprint 1</item>
-        <item>Sprint 2</item>
-        <item>Sprint 3</item>
-        <item>Sprint 4</item>
-        <item>Sprint 5</item>
-        <item>Sprint 6</item>
-        <item>Sprint 7</item>
-    </string-array>
-     <string name="EmailError">Please introduce an email valid</string>
-     <string name="nameAddProject">Name of Project</string>
-     <string name="descriptionAddProject">Description of project</string>
-     <string name="initialDateAddProject">Initial date:</string>
-     <string name="endDateAddProject">End date:</string>
-     <string name="buttonAddProject">Add project</string>
-     <string name="dialog_loading">Loading</string>
-     <string name="menu_view_users">View users</string>
-     <string name="menu_delete_project">Delete project</string>
-      <string name="addTask">Add Task</string>
-     <string name="TaskName">Enter name:</string>
-     <string name="taskDescription">Enter description</string>
-     <string name="TimeTask">Enter time:</string>
-     <string name="AddTask">Add Task</string>
-     
 </resources>
