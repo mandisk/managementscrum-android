@@ -24,6 +24,9 @@
         <receiver android:name="org.minftel.mscrum.receiver.ScrumReceiver" android:enabled="true">
             <intent-filter>
                 <action android:name="org.minftel.receiver.action.GO_PROJECTS"/>
+                <action android:name="org.minftel.receiver.action.GO_LOGIN"/>
+                <action android:name="org.minftel.receiver.action.GO_SPRINTS"/>
+                <action android:name="org.minftel.receiver.action.GO_TASKS"/>
             </intent-filter>
         </receiver>
         <activity android:name="ProjectActivity"></activity>

@@ -49,7 +49,7 @@ public class SprintsTask extends AsyncTask<String, Integer, String> {
 			OutputStream out = connection.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(out);
 
-			dos.writeInt(ScrumConstants.ACTION_REQUEST_LIST_SPRINTS);
+			dos.writeInt(ScrumConstants.ACTION_REQUEST_LIST_TASKS);
 			dos.writeUTF(params[0]); // ID Sprint
 			
 
@@ -95,11 +95,11 @@ public class SprintsTask extends AsyncTask<String, Integer, String> {
 			try {
 				
 				JSONObject json = new JSONObject(result);
-				JSONArray jsonProjects = json.getJSONArray("tasks");
+				JSONArray jsonTasks = json.getJSONArray("tasks");
 								
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_TASKS);
-				broadCastIntent.putExtra("tasks", jsonProjects.toString());
+				broadCastIntent.putExtra("tasks", jsonTasks.toString());
 				this.activity.sendBroadcast(broadCastIntent);
 				
 				Log.i(ScrumConstants.TAG, "Sprint selected");

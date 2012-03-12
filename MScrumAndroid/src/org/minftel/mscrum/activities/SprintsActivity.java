@@ -43,18 +43,19 @@ public class SprintsActivity extends ListActivity {
 
 		// Get theSprints List
 		String json = getIntent().getExtras().getString("sprints");
-
+		
 		try {
 			sprintList = JSONConverter.fromJSONtoSprintList(json);
-		} catch (JSONException e) {
+			dates = new String[sprintList.size()];
+			sprintNumbers = new String[sprintList.size()];
+		} catch (Exception e) {
 			Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
 		}
 
 		for (int i = 0; i < sprintList.size(); i++) {
 			SprintDetail sprint = sprintList.get(i);
 			sprintNumbers[i] = "" + sprint.getIdSprint();
-			dates[i] = "From " + sprint.getInitialDate() + " to "
-					+ sprint.getEndDate();
+			dates[i] = "From " + sprint.getInitialDate() + " to " + sprint.getEndDate();
 		}
 
 		// Load data in ListAdapter
