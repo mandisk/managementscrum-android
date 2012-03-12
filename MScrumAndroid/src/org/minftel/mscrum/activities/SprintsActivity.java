@@ -1,5 +1,10 @@
 package org.minftel.mscrum.activities;
 
+import java.util.List;
+
+import org.minftel.mscrum.model.ProjectDetail;
+import org.minftel.mscrum.model.SprintDetail;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SprintsActivity extends ListActivity {
+	
+	private List<SprintDetail> sprintList = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -50,9 +57,9 @@ public class SprintsActivity extends ListActivity {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_sprint, menu);
 		return true;
-	}
+	}	
     
-    /** llamado cuando un elemento del menu es seleccionado. */
+    /** Llamado cuando un elemento del menu es seleccionado. */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		Intent intent = new Intent(this, AddSprintActivity.class);
@@ -60,5 +67,21 @@ public class SprintsActivity extends ListActivity {
 		
 		return true;
 	}
+	
+public void onListItemClick(ListView parent, View v, int position, long id) {
+		
+		// Get selected project
+		SprintDetail selectedSprint = this.sprintList.get(position);
+
+		Toast.makeText(this,
+				"Number of selected sprint : " +  selectedSprint.getSprintNumber() + 
+				" [ ID: " + selectedSprint.getIdSprint() + " ]",
+				Toast.LENGTH_SHORT).show();
+          
+//        ProjectsTask projectTask = new ProjectsTask(this);
+//        projectTask.execute(projectName);       
+
+	}
+	
 
 }
