@@ -19,6 +19,7 @@ import org.minftel.mscrum.model.ProjectDetail;
 
 import java.util.List;
 
+import org.minftel.mscrum.tasks.ProjectsTask;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
@@ -31,6 +32,7 @@ public class ProjectActivity extends ListActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.project);
+		
 		// PRUEBA
 		registerForContextMenu(getListView());
 		// FIN PRUEBA
@@ -94,9 +96,12 @@ public class ProjectActivity extends ListActivity {
 				"Project selected: " +  selectedProject.getName() + 
 				" [ ID: " + selectedProject.getIdProject() + " ]",
 				Toast.LENGTH_SHORT).show();
-          
-//        ProjectsTask projectTask = new ProjectsTask(this);
-//        projectTask.execute(projectName);       
+		
+		// Converted to string to send
+		String idProject = ""+selectedProject.getIdProject();
+		          			
+        ProjectsTask projectTask = new ProjectsTask(this);
+        projectTask.execute(idProject);       
 
 	}
 	
@@ -107,7 +112,7 @@ public class ProjectActivity extends ListActivity {
 			return true;
 		}
 	    
-	    /** llamado cuando un elemento del menu es seleccionado. */
+	    /** Called when an item is selected. */
 		@Override
 		public boolean onOptionsItemSelected(MenuItem item){
 			switch (item.getItemId()) {
@@ -115,7 +120,6 @@ public class ProjectActivity extends ListActivity {
 				Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show();
 				break;
 			case R.id.AddProject:
-//				Toast.makeText(this, "AddProject", Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(this, AddProjectActivity.class);
 		    	startActivity(intent);
 			default:
