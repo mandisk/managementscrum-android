@@ -2,7 +2,9 @@ package org.minftel.mscrum.activities;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -118,6 +120,9 @@ public class ProjectActivity extends ListActivity {
 			switch (item.getItemId()) {
 			case R.id.LogOut:
 				Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show();
+				SharedPreferences prefs;
+				prefs = PreferenceManager.getDefaultSharedPreferences(this);
+				prefs.edit().putString("userEmail", "").putString("pass", "").commit();
 				break;
 			case R.id.AddProject:
 				Intent intent = new Intent(this, AddProjectActivity.class);
@@ -128,9 +133,5 @@ public class ProjectActivity extends ListActivity {
 			return true;
 		}
 		
-		@Override
-		public void onBackPressed() {
-			this.finish();
-		}
 
 }
