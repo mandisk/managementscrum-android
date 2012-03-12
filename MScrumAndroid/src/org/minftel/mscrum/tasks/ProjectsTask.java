@@ -94,16 +94,10 @@ public class ProjectsTask extends AsyncTask<String, Integer, String> {
 			}
 			
 			try {
+				
 				JSONObject json = new JSONObject(result);
 				JSONArray jsonProjects = json.getJSONArray("sprints");
-				
-				// Save SESSION ID in SharedPreferences
-				//this.activity.getEditor().putString(ScrumConstants.SESSION_ID, json.getString("session"));
-				//this.activity.getEditor().commit();
-				
-				//Toast.makeText(this.activity, "User logged", Toast.LENGTH_SHORT).show();
-				
-				// Send broadcast to open ProjectActivity
+		
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_SPRINTS);
 				broadCastIntent.putExtra("sprints", jsonProjects.toString());
