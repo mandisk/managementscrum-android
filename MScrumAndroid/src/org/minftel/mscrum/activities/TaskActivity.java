@@ -28,7 +28,7 @@ public class TaskActivity extends ListActivity {
 		setContentView(R.layout.task);
 		Context ctx = getApplicationContext();
 
-		String[] countries = getResources().getStringArray(R.array.sprintsList);
+//		String[] countries = getResources().getStringArray(R.array.sprintsList);
 		//Antonio aqui te he comentado el TextAdapter para que no te de errores. He hecho una modificación
 		//en la clase. Lo unico que tienes que añadir es un campo más para la subopción. Si entras en
 		//ProjectActivity verás que el campo nuevo se añade de la misma forma. Cargas los datos que quieres
