@@ -3,6 +3,7 @@ package org.minftel.mscrum.model;
 public class TaskDetail {
 	
 	private int idTask;
+	private String name;
 	private char state;
 	private String description;
 	private int time;
@@ -20,6 +21,14 @@ public class TaskDetail {
 		this.user = user;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public int getIdTask() {
 		return idTask;
 	}
