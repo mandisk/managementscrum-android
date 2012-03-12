@@ -29,7 +29,11 @@ public class TaskActivity extends ListActivity {
 		Context ctx = getApplicationContext();
 
 		String[] countries = getResources().getStringArray(R.array.sprintsList);
-		setListAdapter(new TextAdapter(ctx, R.layout.list_item, countries));
+		//Antonio aqui te he comentado el TextAdapter para que no te de errores. He hecho una modificación
+		//en la clase. Lo unico que tienes que añadir es un campo más para la subopción. Si entras en
+		//ProjectActivity verás que el campo nuevo se añade de la misma forma. Cargas los datos que quieres
+		//mostrar y añades la variable del submenu al constructor del setListAdapter
+		//setListAdapter(new TextAdapter(ctx, R.layout.list_item, countries));
 
 	}
 

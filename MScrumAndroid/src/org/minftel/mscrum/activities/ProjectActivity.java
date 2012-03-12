@@ -47,14 +47,16 @@ public class ProjectActivity extends ListActivity {
 		int size = projectList.size();
 		
 		String[] options = new String[size];
+		String[] scrumMasters = new String[size];
 		
 		for (int i = 0; i < size; i++) {
 			ProjectDetail project = projectList.get(i);
 			options[i] = project.getName();
+			scrumMasters[i] = "Scrum Master: "+project.getScrumMaster().getName();
 		}
 
 		// Load data in ListAdapter
-		setListAdapter(new TextAdapter(this, R.layout.list_item, options));
+		setListAdapter(new TextAdapter(this, R.layout.list_item, options,scrumMasters));
 
 	}
 
