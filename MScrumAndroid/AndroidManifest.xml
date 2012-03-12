@@ -31,7 +31,9 @@
         <activity android:name="ProjectActivity"></activity>
         <activity android:name="Register"></activity>
         <activity android:name="AddProjectActivity"></activity>
+        <activity android:name="AddSprintActivity"></activity>
         <activity android:name="TaskActivity"></activity>
+        <activity android:name="SprintsActivity"></activity>
     </application>
 
 </manifest>
