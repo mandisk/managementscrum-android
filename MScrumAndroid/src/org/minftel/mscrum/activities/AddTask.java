@@ -3,8 +3,13 @@ package org.minftel.mscrum.activities;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class AddTask extends Activity{
+	String nameTask;
+	String descriptionTask;
+	String timeTask;
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -15,8 +20,18 @@ public class AddTask extends Activity{
 	}
 	
 	public void save(View view){
-		 String nameTask  =  findViewById(R.id.nameTask).toString();
-         String descriptionTask = findViewById(R.id.DescriptionTask).toString();
-         String timeTask = findViewById(R.id.TimeTask).toString();
+		  nameTask  =  findViewById(R.id.nameTask).toString();
+          descriptionTask = findViewById(R.id.DescriptionTask).toString();
+          timeTask = findViewById(R.id.TimeTask).toString();
+	}
+	
+	public boolean checkValues(View view){
+		
+		if(nameTask.isEmpty() || descriptionTask.isEmpty() || timeTask.isEmpty()){
+			Toast.makeText(this, "Please, chek the empty field", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+	
+		return true;
 	}
 }
