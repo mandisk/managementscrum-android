@@ -34,7 +34,7 @@ public class ProjectsTask extends AsyncTask<String, Integer, String> {
 		this.progressDialog = new ProgressDialog(activity);
 	}
 	
-	public String doInBackground(String... params) {
+	public String doInBackground(String...params) {
 
 		String result = null;
 
@@ -48,7 +48,8 @@ public class ProjectsTask extends AsyncTask<String, Integer, String> {
 			// Send to server
 			OutputStream out = connection.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(out);
-
+					
+			
 			dos.writeInt(ScrumConstants.ACTION_REQUEST_LIST_SPRINTS);
 			dos.writeUTF(params[0]); // Project ID
 			
@@ -120,8 +121,6 @@ public class ProjectsTask extends AsyncTask<String, Integer, String> {
 	protected void onPreExecute() {
 		progressDialog.setMessage(activity.getResources().getString(R.string.dialog_loading));
 		progressDialog.show();
-	}
-
-
+	}	
 
 }
