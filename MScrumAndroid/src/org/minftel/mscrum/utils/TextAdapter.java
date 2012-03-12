@@ -16,16 +16,19 @@ private LayoutInflater mInflater;
         
         private String[] mStrings;
         
+        private String[] mSubStrings;
+        
         private int mViewResourceId;
         
         public TextAdapter(Context ctx, int viewResourceId,
-                        String[] strings) {
+                        String[] strings, String[] substrings) {
                 super(ctx, viewResourceId, strings);
                 
                 mInflater = (LayoutInflater)ctx.getSystemService(
                                 Context.LAYOUT_INFLATER_SERVICE);
                 
                 mStrings = strings;
+                mSubStrings = substrings;                
                 
                 mViewResourceId = viewResourceId;
         }
@@ -48,6 +51,9 @@ private LayoutInflater mInflater;
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
                 convertView = mInflater.inflate(mViewResourceId, null);
+                
+                TextView subtv = (TextView)convertView.findViewById(R.id.option_text_scrum);
+                subtv.setText(mSubStrings[position]);
 
                 TextView tv = (TextView)convertView.findViewById(R.id.option_text);
                 tv.setText(mStrings[position]);
