@@ -5,9 +5,11 @@
     android:orientation="vertical" >
 
     <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -21,14 +23,11 @@
                 android:layout_height="wrap_content"
                 android:text="@string/nameAddProject"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <EditText
-                android:id="@+id/editText1"
+                android:id="@+id/nameAddProjectText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <requestFocus />
-            </EditText>
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/addProjectDescriptionLabel"
@@ -36,9 +35,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/descriptionAddProject"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/descriptionAddProjectText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine" />
