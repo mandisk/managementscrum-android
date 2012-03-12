@@ -6,6 +6,8 @@ import java.util.List;
 import org.json.JSONException;
 import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.model.SprintDetail;
+import org.minftel.mscrum.tasks.ProjectsTask;
+import org.minftel.mscrum.tasks.SprintsTask;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
@@ -36,7 +38,7 @@ public class SprintsActivity extends ListActivity {
 
 		String[] sprintNumbers = null;
 		String[] dates = null;
-	
+
 		registerForContextMenu(getListView());
 
 		// Get theSprints List
@@ -51,14 +53,15 @@ public class SprintsActivity extends ListActivity {
 		for (int i = 0; i < sprintList.size(); i++) {
 			SprintDetail sprint = sprintList.get(i);
 			sprintNumbers[i] = "" + sprint.getIdSprint();
-			dates[i] = "From " + sprint.getInitialDate() + " to " + sprint.getEndDate();
+			dates[i] = "From " + sprint.getInitialDate() + " to "
+					+ sprint.getEndDate();
 		}
 
 		// Load data in ListAdapter
 		setListAdapter(new TextAdapter(this, R.layout.list_item, sprintNumbers,
 				dates));
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -87,6 +90,12 @@ public class SprintsActivity extends ListActivity {
 						+ selectedSprint.getSprintNumber() + " [ ID: "
 						+ selectedSprint.getIdSprint() + " ]",
 				Toast.LENGTH_SHORT).show();
+
+		// Converted to string to send
+		String idSprint = "" + selectedSprint.getIdSprint();
+
+		SprintsTask sprintTask = new SprintsTask(this);
+		sprintTask.execute(idSprint);
 
 	}
 
