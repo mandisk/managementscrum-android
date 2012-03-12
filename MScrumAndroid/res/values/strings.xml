@@ -33,5 +33,9 @@
     <string name="AddTask">Add Task</string>
     <string name="sprints_error">Sprints badly loaded</string>
     <string name="tasks_error">Tasks badly loaded</string>
+     <string name="addSprintIdLabel">ID</string>
+     <string name="addSprintInitialDate">Initial Date</string>
+     <string name="addSprintEndDate">End Date</string>
+     <string name="addSprintButton">Add Sprint</string>
 
 </resources>
