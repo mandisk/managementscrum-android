@@ -1,10 +1,12 @@
 package org.minftel.mscrum.activities;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -95,5 +97,34 @@ public class ProjectActivity extends ListActivity {
 //        projectTask.execute(projectName);       
 
 	}
+	
+	 @Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+			MenuInflater inflater = getMenuInflater();
+			inflater.inflate(R.menu.menu_project, menu);
+			return true;
+		}
+	    
+	    /** llamado cuando un elemento del menu es seleccionado. */
+		@Override
+		public boolean onOptionsItemSelected(MenuItem item){
+			switch (item.getItemId()) {
+			case R.id.LogOut:
+				Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show();
+				break;
+			case R.id.AddProject:
+//				Toast.makeText(this, "AddProject", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(this, AddProjectActivity.class);
+		    	startActivity(intent);
+			default:
+				break;
+			}
+			return true;
+		}
+		
+		@Override
+		public void onBackPressed() {
+			this.finish();
+		}
 
 }
