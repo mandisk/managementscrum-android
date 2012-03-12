@@ -10,7 +10,10 @@ public class ScrumConstants {
 	
 	// DIRECCION SERVLET FRONTAL
 	private static String DIRECCION_IP_SERVER = "10.0.2.2";
-//	private static String DIRECCION_IP_SERVER = "192.168.183.134";
+//	private static String DIRECCION_IP_SERVER = "192.168.1.134";
+//	private static String DIRECCION_IP_SERVER = "192.168.1.13";
+//	private static String DIRECCION_IP_SERVER = "192.168.1.119";
+//	private static String DIRECCION_IP_SERVER = "192.168.133.151";
 	public static String BASE_URL = "http://" + DIRECCION_IP_SERVER + ":8080/MScrum-war/Dispatcher";
 	
 	// ACTIONS
@@ -18,6 +21,7 @@ public class ScrumConstants {
 	public static final int ACTION_REGISTER = 1;
 	public static final int ACTION_REQUEST_LIST_SPRINTS = 2;
 	public static final int ACTION_REQUEST_LIST_TASKS = 3;
+	public static final int ACTION_ADD_PROJECT = 4;
 	
 	// SERVER RESPONSES
 	public static final String ERROR_LOGIN = "ERROR_LOGIN";
