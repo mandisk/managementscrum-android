@@ -72,16 +72,23 @@ public class JSONConverter {
 	}
 	
 	/**
-	 * Convert JSON String to UserDetail
-	 * @param json
-	 * @return
+	 * Convert JSON String to UserDetail list
+	 * @param json String
+	 * @return UserDetail list
 	 * @throws JSONException
 	 */
-	public static UserDetail fromJSONtoUserDetail(String json) throws JSONException{
-		JSONObject jsonUser = new JSONObject(json);
-		UserDetail userDetail = fromJSONObjectToUserDetail(jsonUser);
+	public static List<UserDetail> fromJSONtoUserList(String json) throws JSONException {
+		JSONArray jsonUsers = new JSONArray(json);
+		List<UserDetail> users = new ArrayList<UserDetail>();
 		
-		return userDetail;
+		for (int i = 0; i < jsonUsers.length(); i++) {
+			JSONObject user = jsonUsers.getJSONObject(i);
+			UserDetail userDetail = fromJSONObjectToUserDetail(user);
+			
+			users.add(userDetail);
+		}
+		
+		return users;
 	}
 	
 	/**
