@@ -93,12 +93,13 @@ public class SprintsTask extends AsyncTask<String, Integer, String> {
 			}
 			
 			try {
+				
 				JSONObject json = new JSONObject(result);
-				JSONArray jsonProjects = json.getJSONArray("sprints");
+				JSONArray jsonProjects = json.getJSONArray("tasks");
 								
 				Intent broadCastIntent = new Intent();
-				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_SPRINTS);
-				broadCastIntent.putExtra("sprints", jsonProjects.toString());
+				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_TASKS);
+				broadCastIntent.putExtra("tasks", jsonProjects.toString());
 				this.activity.sendBroadcast(broadCastIntent);
 				
 				Log.i(ScrumConstants.TAG, "Sprint selected");
