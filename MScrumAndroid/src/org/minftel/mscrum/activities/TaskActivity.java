@@ -48,7 +48,7 @@ public class TaskActivity extends ListActivity {
 				.getMenuInfo();
 
 		switch (item.getItemId()) {
-		case R.id.viewTask:
+		case R.id.addTask:
 			// View task description
 			return true;
 		case R.id.deleteTask:
