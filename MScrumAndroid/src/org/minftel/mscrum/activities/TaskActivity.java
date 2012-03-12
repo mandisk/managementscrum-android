@@ -2,13 +2,17 @@ package org.minftel.mscrum.activities;
 
 import java.util.List;
 
+import org.json.JSONException;
 import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.model.TaskDetail;
+import org.minftel.mscrum.utils.JSONConverter;
+import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
 
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,12 +32,31 @@ public class TaskActivity extends ListActivity {
 		setContentView(R.layout.task);
 		Context ctx = getApplicationContext();
 
-//		String[] countries = getResources().getStringArray(R.array.sprintsList);
-		//Antonio aqui te he comentado el TextAdapter para que no te de errores. He hecho una modificación
-		//en la clase. Lo unico que tienes que añadir es un campo más para la subopción. Si entras en
-		//ProjectActivity verás que el campo nuevo se añade de la misma forma. Cargas los datos que quieres
-		//mostrar y añades la variable del submenu al constructor del setListAdapter
-		//setListAdapter(new TextAdapter(ctx, R.layout.list_item, countries));
+		// PRUEBA
+				registerForContextMenu(getListView());
+		// FIN PRUEBA
+				
+		// Get Project List
+		String json = getIntent().getExtras().getString("task");
+		
+		try {
+			taskList = JSONConverter.fromJSONtoTaskList(json);
+		} catch (JSONException e) {
+			Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
+		}
+		
+		int size = taskList.size();
+		
+		String[] taskNames = new String[size];
+		String[] taskTimes = new String[size];
+		
+		for (int i = 0; i < size; i++) {
+			TaskDetail task = taskList.get(i);
+			taskNames[i] = task.getName();
+			taskTimes[i] = "Time: "+task.getTime();
+		}
+
+		setListAdapter(new TextAdapter(ctx, R.layout.list_item, taskNames,taskTimes));
 
 	}
 
