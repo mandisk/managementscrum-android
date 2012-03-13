@@ -48,7 +48,7 @@ public class RegisterTask extends AsyncTask<String, Integer, String> {
 			DataOutputStream dos = new DataOutputStream(out);
 			
 			
-//			dos.writeInt(ScrumConstants.ACTION_REGISTER);
+			dos.writeInt(ScrumConstants.ACTION_REGISTER);
 			dos.writeUTF(params[0]);	// Nombre
 			dos.writeUTF(params[1]);	// Apellido
 			dos.writeUTF(params[2]);	// Email
@@ -80,16 +80,23 @@ public class RegisterTask extends AsyncTask<String, Integer, String> {
 		}
 		
 		if (result != null) {
-			// Send broadcast to open ProjectActivity
-			//--------
-			//Para un segundo sprint podriamos pasar nombre y contraseña registradas.
-			//--------
-			Intent broadCastIntent = new Intent();
-			broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_LOGIN);
-			this.activity.sendBroadcast(broadCastIntent);
 			
-		}else{
-			Toast.makeText(this.activity, "User already register", Toast.LENGTH_SHORT).show();
+			if (result.equals(ScrumConstants.REGISTER_OK)) {
+				Log.i(ScrumConstants.TAG, "Register ok");
+				
+				// Send broadcast to open ProjectActivity
+				//--------
+				//Para un segundo sprint podriamos pasar nombre y contraseña registradas.
+				//--------
+				Intent broadCastIntent = new Intent();
+				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_LOGIN);
+				this.activity.sendBroadcast(broadCastIntent);	
+			}
+			else {
+				Log.i(ScrumConstants.TAG, "Register NOT ok");
+				Toast.makeText(activity, "Register error", Toast.LENGTH_SHORT).show();
+			}
+			
 		}
 	}
 

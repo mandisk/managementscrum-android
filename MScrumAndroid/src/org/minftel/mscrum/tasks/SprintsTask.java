@@ -40,7 +40,12 @@ public class SprintsTask extends AsyncTask<String, Integer, String> {
 
 		try {
 
-			URL urlDispatcher = new URL(ScrumConstants.BASE_URL);
+			String sessionId = activity.getSharedPreferences(
+					ScrumConstants.SHARED_PREFERENCES_FILE, 
+					activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
+			String url = ScrumConstants.BASE_URL + ScrumConstants.SESSION_URL + sessionId;
+			
+			URL urlDispatcher = new URL(url);
 			URLConnection connection = urlDispatcher.openConnection();
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
@@ -88,6 +93,12 @@ public class SprintsTask extends AsyncTask<String, Integer, String> {
 						Toast.LENGTH_SHORT).show();
 				
 				Log.i(ScrumConstants.TAG, "Error loading sprints");
+				
+				return;
+			}
+			
+			if (result.equals(ScrumConstants.SESSION_EXPIRED)) {
+				Log.i(ScrumConstants.TAG, "Session has expired");
 				
 				return;
 			}
