@@ -38,5 +38,6 @@
      <string name="addSprintEndDate">End Date:</string>
      <string name="addSprintButton">Add Sprint</string>
      <string name="project_error">Projects badly loaded</string>
+     <string name="menu_delete_sprints">Delete sprint</string>
 
 </resources>
