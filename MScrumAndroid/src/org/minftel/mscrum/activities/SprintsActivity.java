@@ -16,11 +16,14 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -39,6 +42,7 @@ public class SprintsActivity extends ListActivity {
 		String[] sprintNumbers = null;
 		String[] dates = null;
 
+		// Context Menu
 		registerForContextMenu(getListView());
 
 		// Get theSprints List
@@ -54,7 +58,7 @@ public class SprintsActivity extends ListActivity {
 
 		for (int i = 0; i < sprintList.size(); i++) {
 			SprintDetail sprint = sprintList.get(i);
-			sprintNumbers[i] = "" + sprint.getIdSprint();
+			sprintNumbers[i] = "Sprint: " + sprint.getIdSprint();
 			dates[i] = "From " + sprint.getInitialDate() + " to " + sprint.getEndDate();
 		}
 
@@ -77,6 +81,28 @@ public class SprintsActivity extends ListActivity {
 		startActivity(intent);
 
 		return true;
+	}
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		
+		MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.menu_ctx_sprints, menu);
+	}
+	
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		SprintDetail sprintDetail = this.sprintList.get(info.position);
+		switch(item.getItemId()) {
+		 case R.id.ctx_menu_sprints:
+			// Delete Project
+			return true;
+		default:
+			return super.onContextItemSelected(item);
+		}
 	}
 
 	/** Called when an item of the list is selected. */
