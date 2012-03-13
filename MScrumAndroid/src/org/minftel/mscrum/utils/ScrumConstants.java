@@ -11,10 +11,8 @@ public class ScrumConstants {
 	// DIRECCION SERVLET FRONTAL
 	private static String DIRECCION_IP_SERVER = "10.0.2.2";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.134";
-//	private static String DIRECCION_IP_SERVER = "192.168.1.13";
-//	private static String DIRECCION_IP_SERVER = "192.168.1.119";
-//	private static String DIRECCION_IP_SERVER = "192.168.133.151";
 	public static String BASE_URL = "http://" + DIRECCION_IP_SERVER + ":8080/MScrum-war/Dispatcher";
+	public static String SESSION_URL = ";jsessionid=";
 	
 	// ACTIONS
 	public static final int ACTION_LOGIN = 0;	
@@ -26,9 +24,12 @@ public class ScrumConstants {
 	
 	// SERVER RESPONSES
 	public static final String ERROR_LOGIN = "ERROR_LOGIN";
+	public static final String ERROR_REGISTER = "ERROR_REGISTER";
+    public static final String REGISTER_OK = "REGISTER_OK";
 	public static final String ERROR_PROJECTS = "ERROR_PROJECTS";
 	public static final String ERROR_SPRINTS = "ERROR_SPRINTS";
 	public static final String ERROR_TASKS = "ERROR_TASKS";
+	public static final String SESSION_EXPIRED = "SESSION_EXPIRED";
 	
 	// RECEIVERS ACTIONS
 	public static final String BROADCAST_GO_PROJECTS = "org.minftel.receiver.action.GO_PROJECTS";
