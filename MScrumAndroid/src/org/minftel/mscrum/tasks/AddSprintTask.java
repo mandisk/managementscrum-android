@@ -9,18 +9,24 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.minftel.mscrum.activities.LoginActivity;
+import org.minftel.mscrum.activities.AddSprintActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.utils.ScrumConstants;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.util.Log;
 
 public class AddSprintTask extends AsyncTask<String, Integer, String> {
 
-	private LoginActivity activity;
+	private AddSprintActivity activity;
 	private ProgressDialog progressDialog;
+	
+	public AddSprintTask(Activity activity) {
+		this.activity = (AddSprintActivity) activity;
+		this.progressDialog = new ProgressDialog(activity);
+	}	
 	
 	@Override
 	protected String doInBackground(String... params) {
@@ -43,9 +49,13 @@ public class AddSprintTask extends AsyncTask<String, Integer, String> {
 
 			dos.writeInt(ScrumConstants.ACTION_ADD_SPRINT);
 			dos.writeUTF(params[0]); // Sprint Number
-			dos.writeUTF(params[0]); // Initial Date
-			dos.writeUTF(params[0]); // End Date
-			dos.writeUTF(params[0]); // associated project ID
+			dos.writeUTF(params[1]); // Initial Day
+			dos.writeUTF(params[2]); // Initial Month
+			dos.writeUTF(params[3]); // Initial Year
+			dos.writeUTF(params[4]); // End Day
+			dos.writeUTF(params[5]); // End Month
+			dos.writeUTF(params[6]); // End Year
+			dos.writeUTF(params[7]); // associated project ID
 
 			// To receive from the dispatcher
 			InputStream in = connection.getInputStream();
