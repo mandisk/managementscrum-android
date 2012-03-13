@@ -82,13 +82,13 @@ public class ProjectsTask extends AsyncTask<String, Integer, String> {
 		
 		if (result != null) {
 			
-			if (result.equals(ScrumConstants.ERROR_LOGIN)) {
+			if (result.equals(ScrumConstants.ERROR_PROJECTS)) {
 				Toast.makeText(
 						activity, 
-						activity.getResources().getString(R.string.login_error), 
+						activity.getResources().getString(R.string.project_error), 
 						Toast.LENGTH_SHORT).show();
 				
-				Log.i(ScrumConstants.TAG, "Error login");
+				Log.i(ScrumConstants.TAG, "Error loading projects");
 				
 				return;
 			}
