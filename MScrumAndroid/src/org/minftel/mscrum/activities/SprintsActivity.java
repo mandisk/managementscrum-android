@@ -93,7 +93,7 @@ public class SprintsActivity extends ListActivity {
 				Toast.LENGTH_SHORT).show();
 
 		// Converted to string to send
-		String idSprint = "" + selectedSprint.getIdSprint();
+		String idSprint = String.valueOf(selectedSprint.getIdSprint());
 
 		SprintsTask sprintTask = new SprintsTask(this);
 		sprintTask.execute(idSprint);
