@@ -11,6 +11,7 @@ import java.net.URLConnection;
 
 import org.minftel.mscrum.activities.AddProjectActivity;
 import org.minftel.mscrum.activities.LoginActivity;
+import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
@@ -72,4 +73,12 @@ public class AddProjectTask extends AsyncTask<String, Integer, String>{
 
 		return result;
 	}
+	
+
+	@Override
+	protected void onPreExecute() {
+		progressDialog.setMessage(activity.getResources().getString(R.string.dialog_loading));
+		progressDialog.show();
+	}
+	
 }
