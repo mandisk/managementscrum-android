@@ -2,8 +2,8 @@ package org.minftel.mscrum.activities;
 
 import java.util.List;
 
-import org.json.JSONException;
 import org.minftel.mscrum.model.ProjectDetail;
+import org.minftel.mscrum.model.SprintDetail;
 import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
@@ -30,33 +30,38 @@ public class TaskActivity extends ListActivity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.task);
-		Context ctx = getApplicationContext();
+//		Context ctx = getApplicationContext();
 
-		// PRUEBA
-				registerForContextMenu(getListView());
-		// FIN PRUEBA
-				
-		// Get Project List
-		String json = getIntent().getExtras().getString("task");
+//		String[] countries = getResources().getStringArray(R.array.sprintsList);
+		//Antonio aqui te he comentado el TextAdapter para que no te de errores. He hecho una modificación
+		//en la clase. Lo unico que tienes que añadir es un campo más para la subopción. Si entras en
+		//ProjectActivity verás que el campo nuevo se añade de la misma forma. Cargas los datos que quieres
+		//mostrar y añades la variable del submenu al constructor del setListAdapter
+		//setListAdapter(new TextAdapter(ctx, R.layout.list_item, countries));
+		String[] taskNames = null;
+		String[] taskTimes = null;
+
+		registerForContextMenu(getListView());
+		
+		String json = getIntent().getExtras().getString("tasks");
 		
 		try {
 			taskList = JSONConverter.fromJSONtoTaskList(json);
-		} catch (JSONException e) {
+			taskTimes = new String[taskList.size()];
+			taskNames = new String[taskList.size()];
+		} catch (Exception e) {
 			Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
 		}
-		
-		int size = taskList.size();
-		
-		String[] taskNames = new String[size];
-		String[] taskTimes = new String[size];
-		
-		for (int i = 0; i < size; i++) {
+
+		for (int i = 0; i < taskList.size(); i++) {
 			TaskDetail task = taskList.get(i);
-			taskNames[i] = task.getName();
-			taskTimes[i] = "Time: "+task.getTime();
+			taskNames[i] = "" + task.getDescription();
+			taskTimes[i] = "User: " + task.getUser().getName() + " Time: " + task.getTime();
 		}
 
-		setListAdapter(new TextAdapter(ctx, R.layout.list_item, taskNames,taskTimes));
+		// Load data in ListAdapter
+		setListAdapter(new TextAdapter(this, R.layout.list_item, taskNames,
+				taskTimes));
 
 	}
 
