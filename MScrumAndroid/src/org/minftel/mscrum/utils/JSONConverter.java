@@ -161,7 +161,9 @@ public class JSONConverter {
 		taskDetail.setDescription(jsonObject.getString("description"));
 		taskDetail.setTime(jsonObject.getInt("time"));
 		
-		UserDetail userDetail = fromJSONObjectToUserDetail(jsonObject.getJSONObject("user"));
+		UserDetail userDetail = null;
+		if (!jsonObject.getString("user").equals("null"))
+			userDetail = fromJSONObjectToUserDetail(jsonObject.getJSONObject("user"));
 		
 		taskDetail.setUser(userDetail);
 		
