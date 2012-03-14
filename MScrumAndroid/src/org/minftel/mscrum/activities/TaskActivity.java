@@ -14,9 +14,12 @@ import org.minftel.mscrum.utils.TextAdapter;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -70,7 +73,7 @@ public class TaskActivity extends ListActivity {
 		super.onCreateContextMenu(menu, v, menuInfo);
 
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu_task, menu);
+		inflater.inflate(R.menu.menu_ctx_task, menu);
 	}
 
 	@Override
@@ -95,6 +98,36 @@ public class TaskActivity extends ListActivity {
 			return super.onContextItemSelected(item);
 		}
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_project, menu);
+		return true;
+	}
+
+	/** Called when an item is selected. */
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.LogOut:
+			Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show();
+			SharedPreferences prefs;
+			prefs = PreferenceManager.getDefaultSharedPreferences(this);
+			prefs.edit().putString("userEmail", "").putString("pass", "")
+					.commit();
+			break;
+		case R.id.AddTask:
+			
+			Intent intent = new Intent(this, AddTask.class);
+			startActivity(intent);
+
+		default:
+			break;
+		}
+		return true;
+	}
+
 
 	public void onListItemClick(ListView parent, View v, int position, long id) {
 
