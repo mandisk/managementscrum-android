@@ -5,12 +5,15 @@ import java.util.List;
 import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.model.SprintDetail;
 import org.minftel.mscrum.model.TaskDetail;
+import org.minftel.mscrum.tasks.AddTaskTask;
+import org.minftel.mscrum.tasks.DeleteTaskTask;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -24,27 +27,21 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class TaskActivity extends ListActivity {
 
+	private static final int REQUEST_CODE = 1;
 	private List<TaskDetail> taskList;
-	
+
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.task);
-//		Context ctx = getApplicationContext();
 
-//		String[] countries = getResources().getStringArray(R.array.sprintsList);
-		//Antonio aqui te he comentado el TextAdapter para que no te de errores. He hecho una modificación
-		//en la clase. Lo unico que tienes que añadir es un campo más para la subopción. Si entras en
-		//ProjectActivity verás que el campo nuevo se añade de la misma forma. Cargas los datos que quieres
-		//mostrar y añades la variable del submenu al constructor del setListAdapter
-		//setListAdapter(new TextAdapter(ctx, R.layout.list_item, countries));
 		String[] taskNames = null;
 		String[] taskTimes = null;
 
 		registerForContextMenu(getListView());
-		
+
 		String json = getIntent().getExtras().getString("tasks");
-		
+
 		try {
 			taskList = JSONConverter.fromJSONtoTaskList(json);
 			taskTimes = new String[taskList.size()];
@@ -54,14 +51,13 @@ public class TaskActivity extends ListActivity {
 		}
 
 		for (int i = 0; i < taskList.size(); i++) {
-			TaskDetail task = taskList.get(i);
-			taskNames[i] = "" + task.getDescription();
-			String userName = "N/A";
-			if (task.getUser() != null)
-				userName = task.getUser().getName();
-			taskTimes[i] = "User: " + userName + " Time: " + task.getTime();
+            TaskDetail task = taskList.get(i);
+            taskNames[i] = "" + task.getDescription();
+            String userName = "N/A";
+            if (task.getUser() != null)
+                    userName = task.getUser().getName();
+            taskTimes[i] = getString(R.string.user)  + userName + getString(R.string.time) + task.getTime();
 		}
-
 		// Load data in ListAdapter
 		setListAdapter(new TextAdapter(this, R.layout.list_item, taskNames,
 				taskTimes));
@@ -81,13 +77,19 @@ public class TaskActivity extends ListActivity {
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
+		TaskDetail taskdetail = this.taskList.get(info.position);
 
 		switch (item.getItemId()) {
 		case R.id.addTask:
-			// View task description
+			Intent intent = new Intent(this, AddTask.class);
+			startActivity(intent);
+
 			return true;
 		case R.id.deleteTask:
-			// Delete Project
+			// Delete task
+			DeleteTaskTask daleteTaskTask = new DeleteTaskTask(this);
+			daleteTaskTask.execute(Integer.toString(taskdetail.getIdTask()));
+
 			return true;
 		default:
 			return super.onContextItemSelected(item);
@@ -96,16 +98,18 @@ public class TaskActivity extends ListActivity {
 
 	public void onListItemClick(ListView parent, View v, int position, long id) {
 
-		// Get selected project
+		// Get selected task
 		TaskDetail selectedTask = this.taskList.get(position);
 
-		Toast.makeText(this,
-				"Project selected: " +  selectedTask.getDescription() + 
-				" [ ID: " + selectedTask.getIdTask() + " ]" +  "Time: " + selectedTask.getTime(),
-				Toast.LENGTH_SHORT).show();
-	
+		Intent intent = new Intent(this, EditTaskActivity.class);
+		intent.putExtra("state", selectedTask.getState());
+		intent.putExtra("time", selectedTask.getTime());
+		intent.putExtra("user", selectedTask.getUser().getName());
+//		intent.putExtra("sprint", selectedTask.getSprint().getSprintNumber());
+		intent.putExtra("description", selectedTask.getDescription());
+		
+		startActivity(intent);
 
 	}
 
-	
 }
