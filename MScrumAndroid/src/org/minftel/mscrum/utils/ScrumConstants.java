@@ -19,12 +19,13 @@ public class ScrumConstants {
 	public static final int ACTION_REGISTER = 1;
 	public static final int ACTION_REQUEST_LIST_SPRINTS = 2;
 	public static final int ACTION_REQUEST_LIST_TASKS = 3;
-	public static final int ACTION_ADD_PROJECT = 4;
-	public static final int ACTION_ADD_SPRINT = 5;
-	public static final int ACTION_ADD_TASK = 6;
-	public static final int ACTION_DELETE_PROJECT = 7;
-	public static final int ACTION_DELETE_SPRINT = 8;
-	public static final int ACTION_DELETE_TASK = 9;
+	public static final int ACTION_REQUEST_LIST_USERS = 4;
+	public static final int ACTION_ADD_PROJECT = 5;
+	public static final int ACTION_ADD_SPRINT = 6;
+	public static final int ACTION_ADD_TASK = 7;
+	public static final int ACTION_DELETE_PROJECT = 8;
+	public static final int ACTION_DELETE_SPRINT = 9;
+	public static final int ACTION_DELETE_TASK = 10;
 	
 	// SERVER RESPONSES
 	public static final String ERROR_ADD_PROJECT = "ERROR_ADD_PROJECT";
