@@ -12,9 +12,7 @@ import java.net.URLConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.minftel.mscrum.activities.AddProjectActivity;
 import org.minftel.mscrum.activities.AddTask;
-import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
@@ -22,7 +20,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 public class AddTaskTask extends AsyncTask<String, Integer, String>{
 

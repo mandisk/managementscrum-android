@@ -43,7 +43,7 @@ public class AddSprintTask extends AsyncTask<String, Integer, String> {
 
 			String sessionId = activity.getSharedPreferences(
 					ScrumConstants.SHARED_PREFERENCES_FILE, 
-					activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
+					Activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
 			String url = ScrumConstants.BASE_URL + ScrumConstants.SESSION_URL + sessionId;
 			
 			URL urlDispatcer = new URL(url);

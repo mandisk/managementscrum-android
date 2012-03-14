@@ -9,8 +9,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.minftel.mscrum.activities.AddProjectActivity;
-import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.TaskActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
 
