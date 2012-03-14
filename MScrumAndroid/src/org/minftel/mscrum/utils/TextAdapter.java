@@ -3,7 +3,6 @@ package org.minftel.mscrum.utils;
 import org.minftel.mscrum.activities.R;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
