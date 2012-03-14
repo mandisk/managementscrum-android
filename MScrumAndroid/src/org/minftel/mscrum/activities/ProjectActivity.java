@@ -88,8 +88,9 @@ public class ProjectActivity extends ListActivity {
 			return true;
 		case R.id.ctx_menu_delete:
 
+			// Convert to string to send
 			String idproject = String.valueOf(projectDetail.getIdProject());
-
+			
 			DeleteProjectTask dpt = new DeleteProjectTask(this);
 			dpt.execute(idproject);
 
