@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -101,17 +102,17 @@ public class TaskActivity extends ListActivity {
 	/** Called when an item is selected. */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent intent;
 		switch (item.getItemId()) {
 		case R.id.LogOut:
-			Toast.makeText(this, "Log out", Toast.LENGTH_SHORT).show();
-			SharedPreferences prefs;
-			prefs = PreferenceManager.getDefaultSharedPreferences(this);
-			prefs.edit().putString("userEmail", "").putString("pass", "")
-					.commit();
+			SharedPreferences prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
+			prefs.edit().clear().commit();
+			intent = new Intent(this, LoginActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+	        startActivity(intent);
 			break;
 		case R.id.AddTask:
-			
-			Intent intent = new Intent(this, AddTask.class);
+			intent = new Intent(this, AddTask.class);
 			startActivity(intent);
 
 		default:
