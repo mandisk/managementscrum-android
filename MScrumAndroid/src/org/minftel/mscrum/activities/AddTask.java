@@ -1,5 +1,7 @@
 package org.minftel.mscrum.activities;
 
+import org.minftel.mscrum.tasks.AddTaskTask;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,21 +16,28 @@ public class AddTask extends Activity{
     public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.addtask);
-            
-           
-            
 	}
 	
 	public void save(View view){
-		  nameTask  =  findViewById(R.id.nameTask).toString();
+		  
           descriptionTask = findViewById(R.id.DescriptionTask).toString();
           timeTask = findViewById(R.id.TimeTask).toString();
+          
+          if(checkValues()){
+        	  //Envio al servidor para guardar en la bbdd
+        	  AddTaskTask addTaskTask = new AddTaskTask(this);
+        	  addTaskTask.execute(descriptionTask, timeTask);
+  			
+  			    	 
+          }else{
+        	  Toast.makeText(this, R.string.check_empty_fields, Toast.LENGTH_SHORT).show();
+          }
 	}
 	
-	public boolean checkValues(View view){
+	public boolean checkValues(){
 		
 		if(nameTask.isEmpty() || descriptionTask.isEmpty() || timeTask.isEmpty()){
-			Toast.makeText(this, R.string.check_empty_fields, Toast.LENGTH_SHORT).show();
+			
 			return false;
 		}
 	
