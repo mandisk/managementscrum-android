@@ -17,15 +17,15 @@
             android:padding="10dp"
             android:layout_marginTop="10dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
+
+        <EditText
             android:id="@+id/addSprintId"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_weight="1" >
+
+            <requestFocus />
+        </EditText>
 
     </LinearLayout>
 
