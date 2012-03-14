@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.minftel.mscrum.tasks.AddProjectTask;
 import org.minftel.mscrum.tasks.AddSprintTask;
 import org.minftel.mscrum.utils.ScrumConstants;
 
@@ -15,7 +14,6 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
