@@ -33,9 +33,15 @@ public class AddProjectTask extends AsyncTask<String, Integer, String>{
 		String result = null;
 		
 		try {
+			
 			Log.i(ScrumConstants.TAG, "Adding project");
 
-			URL urlDispatcher = new URL(ScrumConstants.BASE_URL);
+			String sessionId = activity.getSharedPreferences(
+					ScrumConstants.SHARED_PREFERENCES_FILE, 
+					activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
+			String url = ScrumConstants.BASE_URL + ScrumConstants.SESSION_URL + sessionId;
+			
+			URL urlDispatcher = new URL(url);
 			URLConnection connection = urlDispatcher.openConnection();
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
