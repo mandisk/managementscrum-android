@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Scrum</string>
+    <string name="login_button">Iniciar sesión</string>
+    <string name="login_hint_email">Introduzca su email</string>
+    <string name="Register">Registro</string>
+    <string name="RegNombre">Nombre</string>
+    <string name="RegisName">Introduzca su nombre aqui</string>
+    <string name="RegApellido">Apellido</string>
+    <string name="RegLastName">Introduzca su apellido aqui</string>
+    <string name="RegPass">Introduzca su contraseña</string>
+    <string name="RegContras">Contraseña</string>
+    <string name="Registrar">Registrar</string>
+    <string name="Email">Email</string>
+    <string name="login_error">Usuario o contraseña incorrecto</string>
+    <string name="login_empty_fields">Campos no rellenos</string>
+    <string name="login_get_account">Consiga una cuenta</string>
+    <string name="RInport">Importar</string>
+    <string name="EmailError">Por favor, introduzca un email valido</string>
+    <string name="nameAddProject">Nombre del proyecto</string>
+    <string name="descriptionAddProject">Descripción del proyecto</string>
+    <string name="initialDateAddProject">Fecha inicio:</string>
+    <string name="endDateAddProject">Fecha fin:</string>
+    <string name="buttonAddProject">añadir proyecto</string>
+    <string name="dialog_loading">Cargando</string>
+    <string name="menu_view_users">Ver usuarios</string>
+    <string name="menu_delete_project">Borrar proyecto</string>
+    <string name="addTask">Añadir tarea</string>
+    <string name="TaskName">Introduzca nombre:</string>
+    <string name="taskDescription">Introduzca descripción</string>
+    <string name="TimeTask">Introduzca tiempo:</string>
+    <string name="sprints_error">Sprints mal cargagos</string>
+    <string name="tasks_error">Tareas mal cargadas</string>
+     <string name="addSprintSprintNumberLabel">Numero de Sprint:</string>
+     <string name="addSprintInitialDate">Fecha inicio:</string>
+     <string name="addSprintEndDate">Fecha fin:</string>
+     <string name="addSprintButton">Añadir sprint</string>
+     <string name="project_error">Projectos mal cargados</string>
+     <string name="menu_delete_sprints">Borrar sprint</string>
+
+</resources>
