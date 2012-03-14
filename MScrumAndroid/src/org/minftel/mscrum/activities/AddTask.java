@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 public class AddTask extends Activity{
-	String nameTask;
+	
 	String descriptionTask;
 	String timeTask;
 	
@@ -36,7 +36,7 @@ public class AddTask extends Activity{
 	
 	public boolean checkValues(){
 		
-		if(nameTask.isEmpty() || descriptionTask.isEmpty() || timeTask.isEmpty()){
+		if(descriptionTask.isEmpty() || timeTask.isEmpty()){
 			
 			return false;
 		}
