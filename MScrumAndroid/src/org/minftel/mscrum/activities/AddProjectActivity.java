@@ -73,9 +73,6 @@ public class AddProjectActivity extends Activity {
 		actualYear = mYear2 = mYear1 = c.get(Calendar.YEAR);
 		actualMonth = mMonth2 = mMonth1 = c.get(Calendar.MONTH);
 		actualDay = mDay2 = mDay1 = c.get(Calendar.DAY_OF_MONTH);
-		// mYear2 = c.get(Calendar.YEAR);
-		// mMonth2 = c.get(Calendar.MONTH);
-		// mDay2 = c.get(Calendar.DAY_OF_MONTH);
 
 		// display the current date (this method is below)
 		updateDisplay();
