@@ -38,5 +38,14 @@
      <string name="addSprintButton">Añadir sprint</string>
      <string name="project_error">Projectos mal cargados</string>
      <string name="menu_delete_sprints">Borrar sprint</string>
+     <string name="wrong_dates">"Fechas incorrectas"</string>
+     <string name="name_equired">"Nombre obligatorio"</string>
+     <string name="description_required">"Descripción obligatoria"</string>
+     <string name="sprint_number_required">"Numero de sprint obligatorio"</string>
+     <string name="check_empty_fields">"Por favor, comprueba el campo vacío"</string>
+     <string name="scrum_master">"Jefe Proyecto: "</string>
+     <string name="sprint">"Sprint: "</string>
+     <string name="from">"Desde: "</string>
+     <string name="to">" hasta "</string>
 
 </resources>
