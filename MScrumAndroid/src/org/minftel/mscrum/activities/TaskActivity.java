@@ -67,6 +67,7 @@ public class TaskActivity extends ListActivity {
 
 	}
 
+	//Menu que sale al dejar pulsado  una tarea
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -83,11 +84,6 @@ public class TaskActivity extends ListActivity {
 		TaskDetail taskdetail = this.taskList.get(info.position);
 
 		switch (item.getItemId()) {
-		case R.id.addTask:
-			Intent intent = new Intent(this, AddTask.class);
-			startActivity(intent);
-
-			return true;
 		case R.id.deleteTask:
 			// Delete task
 			DeleteTaskTask daleteTaskTask = new DeleteTaskTask(this);
@@ -99,6 +95,7 @@ public class TaskActivity extends ListActivity {
 		}
 	}
 	
+	//Menu que sale al pulsar tecla menu
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
