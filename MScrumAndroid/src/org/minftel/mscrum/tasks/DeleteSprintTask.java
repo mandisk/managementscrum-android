@@ -44,10 +44,14 @@ public class DeleteSprintTask extends AsyncTask<String, Integer, String>{
 			URL urlDispatcher = new URL(url);
 			URLConnection connection = urlDispatcher.openConnection();
 			
+			connection.setDoInput(true);
+			connection.setDoOutput(true);
+			
 			// To send to the server
 			OutputStream out = connection.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(out);
 			
+			dos.writeInt(ScrumConstants.ACTION_DELETE_SPRINT);
 			dos.writeUTF(params[0]); // sprint ID
 			
 			// To receive from the server
