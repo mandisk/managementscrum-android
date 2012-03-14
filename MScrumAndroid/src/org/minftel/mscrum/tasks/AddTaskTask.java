@@ -50,9 +50,8 @@ public class AddTaskTask extends AsyncTask<String, Integer, String>{
 			DataOutputStream dos = new DataOutputStream(out);
 			
 			dos.writeInt(ScrumConstants.ACTION_ADD_TASK);
-			dos.writeUTF(params[0]);	// Name Task
-			dos.writeUTF(params[1]);	// Description Task
-			dos.writeUTF(params[2]);	// time task
+			dos.writeUTF(params[0]);	// Description Task
+			dos.writeUTF(params[1]);	// time task
 			
 			
 
