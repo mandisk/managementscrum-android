@@ -102,7 +102,7 @@ public class TaskActivity extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu_project, menu);
+		inflater.inflate(R.menu.menu_task, menu);
 		return true;
 	}
 
