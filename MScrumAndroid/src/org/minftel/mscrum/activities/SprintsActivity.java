@@ -79,7 +79,7 @@ public class SprintsActivity extends ListActivity {
 			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	        startActivity(intent);
 			break;
-		case R.id.AddProject:
+		case R.id.addsprint:
 			intent = new Intent(this, AddSprintActivity.class);
 			startActivity(intent);
 		default:
