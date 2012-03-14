@@ -11,7 +11,6 @@ import org.minftel.mscrum.utils.ScrumConstants;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
