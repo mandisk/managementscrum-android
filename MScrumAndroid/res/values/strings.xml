@@ -64,7 +64,7 @@
     <string name="Save">Save</string>
     <string name="timeTask">Time</string>
     <string name="emailField">Email:</string>
-    <string name="bt_call">Hacer llamada</string>
-    <string name="bt_send_message">Enviar Mensaje</string>
+    <string name="bt_call">Call</string>
+    <string name="bt_send_message">Send message</string>
 
 </resources>
