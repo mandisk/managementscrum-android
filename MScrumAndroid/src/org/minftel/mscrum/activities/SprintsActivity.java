@@ -48,7 +48,7 @@ public class SprintsActivity extends ListActivity {
 
 		// Get theSprints List
 		String json = getIntent().getExtras().getString("sprints");
-		
+
 		try {
 			sprintList = JSONConverter.fromJSONtoSprintList(json);
 			dates = new String[sprintList.size()];
@@ -60,7 +60,8 @@ public class SprintsActivity extends ListActivity {
 		for (int i = 0; i < sprintList.size(); i++) {
 			SprintDetail sprint = sprintList.get(i);
 			sprintNumbers[i] = "Sprint: " + sprint.getIdSprint();
-			dates[i] = "From " + sprint.getInitialDate() + " to " + sprint.getEndDate();
+			dates[i] = "From " + sprint.getInitialDate() + " to "
+					+ sprint.getEndDate();
 		}
 
 		// Load data in ListAdapter
@@ -80,7 +81,6 @@ public class SprintsActivity extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent intent = new Intent(this, AddSprintActivity.class);
 		startActivity(intent);
-
 		return true;
 	}
 
@@ -88,28 +88,29 @@ public class SprintsActivity extends ListActivity {
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
-		
+
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.menu_ctx_sprints, menu);
+		inflater.inflate(R.menu.menu_ctx_sprints, menu);
 	}
-	
-	// Called when an item is selected from the context menu	
+
+	// Called when an item is selected from the context menu
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
-		
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+				.getMenuInfo();
+
 		SprintDetail sprintDetail = this.sprintList.get(info.position);
-		
-		switch(item.getItemId()) {
-		 case R.id.ctx_menu_sprints:
-			 
-			 // Convert to string sprint ID
-			 String idSprint = String.valueOf(sprintDetail.getIdSprint()); 
-			 
+
+		switch (item.getItemId()) {
+		case R.id.ctx_menu_sprints:
+
+			// Convert to string sprint ID
+			String idSprint = String.valueOf(sprintDetail.getIdSprint());
+
 			DeleteSprintTask dst = new DeleteSprintTask(this);
 			dst.execute(idSprint);
-			
 			return true;
+			
 		default:
 			return super.onContextItemSelected(item);
 		}
