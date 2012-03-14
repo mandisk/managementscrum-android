@@ -54,5 +54,15 @@
      <string name="addSprintMenu">"Add sprint"</string>
      <string name="addTaskMenu">"Add task"</string>
      <string name="deleteTaskMenu">"Delete task"</string>
+     <string name="nameTask">Task Name:</string>
+     <string name="idTask">Id Task</string>
+     <string name="StateTask">State</string>
+     <string name="UserTask">User</string>
+     <string name="ViewTaskDescription">Description</string>
+     <string name="SprintTask">Sprint</string>
+     <string name="DetailTask">Task Detail</string>
+     <string name="ModifyTask">Modify Task</string>
+     <string name="Save">Save</string>
+     <string name="timeTask">Time</string>
 
 </resources>
