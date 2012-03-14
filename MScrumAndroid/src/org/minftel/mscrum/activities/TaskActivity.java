@@ -2,35 +2,30 @@ package org.minftel.mscrum.activities;
 
 import java.util.List;
 
-import org.minftel.mscrum.model.ProjectDetail;
-import org.minftel.mscrum.model.SprintDetail;
 import org.minftel.mscrum.model.TaskDetail;
-import org.minftel.mscrum.tasks.AddTaskTask;
 import org.minftel.mscrum.tasks.DeleteTaskTask;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
 
 import android.app.ListActivity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class TaskActivity extends ListActivity {
 
-	private static final int REQUEST_CODE = 1;
 	private List<TaskDetail> taskList;
 
 	public void onCreate(Bundle savedInstanceState) {
@@ -130,11 +125,23 @@ public class TaskActivity extends ListActivity {
 
 		// Get selected task
 		TaskDetail selectedTask = this.taskList.get(position);
-
+		String user="";
+		
 		Intent intent = new Intent(this, EditTaskActivity.class);
 		intent.putExtra("state", selectedTask.getState());
 		intent.putExtra("time", selectedTask.getTime());
-		intent.putExtra("user", selectedTask.getUser().getName());
+		
+		if(selectedTask.getUser().getName()==null){
+			
+			SharedPreferences prefs;
+			prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
+			prefs.getString("userEmail", user);
+			intent.putExtra("user", user);
+		}else
+		{
+			intent.putExtra("user", selectedTask.getUser().getName());
+		}
+		
 //		intent.putExtra("sprint", selectedTask.getSprint().getSprintNumber());
 		intent.putExtra("description", selectedTask.getDescription());
 		
