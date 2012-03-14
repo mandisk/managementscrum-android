@@ -21,6 +21,10 @@ public class ScrumConstants {
 	public static final int ACTION_REQUEST_LIST_TASKS = 3;
 	public static final int ACTION_ADD_PROJECT = 4;
 	public static final int ACTION_ADD_SPRINT = 5;
+	public static final int ACTION_ADD_TASK = 6;
+	public static final int ACTION_DELETE_PROJECT = 7;
+	public static final int ACTION_DELETE_SPRINT = 8;
+	public static final int ACTION_DELETE_TASK = 9;
 	
 	// SERVER RESPONSES
 	public static final String ERROR_LOGIN = "ERROR_LOGIN";
