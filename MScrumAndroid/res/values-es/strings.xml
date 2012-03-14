@@ -47,5 +47,7 @@
      <string name="sprint">"Sprint: "</string>
      <string name="from">"Desde: "</string>
      <string name="to">" hasta "</string>
+     <string name="user">"Usuario: "</string>
+     <string name="time">" Tiempo: "</string>
 
 </resources>
