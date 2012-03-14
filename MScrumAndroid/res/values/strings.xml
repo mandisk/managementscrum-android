@@ -49,5 +49,10 @@
      <string name="to">" to "</string>
      <string name="user">"User: "</string>
      <string name="time">" Time: "</string>
+     <string name="logout">"Log out"</string>
+     <string name="addProjectMenu">"Add project"</string>
+     <string name="addSprintMenu">"Add sprint"</string>
+     <string name="addTaskMenu">"Add task"</string>
+     <string name="deleteTaskMenu">"Delete task"</string>
 
 </resources>
