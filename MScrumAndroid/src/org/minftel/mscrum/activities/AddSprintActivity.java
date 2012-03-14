@@ -1,5 +1,6 @@
 package org.minftel.mscrum.activities;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -80,16 +81,18 @@ public class AddSprintActivity extends Activity {
 
 	// Updates the date in the TextView
 	private void updateDisplay() {
-		
-		mDateDisplay1.setText(new StringBuilder()
-				// Month is 0 based so add 1
-				.append(mDay1).append("-").append(mMonth1 + 1).append("-")
-				.append(mYear1).append(" "));
-		
-		mDateDisplay2.setText(new StringBuilder()
-				// Month is 0 based so add 1
-				.append(mDay2).append("-").append(mMonth2 + 1).append("-")
-				.append(mYear2).append(" "));
+		DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+		Date date = new Date();
+		date.setDate(mDay1);
+		date.setMonth(mMonth1);
+		date.setYear(mYear1);
+		String fecha = df.format(date);
+		mDateDisplay1.setText(fecha);
+		date.setDate(mDay2);
+		date.setMonth(mMonth2);
+		date.setYear(mYear2);
+		fecha = df.format(date);
+		mDateDisplay2.setText(fecha);
 	}
 
 	// The callback receive when the user sets the date in the dialog
@@ -145,11 +148,11 @@ public class AddSprintActivity extends Activity {
 		String sSprintNumber = mSprintNumber.getText().toString().trim();
 
 		if (res1 > 0 || res2 > 0) {
-			Toast.makeText(this, "Wrong dates", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.wrong_dates, Toast.LENGTH_SHORT).show();
 			envio--;
 		}
 		if (sSprintNumber.isEmpty()) {
-			Toast.makeText(this, "Sprint Number is required", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.sprint_number_required, Toast.LENGTH_SHORT).show();
 			envio--;
 		}
 
