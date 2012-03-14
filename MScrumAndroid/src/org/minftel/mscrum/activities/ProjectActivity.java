@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.minftel.mscrum.tasks.DeleteProjectTask;
 import org.minftel.mscrum.tasks.ProjectsTask;
+import org.minftel.mscrum.tasks.UserTask;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
@@ -82,15 +83,21 @@ public class ProjectActivity extends ListActivity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		ProjectDetail projectDetail = this.projectList.get(info.position);
+		String idproject = String.valueOf(projectDetail.getIdProject());
 
 		switch (item.getItemId()) {
 		case R.id.ctx_menu_view_users:
 			// View Users
+			// Convert to string to send
+			
+			
+			UserTask ut = new UserTask(this);
+			ut.execute(idproject);
 			return true;
 		case R.id.ctx_menu_delete:
 
 			// Convert to string to send
-			String idproject = String.valueOf(projectDetail.getIdProject());
+			//String idproject = String.valueOf(projectDetail.getIdProject());
 			
 			DeleteProjectTask dpt = new DeleteProjectTask(this);
 			dpt.execute(idproject);
