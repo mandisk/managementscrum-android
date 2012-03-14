@@ -56,7 +56,10 @@ public class TaskActivity extends ListActivity {
 		for (int i = 0; i < taskList.size(); i++) {
 			TaskDetail task = taskList.get(i);
 			taskNames[i] = "" + task.getDescription();
-			taskTimes[i] = "User: " + task.getUser().getName() + " Time: " + task.getTime();
+			String userName = "N/A";
+			if (task.getUser() != null)
+				userName = task.getUser().getName();
+			taskTimes[i] = "User: " + userName + " Time: " + task.getTime();
 		}
 
 		// Load data in ListAdapter
