@@ -49,5 +49,10 @@
      <string name="to">" hasta "</string>
      <string name="user">"Usuario: "</string>
      <string name="time">" Tiempo: "</string>
+     <string name="logout">"Cerrar sesión"</string>
+     <string name="addProjectMenu">"Añadir proyecto"</string>
+     <string name="addSprintMenu">"Añadir sprint"</string>
+     <string name="addTaskMenu">"Añadir tarea"</string>
+     <string name="deleteTaskMenu">"Borrar tarea"</string>
 
 </resources>
