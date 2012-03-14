@@ -63,5 +63,6 @@
     <string name="ModifyTask">Modify Task</string>
     <string name="Save">Save</string>
     <string name="timeTask">Time</string>
+    <string name="emailField">Email:</string>
 
 </resources>
