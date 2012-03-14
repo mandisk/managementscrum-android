@@ -67,7 +67,7 @@ public class DeleteSprintTask extends AsyncTask<String, Integer, String>{
 			Log.i(ScrumConstants.TAG, "IOException");
 		}
 		
-		return null;
+		return result;
 	}
 
 	@Override
