@@ -1,5 +1,7 @@
 package org.minftel.mscrum.activities;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONException;
@@ -47,7 +49,7 @@ public class SprintsActivity extends ListActivity {
 
 		// Get theSprints List
 		String json = getIntent().getExtras().getString("sprints");
-		
+
 		try {
 			sprintList = JSONConverter.fromJSONtoSprintList(json);
 			dates = new String[sprintList.size()];
@@ -55,11 +57,12 @@ public class SprintsActivity extends ListActivity {
 		} catch (Exception e) {
 			Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
 		}
+		DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
 		for (int i = 0; i < sprintList.size(); i++) {
 			SprintDetail sprint = sprintList.get(i);
-			sprintNumbers[i] = "Sprint: " + sprint.getSprintNumber();
-			dates[i] = "From " + sprint.getInitialDate() + " to "
-					+ sprint.getEndDate();
+			sprintNumbers[i] = getString(R.string.sprint) + sprint.getIdSprint();
+			dates[i] = getString(R.string.from) + df.format(sprint.getInitialDate()) + getString(R.string.to)
+					+ df.format(sprint.getEndDate());
 		}
 
 		// Load data in ListAdapter
@@ -76,20 +79,19 @@ public class SprintsActivity extends ListActivity {
 
 	/** Called when an item of the menu is selected. */
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item){
+	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent intent = new Intent(this, AddSprintActivity.class);
-	    startActivity(intent);
+		startActivity(intent);
 		return true;
 	}
-	
 
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
-		
+
 		MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.menu_ctx_sprints, menu);
+		inflater.inflate(R.menu.menu_ctx_sprints, menu);
 	}
 
 	// Called when an item is selected from the context menu
@@ -109,6 +111,7 @@ public class SprintsActivity extends ListActivity {
 			DeleteSprintTask dst = new DeleteSprintTask(this);
 			dst.execute(idSprint);
 			return true;
+			
 		default:
 			return super.onContextItemSelected(item);
 		}
@@ -116,17 +119,17 @@ public class SprintsActivity extends ListActivity {
 
 	/** Called when an item of the list is selected. */
 	public void onListItemClick(ListView parent, View v, int position, long id) {
-		
+
 		// Get selected sprint
 		SprintDetail selectedSprint = this.sprintList.get(position);
 
-		Toast.makeText(
-				this,
-				"Number of selected sprint : "
-						+ selectedSprint.getSprintNumber() + " [ ID: "
-						+ selectedSprint.getIdSprint() + " ]",
-				Toast.LENGTH_SHORT).show();
-          
+//		Toast.makeText(
+//				this,
+//				"Number of selected sprint : "
+//						+ selectedSprint.getSprintNumber() + " [ ID: "
+//						+ selectedSprint.getIdSprint() + " ]",
+//				Toast.LENGTH_SHORT).show();
+
 		// Converted to string to send
 		String idSprint = String.valueOf(selectedSprint.getIdSprint());
 
@@ -134,6 +137,5 @@ public class SprintsActivity extends ListActivity {
 		sprintTask.execute(idSprint);
 
 	}
-	
 
 }
