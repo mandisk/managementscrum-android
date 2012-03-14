@@ -14,7 +14,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.R;
-import org.minftel.mscrum.activities.SprintsActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
@@ -42,7 +41,7 @@ public class ProjectsTask extends AsyncTask<String, Integer, String> {
 
 			String sessionId = activity.getSharedPreferences(
 					ScrumConstants.SHARED_PREFERENCES_FILE, 
-					activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
+					Activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
 			String url = ScrumConstants.BASE_URL + ScrumConstants.SESSION_URL + sessionId;
 			
 			URL urlDispatcher = new URL(url);
