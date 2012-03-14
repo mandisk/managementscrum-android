@@ -5,11 +5,13 @@ import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.SprintsActivity;
 import org.minftel.mscrum.activities.TaskActivity;
 import org.minftel.mscrum.activities.TasksActivity;
+import org.minftel.mscrum.activities.UserActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 public class ScrumReceiver extends BroadcastReceiver {
 
@@ -52,6 +54,20 @@ public class ScrumReceiver extends BroadcastReceiver {
 			taskIntent.putExtra("tasks", json);
 			
 			context.startActivity(taskIntent);
+		}
+		
+		else if(intent.getAction().equals(ScrumConstants.BROADCAST_GO_USERS)){
+			//Create Intent to start activity UserActivity
+			
+			Log.i(ScrumConstants.TAG, "Launch users activity...");
+			
+			Intent userIntent = new Intent(context, UserActivity.class);
+			userIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			
+			String json = intent.getStringExtra("users");
+			userIntent.putExtra("users", json);
+			
+			context.startActivity(userIntent);
 		}
 		
 		
