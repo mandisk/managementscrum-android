@@ -110,7 +110,7 @@ public class AddSprintTask extends AsyncTask<String, Integer, String> {
 				
 				// Send broadcast to open ProjectActivity
 				Intent broadCastIntent = new Intent();
-				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_PROJECTS);
+				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_SPRINTS);
 				broadCastIntent.putExtra("sprints", jsonProjects.toString());
 				this.activity.sendBroadcast(broadCastIntent);
 				
