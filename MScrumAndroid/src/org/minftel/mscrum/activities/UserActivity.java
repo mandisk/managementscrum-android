@@ -3,13 +3,10 @@ package org.minftel.mscrum.activities;
 import java.util.List;
 
 import org.json.JSONException;
-import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.model.UserDetail;
-import org.minftel.mscrum.tasks.ProjectsTask;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
-
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.util.Log;

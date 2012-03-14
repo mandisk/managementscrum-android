@@ -3,7 +3,6 @@ package org.minftel.mscrum.activities;
 import org.minftel.mscrum.tasks.RegisterTask;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
