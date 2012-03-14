@@ -28,7 +28,7 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 	
 	private LoginActivity activity;
 	private ProgressDialog progressDialog;
-	
+	String email = null;
 	public LoginTask(Activity activity) {
 		this.activity = (LoginActivity) activity;
 		this.progressDialog = new ProgressDialog(activity);
@@ -53,6 +53,7 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 			
 			
 			dos.writeInt(ScrumConstants.ACTION_LOGIN);
+			email = params[0];
 			dos.writeUTF(params[0]);	// Email
 			dos.writeUTF(params[1]);	// Password
 
@@ -102,12 +103,14 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 				this.activity.getEditor().putString(ScrumConstants.SESSION_ID, json.getString("session"));
 				this.activity.getEditor().commit();
 				
-				Toast.makeText(this.activity, "User logged", Toast.LENGTH_SHORT).show();
+//				Toast.makeText(this.activity, "User logged", Toast.LENGTH_SHORT).show();
 				
 				// Send broadcast to open ProjectActivity
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_PROJECTS);
 				broadCastIntent.putExtra("projects", jsonProjects.toString());
+				
+				this.activity.getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, this.activity.MODE_PRIVATE).edit().putString("email", email);
 				this.activity.sendBroadcast(broadCastIntent);
 				
 				Log.i(ScrumConstants.TAG, "User logged");

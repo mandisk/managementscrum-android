@@ -28,7 +28,7 @@ public class AddTask extends Activity{
 	public boolean checkValues(View view){
 		
 		if(nameTask.isEmpty() || descriptionTask.isEmpty() || timeTask.isEmpty()){
-			Toast.makeText(this, "Please, chek the empty field", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.check_empty_fields, Toast.LENGTH_SHORT).show();
 			return false;
 		}
 	
