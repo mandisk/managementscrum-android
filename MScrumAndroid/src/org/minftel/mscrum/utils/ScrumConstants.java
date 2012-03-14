@@ -27,12 +27,13 @@ public class ScrumConstants {
 	public static final int ACTION_DELETE_TASK = 9;
 	
 	// SERVER RESPONSES
+	public static final String ERROR_ADD_PROJECT = "ERROR_ADD_PROJECT";
 	public static final String ERROR_LOGIN = "ERROR_LOGIN";
 	public static final String ERROR_REGISTER = "ERROR_REGISTER";
-    public static final String REGISTER_OK = "REGISTER_OK";
 	public static final String ERROR_PROJECTS = "ERROR_PROJECTS";
 	public static final String ERROR_SPRINTS = "ERROR_SPRINTS";
 	public static final String ERROR_TASKS = "ERROR_TASKS";
+    public static final String REGISTER_OK = "REGISTER_OK";
 	public static final String SESSION_EXPIRED = "SESSION_EXPIRED";
 	
 	// RECEIVERS ACTIONS

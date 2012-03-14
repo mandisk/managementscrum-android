@@ -12,7 +12,6 @@ import java.net.URLConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.activities.SprintsActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
@@ -42,7 +41,7 @@ public class SprintsTask extends AsyncTask<String, Integer, String> {
 
 			String sessionId = activity.getSharedPreferences(
 					ScrumConstants.SHARED_PREFERENCES_FILE, 
-					activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
+					Activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
 			String url = ScrumConstants.BASE_URL + ScrumConstants.SESSION_URL + sessionId;
 			
 			URL urlDispatcher = new URL(url);

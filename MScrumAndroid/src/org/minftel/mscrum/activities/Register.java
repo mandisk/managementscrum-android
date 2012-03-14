@@ -95,7 +95,7 @@ public class Register extends Activity {
 				|| pass.equals("")) {
 			Toast.makeText(this, getResources().getString(R.string.login_empty_fields), Toast.LENGTH_SHORT).show();
 		} else {
-			if(!correo.contentEquals("@")){
+			if(!correo.contains("@")){
 				Toast.makeText(this, getResources().getString(R.string.EmailError), Toast.LENGTH_SHORT).show();
 			}else{
 				RegisterTask Rtask = new RegisterTask(this);
