@@ -9,12 +9,16 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -72,6 +76,40 @@ public class DeleteProjectTask extends AsyncTask<String, Integer, String>{
 		}
 		
 		return result;
+	}
+	
+	@Override
+	protected void onPostExecute(String result) {
+		if (progressDialog.isShowing()) {
+			progressDialog.dismiss();
+		}
+		
+		if (result != null) {
+			
+			if (result.equals(ScrumConstants.SESSION_EXPIRED)) {
+				Log.w(ScrumConstants.TAG, "Session expired");
+				return;
+			}
+			
+			if (result.equals(ScrumConstants.ERROR_ADD_PROJECT)) {
+				Log.w(ScrumConstants.TAG, "Error deleting project");
+				return;
+			}
+			
+			try {
+				JSONObject json = new JSONObject(result);
+				JSONArray jsonProjects = json.getJSONArray("projects");
+				
+				// Send broadcast to open ProjectActivity
+				Intent broadCastIntent = new Intent();
+				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_PROJECTS);
+				broadCastIntent.putExtra("projects", jsonProjects.toString());
+				this.activity.sendBroadcast(broadCastIntent);
+				
+			} catch (JSONException e) {
+				Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
+			}
+		}
 	}
 
 	@Override
