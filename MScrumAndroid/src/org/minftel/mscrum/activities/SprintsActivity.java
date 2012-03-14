@@ -6,6 +6,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.model.SprintDetail;
+import org.minftel.mscrum.tasks.DeleteSprintTask;
 import org.minftel.mscrum.tasks.ProjectsTask;
 import org.minftel.mscrum.tasks.SprintsTask;
 import org.minftel.mscrum.utils.JSONConverter;
@@ -92,13 +93,22 @@ public class SprintsActivity extends ListActivity {
 	    inflater.inflate(R.menu.menu_ctx_sprints, menu);
 	}
 	
+	// Called when an item is selected from the context menu	
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+		
 		SprintDetail sprintDetail = this.sprintList.get(info.position);
+		
 		switch(item.getItemId()) {
 		 case R.id.ctx_menu_sprints:
-			// Delete Project
+			 
+			 // Convert to string sprint ID
+			 String idSprint = String.valueOf(sprintDetail.getIdSprint()); 
+			 
+			DeleteSprintTask dst = new DeleteSprintTask(this);
+			dst.execute(idSprint);
+			
 			return true;
 		default:
 			return super.onContextItemSelected(item);
