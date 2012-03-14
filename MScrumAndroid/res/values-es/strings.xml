@@ -63,5 +63,7 @@
     <string name="ModifyTask">Modificar Tarea</string>
     <string name="Save">Guardar</string>
     <string name="timeTask">Tiempo</string>
+    <string name="bt_call">Hacer llamada</string>
+    <string name="bt_send_message">Mandar mensaje</string>
 
 </resources>
