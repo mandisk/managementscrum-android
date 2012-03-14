@@ -110,7 +110,7 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_PROJECTS);
 				broadCastIntent.putExtra("projects", jsonProjects.toString());
 				
-				this.activity.getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, this.activity.MODE_PRIVATE).edit().putString("email", email);
+				this.activity.getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, Activity.MODE_PRIVATE).edit().putString("email", email);
 				this.activity.sendBroadcast(broadCastIntent);
 				
 				Log.i(ScrumConstants.TAG, "User logged");
