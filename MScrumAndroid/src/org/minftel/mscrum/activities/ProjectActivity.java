@@ -1,6 +1,16 @@
 package org.minftel.mscrum.activities;
 
-import android.app.Activity;
+import java.util.List;
+
+import org.json.JSONException;
+import org.minftel.mscrum.model.ProjectDetail;
+import org.minftel.mscrum.tasks.DeleteProjectTask;
+import org.minftel.mscrum.tasks.ProjectsTask;
+import org.minftel.mscrum.tasks.UserTask;
+import org.minftel.mscrum.utils.JSONConverter;
+import org.minftel.mscrum.utils.ScrumConstants;
+import org.minftel.mscrum.utils.TextAdapter;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,18 +26,6 @@ import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 import android.widget.Toast;
-
-import org.json.JSONException;
-import org.minftel.mscrum.model.ProjectDetail;
-
-import java.util.List;
-
-import org.minftel.mscrum.tasks.DeleteProjectTask;
-import org.minftel.mscrum.tasks.ProjectsTask;
-import org.minftel.mscrum.tasks.UserTask;
-import org.minftel.mscrum.utils.JSONConverter;
-import org.minftel.mscrum.utils.ScrumConstants;
-import org.minftel.mscrum.utils.TextAdapter;
 
 public class ProjectActivity extends ListActivity {
 
