@@ -4,19 +4,19 @@
     <string name="app_name">Scrum</string>
     <string name="login_button">Login</string>
     <string name="login_hint_email">Enter you email</string>
-    <string name="Register">Registro</string>
-    <string name="RegNombre">Nombre</string>
-    <string name="RegisName">Introduzca su nombre aqui</string>
-    <string name="RegApellido">Apellido</string>
-    <string name="RegLastName">Introduzca su apellido aqui</string>
-    <string name="RegPass">Introduzca su contraseña</string>
-    <string name="RegContras">Contraseña</string>
-    <string name="Registrar">Registrar</string>
+    <string name="Register">Register</string>
+    <string name="RegNombre">Name</string>
+    <string name="RegisName">Write your name here</string>
+    <string name="RegApellido">Surname</string>
+    <string name="RegLastName">Write your surname here</string>
+    <string name="RegPass">Write your pass here</string>
+    <string name="RegContras">Pass</string>
+    <string name="Registrar">Register</string>
     <string name="Email">Email</string>
     <string name="login_error">Wrong user or password</string>
     <string name="login_empty_fields">Fields not filled</string>
     <string name="login_get_account">Get an account</string>
-    <string name="RInport">Importar</string>
+    <string name="RInport">Import</string>
     <string name="EmailError">Please introduce an email valid</string>
     <string name="nameAddProject">Name of Project</string>
     <string name="descriptionAddProject">Description of project</string>
@@ -30,7 +30,6 @@
     <string name="TaskName">Enter name:</string>
     <string name="taskDescription">Enter description</string>
     <string name="TimeTask">Enter time:</string>
-    <string name="AddTask">Add Task</string>
     <string name="sprints_error">Sprints badly loaded</string>
     <string name="tasks_error">Tasks badly loaded</string>
      <string name="addSprintSprintNumberLabel">Sprint Number:</string>
@@ -39,5 +38,14 @@
      <string name="addSprintButton">Add Sprint</string>
      <string name="project_error">Projects badly loaded</string>
      <string name="menu_delete_sprints">Delete sprint</string>
+     <string name="wrong_dates">"Wrong dates"</string>
+     <string name="name_equired">"Name required"</string>
+     <string name="description_required">"Description required"</string>
+     <string name="sprint_number_required">"Sprint Number required"</string>
+     <string name="check_empty_fields">"Please, check the empty field"</string>
+     <string name="scrum_master">"Scrum Master: "</string>
+     <string name="sprint">"Sprint: "</string>
+     <string name="from">"From: "</string>
+     <string name="to">" to "</string>
 
 </resources>
