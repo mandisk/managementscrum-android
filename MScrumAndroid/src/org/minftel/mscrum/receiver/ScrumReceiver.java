@@ -4,7 +4,6 @@ import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.SprintsActivity;
 import org.minftel.mscrum.activities.TaskActivity;
-import org.minftel.mscrum.activities.TasksActivity;
 import org.minftel.mscrum.activities.UserActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
 
@@ -21,7 +20,7 @@ public class ScrumReceiver extends BroadcastReceiver {
 		if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_PROJECTS)) {
 			// Create Intent to start activity
 			Intent projectIntent = new Intent(context, ProjectActivity.class);
-			projectIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			projectIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			
 			String json = intent.getStringExtra("projects");
 			projectIntent.putExtra("projects", json);
@@ -32,13 +31,13 @@ public class ScrumReceiver extends BroadcastReceiver {
 		}else if(intent.getAction().equals(ScrumConstants.BROADCAST_GO_LOGIN)){
 			// Create Intent to start activity
 			Intent projectIntent = new Intent(context, LoginActivity.class);
-			projectIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			projectIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			context.startActivity(projectIntent);
 		
 		}else if(intent.getAction().equals(ScrumConstants.BROADCAST_GO_SPRINTS)){
 			//Create Intent to start activity SprintsActivity
 			Intent sprintIntent = new Intent(context, SprintsActivity.class);
-			sprintIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			sprintIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			
 			String json = intent.getStringExtra("sprints");
 			sprintIntent.putExtra("sprints", json);
@@ -48,7 +47,7 @@ public class ScrumReceiver extends BroadcastReceiver {
 		}else if(intent.getAction().equals(ScrumConstants.BROADCAST_GO_TASKS)){
 			//Create Intent to start activity TasksActivity
 			Intent taskIntent = new Intent(context, TaskActivity.class);
-			taskIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			taskIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			
 			String json = intent.getStringExtra("tasks");
 			taskIntent.putExtra("tasks", json);
