@@ -52,4 +52,5 @@ public class ScrumConstants {
 	public static final String BROADCAST_GO_SPRINTS = "org.minftel.receiver.action.GO_SPRINTS";
 	public static final String BROADCAST_GO_TASKS = "org.minftel.receiver.action.GO_TASKS";
 	public static final String BROADCAST_GO_USERS = "org.minftel.receiver.action.GO_USERS";
+	public static final String BROADCAST_GO_CHARTS = "org.minftel.receiver.action.GO_CHARTS";
 }
