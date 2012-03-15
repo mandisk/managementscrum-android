@@ -10,8 +10,8 @@ public class ScrumConstants {
 	
 	// DIRECCION SERVLET FRONTAL
 //	private static String DIRECCION_IP_SERVER = "192.168.1.107";
-//	private static String DIRECCION_IP_SERVER = "10.0.2.2";
-	private static String DIRECCION_IP_SERVER = "192.168.1.118";
+	private static String DIRECCION_IP_SERVER = "10.0.2.2";
+//	private static String DIRECCION_IP_SERVER = "192.168.1.134";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.13";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.119";
 //	private static String DIRECCION_IP_SERVER = "192.168.133.151";
@@ -32,6 +32,7 @@ public class ScrumConstants {
 	public static final int ACTION_DELETE_TASK = 10;
 	public static final int ACTION_MODIFY_TASK = 11;
 	public static final int ACTION_REQUEST_CHART = 12;	
+	public static final int ACTION_EDIT_PROJECT = 13;
 	
 	// SERVER RESPONSES
 	public static final String ERROR_ADD_PROJECT = "ERROR_ADD_PROJECT";
@@ -56,4 +57,5 @@ public class ScrumConstants {
 	public static final String BROADCAST_GO_TASKS = "org.minftel.receiver.action.GO_TASKS";
 	public static final String BROADCAST_GO_USERS = "org.minftel.receiver.action.GO_USERS";
 	public static final String BROADCAST_GO_CHARTS = "org.minftel.receiver.action.GO_CHARTS";
+	public static final String BORADCAST_GO_EDIT_PROJECT = "org.minftel.receiver.action.GO_EDIT_PROJECT";
 }
