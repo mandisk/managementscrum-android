@@ -165,11 +165,11 @@ public class AddSprintActivity extends Activity {
 			String sYear2 = String.valueOf(mYear2);
 
 			// Get the Project ID from the preferences
-			String idproject = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE).getString("idproject", "");
+//			String idproject = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE).getString("idproject", "");
 			
 			AddSprintTask addSprintTask = new AddSprintTask(this);
-			addSprintTask.execute(sSprintNumber, sDay1, sMonth1, sYear1, sDay2, sMonth2,
-					sYear2, idproject);
+			addSprintTask.execute(sSprintNumber, sDay1, sMonth1, sYear1, sDay2, sMonth2, sYear2);
+//			addSprintTask.execute(sSprintNumber, sDay1, sMonth1, sYear1, sDay2, sMonth2, sYear2, idproject);
 		}
 	}
 

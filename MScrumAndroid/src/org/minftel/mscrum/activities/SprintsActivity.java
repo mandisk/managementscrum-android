@@ -50,7 +50,7 @@ public class SprintsActivity extends ListActivity {
 		DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
 		for (int i = 0; i < sprintList.size(); i++) {
 			SprintDetail sprint = sprintList.get(i);
-			sprintNumbers[i] = getString(R.string.sprint) + sprint.getIdSprint();
+			sprintNumbers[i] = getString(R.string.sprint) + sprint.getSprintNumber();
 			dates[i] = getString(R.string.from) + df.format(sprint.getInitialDate()) + getString(R.string.to)
 					+ df.format(sprint.getEndDate());
 		}
