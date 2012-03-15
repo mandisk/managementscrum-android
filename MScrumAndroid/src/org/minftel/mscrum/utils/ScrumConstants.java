@@ -32,8 +32,8 @@ public class ScrumConstants {
 	public static final int ACTION_DELETE_TASK = 10;
 	public static final int ACTION_MODIFY_TASK = 11;
 	public static final int ACTION_REQUEST_CHART = 12;	
-	public static final int ACTION_EDIT_PROJECT = 13;
-	
+	public static final int ACTION_EDIT_PROJECT_ASK = 13;
+	public static final int ACTION_EDIT_PROJECT_SEND = 14;
 	// SERVER RESPONSES
 	public static final String ERROR_ADD_PROJECT = "ERROR_ADD_PROJECT";
 	public static final String ERROR_ADD_SPRINT = "ERROR_ADD_SPRINT";
@@ -46,7 +46,9 @@ public class ScrumConstants {
 	public static final String ERROR_PROJECTS = "ERROR_PROJECTS";
 	public static final String ERROR_SPRINTS = "ERROR_SPRINTS";
 	public static final String ERROR_TASKS = "ERROR_TASKS";
-
+	public static final String ERROR_EDITING_PROJECT_ASK = "EDITING_PROJECT_ASK";
+	public static final String ERROR_EDITING_PROJECT_SEND = "EDITING_PROJECT_SEND";
+	
     public static final String REGISTER_OK = "REGISTER_OK";
 	public static final String SESSION_EXPIRED = "SESSION_EXPIRED";
 	
