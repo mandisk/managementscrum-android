@@ -20,6 +20,7 @@ import org.minftel.mscrum.utils.ScrumConstants;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -83,6 +84,15 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 		}
 		
 		if (result != null) {
+			if (result.equals(ScrumConstants.SESSION_EXPIRED)) {
+				Log.w(ScrumConstants.TAG, "Session expired");
+				SharedPreferences prefs = activity.getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, Activity.MODE_PRIVATE);
+				prefs.edit().clear().commit();
+				Intent intent = new Intent(this.activity, LoginActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		        activity.startActivity(intent);
+				return;
+			}
 			
 			if (result.equals(ScrumConstants.ERROR_LOGIN)) {
 				Toast.makeText(
