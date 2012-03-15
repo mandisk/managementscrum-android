@@ -49,8 +49,8 @@ public class AddSprintTask extends AsyncTask<String, Integer, String> {
 					Activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
 			String url = ScrumConstants.BASE_URL + ScrumConstants.SESSION_URL + sessionId;
 			
-			URL urlDispatcer = new URL(url);
-			URLConnection connection = urlDispatcer.openConnection();
+			URL urlDispatcher = new URL(url);
+			URLConnection connection = urlDispatcher.openConnection();
 
 			connection.setDoInput(true);
 			connection.setDoOutput(true);

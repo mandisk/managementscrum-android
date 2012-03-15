@@ -9,9 +9,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.activities.TaskActivity;
@@ -40,7 +37,12 @@ public class DeleteTaskTask extends AsyncTask<String, Integer, String>{
 		try {
 			Log.i(ScrumConstants.TAG, "Deleting project");
 
-			URL urlDispatcher = new URL(ScrumConstants.BASE_URL);
+			String sessionId = activity.getSharedPreferences(
+					ScrumConstants.SHARED_PREFERENCES_FILE, 
+					Activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
+			String url = ScrumConstants.BASE_URL + ScrumConstants.SESSION_URL + sessionId;
+			
+			URL urlDispatcher = new URL(url);
 			URLConnection connection = urlDispatcher.openConnection();
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
