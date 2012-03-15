@@ -9,8 +9,8 @@ public class ScrumConstants {
 	public static final String SESSION_ID = "session_id";
 	
 	// DIRECCION SERVLET FRONTAL
-	private static String DIRECCION_IP_SERVER = "192.168.1.107";
-//	private static String DIRECCION_IP_SERVER = "10.0.2.2";
+//	private static String DIRECCION_IP_SERVER = "192.168.1.107";
+	private static String DIRECCION_IP_SERVER = "10.0.2.2";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.134";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.13";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.119";
@@ -36,6 +36,7 @@ public class ScrumConstants {
 	
 	// SERVER RESPONSES
 	public static final String ERROR_ADD_PROJECT = "ERROR_ADD_PROJECT";
+	public static final String ERROR_ADD_SPRINT = "ERROR_ADD_SPRINT";
 	public static final String ERROR_ADD_TASK = "ERROR_ADD_TASK";
 	public static final String ERROR_LOGIN = "ERROR_LOGIN";
 	public static final String ERROR_REGISTER = "ERROR_REGISTER";

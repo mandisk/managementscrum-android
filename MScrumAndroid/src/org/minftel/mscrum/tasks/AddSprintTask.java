@@ -21,6 +21,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 public class AddSprintTask extends AsyncTask<String, Integer, String> {
 
@@ -64,7 +65,7 @@ public class AddSprintTask extends AsyncTask<String, Integer, String> {
 			dos.writeUTF(params[4]); // End Day
 			dos.writeUTF(params[5]); // End Month
 			dos.writeUTF(params[6]); // End Year
-			dos.writeUTF(params[7]); // associated project ID
+//			dos.writeUTF(params[7]); // associated project ID
 
 			// To receive from the dispatcher
 			InputStream in = connection.getInputStream();
@@ -99,8 +100,9 @@ public class AddSprintTask extends AsyncTask<String, Integer, String> {
 				return;
 			}
 			
-			if (result.equals(ScrumConstants.ERROR_ADD_PROJECT)) {
+			if (result.equals(ScrumConstants.ERROR_ADD_SPRINT)) {
 				Log.w(ScrumConstants.TAG, "Error adding the sprint");
+				Toast.makeText(activity, "Sprint exists", Toast.LENGTH_SHORT).show();
 				return;
 			}
 			
