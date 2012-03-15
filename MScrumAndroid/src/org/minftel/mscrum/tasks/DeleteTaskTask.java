@@ -9,6 +9,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.activities.TaskActivity;
@@ -91,6 +94,24 @@ public class DeleteTaskTask extends AsyncTask<String, Integer, String>{
 				return;
 			}
 			
+			if (result.equals(ScrumConstants.ERROR_DELETE_TASK)) {
+				Log.w(ScrumConstants.TAG, "Error deleting the task");
+				return;
+			}
+			
+			try {
+				JSONObject json = new JSONObject(result);
+				JSONArray jsonTasks = json.getJSONArray("tasks");
+				
+				// Send broadcast to open ProjectActivity
+				Intent broadCastIntent = new Intent();
+				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_TASKS);
+				broadCastIntent.putExtra("tasks", jsonTasks.toString());
+				this.activity.sendBroadcast(broadCastIntent);
+				
+			} catch (JSONException e) {
+				Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
+			}
 		}
 	}
 
