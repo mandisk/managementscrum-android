@@ -30,9 +30,8 @@ public class ScrumConstants {
 	public static final int ACTION_DELETE_PROJECT = 8;
 	public static final int ACTION_DELETE_SPRINT = 9;
 	public static final int ACTION_DELETE_TASK = 10;
-
 	public static final int ACTION_MODIFY_TASK = 11;
-	
+	public static final int ACTION_REQUEST_CHART = 12;	
 	
 	// SERVER RESPONSES
 	public static final String ERROR_ADD_PROJECT = "ERROR_ADD_PROJECT";
