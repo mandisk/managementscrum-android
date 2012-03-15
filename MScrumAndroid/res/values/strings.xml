@@ -4,6 +4,7 @@
     <string name="app_name">Scrum</string>
     <string name="login_button">Login</string>
     <string name="login_hint_email">Enter you email</string>
+    <string name="login_hint_password">Enter your password</string>
     <string name="Register">Register</string>
     <string name="RegNombre">Name</string>
     <string name="RegisName">Write your name here</string>
