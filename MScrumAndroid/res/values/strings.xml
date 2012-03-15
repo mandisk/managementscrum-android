@@ -68,5 +68,6 @@
     <string name="bt_call">Call</string>
     <string name="bt_send_message">Send message</string>
     <string name="menu_view_charts">View charts</string>
+    <string name="menu_edit_project">edit_project</string>
 
 </resources>
