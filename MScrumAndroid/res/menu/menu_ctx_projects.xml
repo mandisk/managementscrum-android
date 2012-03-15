@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-  xmlns:android="http://schemas.android.com/apk/res/android">
- 
-	<item 
-	    android:id="@+id/ctx_menu_view_users"
-	    android:title="@string/menu_view_users"></item>
-	<item 
-	    android:id="@+id/ctx_menu_delete"
-	    android:title="@string/menu_delete_project"></item>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/ctx_menu_view_users"
+        android:title="@string/menu_view_users">
+    </item>
+    <item
+        android:id="@+id/ctx_menu_delete"
+        android:title="@string/menu_delete_project">
+    </item>
+    <item
+        android:id="@+id/ctx_menu_view_charts"
+        android:title="@string/menu_view_charts">
+    </item>
 
 </menu>
