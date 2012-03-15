@@ -98,7 +98,7 @@ public class DeleteSprintTask extends AsyncTask<String, Integer, String>{
 				return;
 			}
 			
-			if (result.equals(ScrumConstants.ERROR_ADD_PROJECT)) {
+			if (result.equals(ScrumConstants.ERROR_DELETE_SPRINT)) {
 				Log.w(ScrumConstants.TAG, "Error deleting the sprint");
 				return;
 			}
