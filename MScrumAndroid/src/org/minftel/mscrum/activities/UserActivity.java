@@ -8,11 +8,11 @@ import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
 import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class UserActivity extends ListActivity {
 	
@@ -52,12 +52,13 @@ public class UserActivity extends ListActivity {
 
 		//Get selected user
 		UserDetail selectedUser = this.userList.get(position);
-		Toast.makeText(
-				this,
-				"User selected: " + selectedUser.getName() + " [ Email: "
-						+ selectedUser.getEmail() + " ]",
-				Toast.LENGTH_SHORT).show();
-
+		
+		Intent intent = new Intent(UserActivity.this,ContactActivity.class);
+		intent.putExtra("name", selectedUser.getName());
+		intent.putExtra("surname", selectedUser.getSurname());
+		intent.putExtra("email", selectedUser.getEmail());
+		intent.putExtra("phone", selectedUser.getPhone());
+		startActivity(intent);
 
 	}
 
