@@ -12,6 +12,7 @@ import java.net.URLConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.activities.SprintsActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
@@ -19,6 +20,7 @@ import org.minftel.mscrum.utils.ScrumConstants;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -97,8 +99,12 @@ public class SprintsTask extends AsyncTask<String, Integer, String> {
 			}
 			
 			if (result.equals(ScrumConstants.SESSION_EXPIRED)) {
-				Log.i(ScrumConstants.TAG, "Session has expired");
-				
+				Log.w(ScrumConstants.TAG, "Session expired");
+				SharedPreferences prefs = activity.getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, Activity.MODE_PRIVATE);
+				prefs.edit().clear().commit();
+				Intent intent = new Intent(this.activity, LoginActivity.class);
+				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		        activity.startActivity(intent);
 				return;
 			}
 			
