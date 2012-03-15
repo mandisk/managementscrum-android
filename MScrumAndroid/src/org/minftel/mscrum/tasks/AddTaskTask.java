@@ -104,12 +104,12 @@ public class AddTaskTask extends AsyncTask<String, Integer, String>{
 			
 			try {
 				JSONObject json = new JSONObject(result);
-				JSONArray jsonProjects = json.getJSONArray("task");
+				JSONArray jsonProjects = json.getJSONArray("tasks");
 				
 				// Send broadcast to open ProjectActivity
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_TASKS);
-				broadCastIntent.putExtra("task", jsonProjects.toString());
+				broadCastIntent.putExtra("tasks", jsonProjects.toString());
 				this.activity.sendBroadcast(broadCastIntent);
 				
 			} catch (JSONException e) {
