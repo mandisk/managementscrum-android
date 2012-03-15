@@ -10,8 +10,8 @@ public class ScrumConstants {
 	
 	// DIRECCION SERVLET FRONTAL
 //	private static String DIRECCION_IP_SERVER = "192.168.1.107";
-	private static String DIRECCION_IP_SERVER = "10.0.2.2";
-//	private static String DIRECCION_IP_SERVER = "192.168.1.134";
+//	private static String DIRECCION_IP_SERVER = "10.0.2.2";
+	private static String DIRECCION_IP_SERVER = "192.168.1.118";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.13";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.119";
 //	private static String DIRECCION_IP_SERVER = "192.168.133.151";

@@ -21,7 +21,7 @@ public class ScrumReceiver extends BroadcastReceiver {
 		if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_PROJECTS)) {
 			// Create Intent to start activity
 			Intent projectIntent = new Intent(context, ProjectActivity.class);
-			projectIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			projectIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			
 			String json = intent.getStringExtra("projects");
 			projectIntent.putExtra("projects", json);
