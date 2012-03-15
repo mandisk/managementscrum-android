@@ -65,5 +65,6 @@
     <string name="timeTask">Tiempo</string>
     <string name="bt_call">Hacer llamada</string>
     <string name="bt_send_message">Mandar mensaje</string>
+    <string name="menu_view_charts">Ver estadísticas</string>
 
 </resources>
