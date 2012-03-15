@@ -72,9 +72,9 @@ public class DeleteProjectTask extends AsyncTask<String, Integer, String>{
 			connection = null;
 			
 		} catch(MalformedURLException e) {
-			Log.i(ScrumConstants.TAG, "MalformedURLException");
+			Log.i(ScrumConstants.TAG, "MalformedURLException: " + e.getMessage());
 		} catch (IOException e) {
-			Log.i(ScrumConstants.TAG, "IOException");
+			Log.i(ScrumConstants.TAG, "IOException: " + e.getMessage());
 		}
 		
 		return result;
@@ -98,7 +98,7 @@ public class DeleteProjectTask extends AsyncTask<String, Integer, String>{
 				return;
 			}
 			
-			if (result.equals(ScrumConstants.ERROR_ADD_PROJECT)) {
+			if (result.equals(ScrumConstants.ERROR_DELETE_PROJECT)) {
 				Log.w(ScrumConstants.TAG, "Error deleting project");
 				return;
 			}
