@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+<!--     Inicio Layout_width y Layout_height -->
+    <style name="Fill_parent">
+     	<item name="android:layout_width">fill_parent</item>
+     	<item name="android:layout_height">fill_parent</item>
+    </style>
+    
+    <style name="Wrap_content">
+     	<item name="android:layout_width">wrap_content</item>
+     	<item name="android:layout_height">wrap_content</item>
+    </style>
+    
+    <style name="Match_Wrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+<!--     Fin Layout_width y Layout_height -->
+
+<!--     Inicio LinearLayout -->
+    <style name="Fill_parent.LinearLayout">
+    	<item name="android:padding">20dp</item>
+    	<item name="android:orientation">vertical</item>
+    </style>
+<!--     Fin LinearLayout -->
+    
+<!--     Inicio TextView  -->
+    <style name="Wrap_content.TextView">
+     <item name="android:textColor">#FFFFFF</item>
+     <item name="android:textSize">20dp</item>    
+	</style>
+	
+    <style name="Match_Wrap.TextView" >
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingTop">30dp</item>
+    </style>
+<!--     Fin TextView  -->	
+
+<!--     Inicio EditText  -->
+	<style name="Match_Wrap.EditText">
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:typeface">monospace</item>
+	</style>
+<!--     Fin EditText  -->	
+
+<!--     Inicio Button  -->
+	<style name="Match_Wrap.Button">
+	</style>
+<!--     Fin Button  -->
+	
+</resources>
