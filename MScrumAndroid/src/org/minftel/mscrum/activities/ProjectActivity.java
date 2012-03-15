@@ -5,6 +5,8 @@ import java.util.List;
 import org.json.JSONException;
 import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.tasks.DeleteProjectTask;
+import org.minftel.mscrum.tasks.DeleteTaskTask;
+import org.minftel.mscrum.tasks.EditProjectAskTask;
 import org.minftel.mscrum.tasks.ProjectsTask;
 import org.minftel.mscrum.tasks.UserTask;
 import org.minftel.mscrum.utils.JSONConverter;
@@ -97,6 +99,13 @@ public class ProjectActivity extends ListActivity {
 			DeleteProjectTask dpt = new DeleteProjectTask(this);
 			dpt.execute(idproject);
 
+			return true;
+			
+		case R.id.ctx_menu_edit_project:
+
+			EditProjectAskTask editprojectTask = new EditProjectAskTask(this);
+			editprojectTask.execute(Integer.toString(projectDetail.getIdProject()));
+			
 			return true;
 		default:
 			return super.onContextItemSelected(item);
