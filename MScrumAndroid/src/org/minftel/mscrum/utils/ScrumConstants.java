@@ -37,6 +37,9 @@ public class ScrumConstants {
 	public static final String ERROR_ADD_PROJECT = "ERROR_ADD_PROJECT";
 	public static final String ERROR_ADD_SPRINT = "ERROR_ADD_SPRINT";
 	public static final String ERROR_ADD_TASK = "ERROR_ADD_TASK";
+    public static final String ERROR_DELETE_PROJECT = "ERROR_DELETE_PROJECT";
+    public static final String ERROR_DELETE_SPRINT = "ERROR_DELETE_SPRINT";
+    public static final String ERROR_DELETE_TASK = "ERROR_DELETE_TASK";
 	public static final String ERROR_LOGIN = "ERROR_LOGIN";
 	public static final String ERROR_REGISTER = "ERROR_REGISTER";
 	public static final String ERROR_PROJECTS = "ERROR_PROJECTS";
