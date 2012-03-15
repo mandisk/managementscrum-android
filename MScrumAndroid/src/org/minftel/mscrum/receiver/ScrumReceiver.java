@@ -1,5 +1,6 @@
 package org.minftel.mscrum.receiver;
 
+import org.minftel.mscrum.activities.ChartsActivity;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.SprintsActivity;
@@ -20,7 +21,7 @@ public class ScrumReceiver extends BroadcastReceiver {
 		if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_PROJECTS)) {
 			// Create Intent to start activity
 			Intent projectIntent = new Intent(context, ProjectActivity.class);
-			projectIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			projectIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			
 			String json = intent.getStringExtra("projects");
 			projectIntent.putExtra("projects", json);
@@ -45,6 +46,7 @@ public class ScrumReceiver extends BroadcastReceiver {
 			context.startActivity(sprintIntent);
 		
 		}else if(intent.getAction().equals(ScrumConstants.BROADCAST_GO_TASKS)){
+			
 			//Create Intent to start activity TasksActivity
 			Intent taskIntent = new Intent(context, TaskActivity.class);
 			taskIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -53,20 +55,27 @@ public class ScrumReceiver extends BroadcastReceiver {
 			taskIntent.putExtra("tasks", json);
 			
 			context.startActivity(taskIntent);
-		}
 		
-		else if(intent.getAction().equals(ScrumConstants.BROADCAST_GO_USERS)){
-			//Create Intent to start activity UserActivity
+		}else if(intent.getAction().equals(ScrumConstants.BROADCAST_GO_USERS)){
 			
+			//Create Intent to start activity UserActivity
 			Log.i(ScrumConstants.TAG, "Launch users activity...");
 			
 			Intent userIntent = new Intent(context, UserActivity.class);
-			userIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			userIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			
 			String json = intent.getStringExtra("users");
 			userIntent.putExtra("users", json);
 			
 			context.startActivity(userIntent);
+		
+		} else if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_CHARTS)){
+			
+			//Create Intent to start the activity ChartsActivity
+			Log.i(ScrumConstants.TAG, "Launch Charts Activity");
+			
+			Intent chartsIntent = new Intent(context, ChartsActivity.class);
+			chartsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		}
 		
 		
