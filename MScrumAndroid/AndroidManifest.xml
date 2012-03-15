@@ -26,6 +26,7 @@
                 <action android:name="org.minftel.receiver.action.GO_LOGIN"/>
                 <action android:name="org.minftel.receiver.action.GO_SPRINTS"/>
                 <action android:name="org.minftel.receiver.action.GO_TASKS"/>
+                <action android:name="org.minftel.receiver.action.GO_USERS"/>
                 <action android:name="org.minftel.receiver.action.GO_CHARTS"/>
             </intent-filter>
         </receiver>
