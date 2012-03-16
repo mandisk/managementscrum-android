@@ -36,7 +36,8 @@ public class TaskActivity extends ListActivity {
 		registerForContextMenu(getListView());
 
 		String json = getIntent().getExtras().getString("tasks");
-
+		Log.e(ScrumConstants.TAG, " "+json);
+	
 		try {
 			taskList = JSONConverter.fromJSONtoTaskList(json);
 			taskTimes = new String[taskList.size()];

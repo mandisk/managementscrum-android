@@ -1,9 +1,11 @@
 package org.minftel.mscrum.activities;
 
 import org.minftel.mscrum.tasks.ModifyTaskTask;
+import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -42,8 +44,9 @@ public class EditTaskActivity extends Activity {
 
 	public void modify(View view) {
 		  //Envio al servidor para guardar en la bbdd
+		Log.i(ScrumConstants.TAG, "Saving modified");
   	 	ModifyTaskTask modifyTaskTask = new ModifyTaskTask(this);
   	 	modifyTaskTask.execute(state.getText().toString(), user.getHint().toString(), time.getText().toString(),
-  	 			sprint.getText().toString(), description.getText().toString());
+  	 			 description.getText().toString());
 	}
 }

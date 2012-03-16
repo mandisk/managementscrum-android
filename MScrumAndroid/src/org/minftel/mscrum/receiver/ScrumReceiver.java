@@ -1,6 +1,7 @@
 package org.minftel.mscrum.receiver;
 
 import org.minftel.mscrum.activities.ChartsActivity;
+import org.minftel.mscrum.activities.EditProjectActivity;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.SprintsActivity;
@@ -76,9 +77,23 @@ public class ScrumReceiver extends BroadcastReceiver {
 			
 			Intent chartsIntent = new Intent(context, ChartsActivity.class);
 			chartsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			
+		} else if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_EDIT_PROJECT)) {
+			
+			//Create Intent to start the activity EditProjectActivity
+			Log.i(ScrumConstants.TAG, "Launch Charts Activity");
+			
+			Intent editProjectIntent = new Intent(context, EditProjectActivity.class);
+			editProjectIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			
+			String jsonUsers = intent.getStringExtra("users");
+			String jsonUsersNotInProject = intent.getStringExtra("usersnotinproject");
+			
+			editProjectIntent.putExtra("users", jsonUsers);
+			editProjectIntent.putExtra("usersnotinproject", jsonUsersNotInProject);
+			
+			context.startActivity(editProjectIntent);
 		}
-		
-		
 	}
 
 }

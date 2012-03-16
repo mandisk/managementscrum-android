@@ -30,6 +30,7 @@
                 <action android:name="org.minftel.receiver.action.GO_TASKS"/>
                 <action android:name="org.minftel.receiver.action.GO_USERS"/>
                 <action android:name="org.minftel.receiver.action.GO_CHARTS"/>
+                 <action android:name="org.minftel.receiver.action.GO_EDIT_PROJECT"/>
             </intent-filter>
         </receiver>
         <activity android:name="ProjectActivity"></activity>
@@ -45,6 +46,7 @@
         <activity android:name="EditTaskActivity"></activity>
         <activity android:name="UserActivity"></activity>
         <activity android:name="ContactActivity"></activity>
+        <activity android:name="EditProjectActivity"></activity>
     </application>
 
 </manifest>

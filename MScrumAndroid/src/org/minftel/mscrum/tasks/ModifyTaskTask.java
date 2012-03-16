@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.minftel.mscrum.activities.AddTask;
+import org.minftel.mscrum.activities.EditTaskActivity;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
 
@@ -25,11 +26,11 @@ import android.util.Log;
 
 public class ModifyTaskTask extends AsyncTask<String, Integer, String>{
 
-	private AddTask activity;
+	private EditTaskActivity activity;
 	private ProgressDialog progressDialog;
 	
 	public ModifyTaskTask(Activity activity) {
-		this.activity = (AddTask) activity;
+		this.activity = (EditTaskActivity) activity;
 		this.progressDialog = new ProgressDialog(activity);
 	}
 	@Override
@@ -56,10 +57,8 @@ public class ModifyTaskTask extends AsyncTask<String, Integer, String>{
 			dos.writeInt(ScrumConstants.ACTION_MODIFY_TASK);
 			dos.writeUTF(params[0]);	// state Task
 			dos.writeUTF(params[1]);	// user task
-			dos.writeUTF(params[2]); 	//project task
-			dos.writeUTF(params[3]);	//sprint task
-			dos.writeUTF(params[4]);	//time task
-			dos.writeUTF(params[5]);	//description task
+			dos.writeUTF(params[2]);	//time task
+			dos.writeUTF(params[3]);	//description task
 			
 			// Receive from server
 			InputStream in = connection.getInputStream();
