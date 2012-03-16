@@ -5,6 +5,10 @@
          android:id="@+id/deleteTask" android:title="@string/deleteTaskMenu">
         
     </item>
+    <item
+         android:id="@+id/editTask" android:title="@string/editTaskMenu">
+        
+    </item>
     
 
 </menu>
