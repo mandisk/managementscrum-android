@@ -47,6 +47,8 @@
         <activity android:name="UserActivity"></activity>
         <activity android:name="ContactActivity"></activity>
         <activity android:name=".EditUserProjectActivity"></activity>
+         <activity android:name="ChartActivity" android:label="ESTADISTICAS">
+       </activity>
     </application>
 
 </manifest>
