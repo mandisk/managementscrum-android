@@ -3,14 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <ExpandableListView android:id="@+id/android:list"
+  <Button
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/buttonAddProject" 
+                android:onClick="save"/>
+  
+      <ExpandableListView android:id="@+id/android:list"
                android:layout_width="fill_parent" 
                android:layout_height="fill_parent"
+             
               />
  
      <TextView android:id="@+id/android:empty"
                android:layout_width="fill_parent" 
                android:layout_height="fill_parent"
                android:text="No items"/>
+
+   
+
 
 </LinearLayout>

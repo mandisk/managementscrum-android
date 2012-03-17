@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.minftel.mscrum.activities.AddProjectActivity;
+import org.minftel.mscrum.activities.EditUserProjectActivity;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.utils.ScrumConstants;
@@ -26,11 +27,11 @@ import android.util.Log;
 
 public class EditProjectSendTask extends AsyncTask<String, Integer, String>{
 
-	private AddProjectActivity activity;
+	private EditUserProjectActivity activity;
 	private ProgressDialog progressDialog;
 	
 	public EditProjectSendTask(Activity activity) {
-		this.activity = (AddProjectActivity) activity;
+		this.activity = (EditUserProjectActivity) activity;
 		this.progressDialog = new ProgressDialog(activity);
 	}
 	@Override
@@ -54,10 +55,8 @@ public class EditProjectSendTask extends AsyncTask<String, Integer, String>{
 			DataOutputStream dos = new DataOutputStream(out);
 			
 			dos.writeInt(ScrumConstants.ACTION_EDIT_PROJECT_SEND);
-			dos.writeUTF(params[0]);	// id user
+			dos.writeUTF(params[0]);	//array id user
 			
-			
-
 			// Receive from server
 			InputStream in = connection.getInputStream();
 			DataInputStream dis = new DataInputStream(in);
