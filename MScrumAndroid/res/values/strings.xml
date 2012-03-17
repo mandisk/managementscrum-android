@@ -68,7 +68,9 @@
     <string name="bt_call">Call</string>
     <string name="bt_send_message">Send message</string>
     <string name="menu_view_charts">View charts</string>
-    <string name="menu_edit_project">edit_project</string>
+    <string name="menu_edit_project">Edit project</string>
     <string name="editTaskMenu">Edit Task</string>
+    <string name="EditProject">Edit project</string>
+    <string name="menu_edit_user">Edit users</string>
 
 </resources>
