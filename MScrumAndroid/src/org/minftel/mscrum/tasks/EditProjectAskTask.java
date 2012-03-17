@@ -105,11 +105,14 @@ public class EditProjectAskTask extends AsyncTask<String, Integer, String>{
 				JSONObject json = new JSONObject(result);
 				JSONArray jsonUserNotInProject = json.getJSONArray("usersnotinproject");
 				JSONArray jsonUser = json.getJSONArray("users");
+				Log.e(ScrumConstants.TAG,"1"+jsonUserNotInProject.toString() );
+				Log.e(ScrumConstants.TAG, "2"+jsonUser.toString());
+				
 				// Send broadcast to open EditProjectActivity
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_EDIT_PROJECT);
 				broadCastIntent.putExtra("usersnotinproject", jsonUserNotInProject.toString());
-				broadCastIntent.putExtra("user", jsonUser.toString());
+				broadCastIntent.putExtra("users", jsonUser.toString());
 				this.activity.sendBroadcast(broadCastIntent);
 				
 			} catch (JSONException e) {
