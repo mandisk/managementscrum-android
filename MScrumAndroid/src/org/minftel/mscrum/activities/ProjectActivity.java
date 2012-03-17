@@ -40,6 +40,7 @@ public class ProjectActivity extends ListActivity {
 
 		// Get Project List
 		String json = getIntent().getExtras().getString("projects");
+		
 
 		try {
 			projectList = JSONConverter.fromJSONtoProjecList(json);
@@ -64,6 +65,13 @@ public class ProjectActivity extends ListActivity {
 				scrumMasters));
 
 	}
+	
+	//Stadistic Testing
+	public void estadistica(View v){
+		Intent intent = new Intent(ProjectActivity.this,ChartActivity.class);
+		startActivity(intent);
+	}
+	//End Testing
 
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
