@@ -123,7 +123,7 @@ public class TaskActivity extends ListActivity {
 
 		// Get selected task
 		TaskDetail selectedTask = this.taskList.get(position);
-		String user="";
+		String userEmail="";
 		
 		Intent intent = new Intent(this, EditTaskActivity.class);
 		intent.putExtra("state", selectedTask.getState());
@@ -133,14 +133,13 @@ public class TaskActivity extends ListActivity {
 			
 			SharedPreferences prefs;
 			prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
-			prefs.getString("userEmail", user);
-			intent.putExtra("user", user);
+			prefs.getString("userEmail", userEmail);
+			intent.putExtra("user", userEmail);
 		}else
 		{
-			intent.putExtra("user", selectedTask.getUser().getName());
+			intent.putExtra("user", selectedTask.getUser().getEmail());
 		}
 		
-//		intent.putExtra("sprint", selectedTask.getSprint().getSprintNumber());
 		intent.putExtra("description", selectedTask.getDescription());
 		
 		startActivity(intent);
