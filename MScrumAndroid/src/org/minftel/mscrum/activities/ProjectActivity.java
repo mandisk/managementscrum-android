@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ProjectActivity extends ListActivity {
 
@@ -40,7 +41,6 @@ public class ProjectActivity extends ListActivity {
 
 		// Get Project List
 		String json = getIntent().getExtras().getString("projects");
-		
 
 		try {
 			projectList = JSONConverter.fromJSONtoProjecList(json);
@@ -110,10 +110,35 @@ public class ProjectActivity extends ListActivity {
 			return true;
 			
 		case R.id.ctx_menu_edit_project:
-
+			String SmEmail = "";
+			
+			SharedPreferences prefs;
+			prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
+			prefs.getString("userEmail", SmEmail);
+			
+			/**********************************************************/
+			//Lo de arriba falla ¿por que? <<<<<<<<<<---------------------
+			/*******************************************************/
+			Log.e(ScrumConstants.TAG, " " + SmEmail);
+			Log.e(ScrumConstants.TAG, " " + projectDetail.getScrumMaster().getEmail() );
+//			if(projectDetail.getScrumMaster().getEmail() == SmEmail)
+//			{
+				Intent intent = new Intent(this, EditProjectActivity.class);
+				intent.putExtra("name", projectDetail.getName());
+				intent.putExtra("description", projectDetail.getDescription());
+				intent.putExtra("initdate", projectDetail.getInitialDate());
+				intent.putExtra("enddate", projectDetail.getEndDate());
+				startActivity(intent);
+//			}
+//			else{
+//				Toast.makeText(this, "You aren't Scrum Master", Toast.LENGTH_SHORT)
+//				.show();
+//			}
+			return true;
+		case R.id.ctx_menu_edit_user_in_project:
+			
 			EditProjectAskTask editprojectTask = new EditProjectAskTask(this);
 			editprojectTask.execute(Integer.toString(projectDetail.getIdProject()));
-			
 			return true;
 		default:
 			return super.onContextItemSelected(item);
