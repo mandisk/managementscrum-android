@@ -18,5 +18,9 @@
         android:id="@+id/ctx_menu_edit_project"
         android:title="@string/menu_edit_project">
     </item>
+    <item
+        android:id="@+id/ctx_menu_edit_user_in_project"
+        android:title="@string/menu_edit_user">
+    </item>
 
 </menu>
