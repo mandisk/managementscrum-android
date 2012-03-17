@@ -4,21 +4,26 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.minftel.mscrum.model.TaskDetail;
+import org.json.JSONException;
+import org.minftel.mscrum.activities.R.id;
 import org.minftel.mscrum.model.UserDetail;
-import org.minftel.mscrum.tasks.EditProjectAskTask;
 import org.minftel.mscrum.tasks.EditProjectSendTask;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 
+
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.SimpleExpandableListAdapter;
+import android.widget.TextView;
 
-public class EditProjectActivity extends android.app.ExpandableListActivity {
+public class EditUserProjectActivity extends android.app.ExpandableListActivity {
 
 	private List<UserDetail> userListNotinProject;
 	private List<UserDetail> userList;
@@ -26,27 +31,30 @@ public class EditProjectActivity extends android.app.ExpandableListActivity {
 	private List<Integer> chekboxEnabled;
 	private CheckBox chekbox;
 	private ArrayList secList;
-
+	
+	
 	@SuppressWarnings("unchecked")
 	public void onCreate(Bundle savedInstanceState) {
 		try {
 			super.onCreate(savedInstanceState);
-			setContentView(R.layout.editproject);
-			
-			chekbox = (CheckBox) findViewById(R.id.check1);
+			setContentView(R.layout.edituserproject);
+			chekboxEnabled = new ArrayList<Integer>();
+		
 			// Lista de usuarios
 			String json2 = getIntent().getExtras().getString(
 					"usersnotinproject");
-			String json = getIntent().getExtras().getString("user");
-			Log.e(ScrumConstants.TAG, " "+json);
-			Log.e(ScrumConstants.TAG, " "+json2);
+			String json = getIntent().getExtras().getString("users");
+			Log.e(ScrumConstants.TAG, " " + json);
+			Log.e(ScrumConstants.TAG, " " + json2);
+
 			userList = JSONConverter.fromJSONtoUserList(json);
+
 			Log.e(ScrumConstants.TAG, "--------2-");
-			
+
 			Log.e(ScrumConstants.TAG, "--------3-");
 			userListNotinProject = JSONConverter.fromJSONtoUserList(json2);
 			Log.e(ScrumConstants.TAG, "--------4-");
-		
+
 			// Expandable list
 			SimpleExpandableListAdapter expListAdapter = new SimpleExpandableListAdapter(
 					this, createGroupList(), // Creating group List.
@@ -61,14 +69,15 @@ public class EditProjectActivity extends android.app.ExpandableListActivity {
 										// level).
 					new String[] { "Sub Item" }, // Keys in childData maps to
 													// display.
-					new int[] { R.id.grp_child } // Data under the keys above go
-													// into these TextViews.
+					new int[] { R.id.grp_child} // Data under the keys above go
+				
 			);
 			setListAdapter(expListAdapter); // setting the adapter in the list.
-
-		} catch (Exception e) {
-			System.out.println("Errrr +++ " + e.getMessage());
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
 	}
 
 	/* Creating the Hashmap for the row */
@@ -88,29 +97,32 @@ public class EditProjectActivity extends android.app.ExpandableListActivity {
 	private List createChildList() {
 
 		ArrayList result = new ArrayList();
+	
+//		ExpandableListView lv = getExpandableListView();
+		
 		// /* each group need each HashMap-Here for each group we have 3
 		// subgroups */
 		secList = new ArrayList();
-
+//		int i=0;
 		for (UserDetail user : userList) {
 
-			Log.e(ScrumConstants.TAG, " " + user.getName());
 			HashMap child = new HashMap();
 			child.put("Sub Item", user.getName());
-			chekbox.setChecked(true);
+			
+//			chekbox = (CheckBox) ((View)lv.getChildAt(i)).findViewById
+//					(R.id.check1); 
+//			 chekbox.toggle();
+			secList.add(child);
+//			i++;
+		}
+		for (UserDetail user : userListNotinProject) {
+			HashMap child = new HashMap();
+			child.put("Sub Item", user.getName());
 			secList.add(child);
 		}
 		
-		for (UserDetail user : userListNotinProject) {
-
-			HashMap child = new HashMap();
-			child.put("Sub Item", user.getName());
-			secList.add(child);
-		}
-
-		userListAll.addAll(userList);
+		userListAll = userList;
 		userListAll.addAll(userListNotinProject);
-
 		result.add(secList);
 		return result;
 	}
@@ -143,7 +155,11 @@ public class EditProjectActivity extends android.app.ExpandableListActivity {
 			System.out.println(" groupPosition Errrr +++ " + e.getMessage());
 		}
 	}
+	
 
+
+
+	
 	public void save(View view) {
 		String[] idUsers = new String[chekboxEnabled.size()];
 
@@ -152,7 +168,7 @@ public class EditProjectActivity extends android.app.ExpandableListActivity {
 			idUsers[i] = String.valueOf(userListAll.get(position).getId());
 			i++;
 		}
-
+	
 		EditProjectSendTask editprojectTask = new EditProjectSendTask(this);
 		editprojectTask.execute(idUsers);
 
