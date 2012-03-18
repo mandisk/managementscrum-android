@@ -7,7 +7,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.minftel.mscrum.activities.R.id;
 import org.minftel.mscrum.model.UserDetail;
-import org.minftel.mscrum.tasks.EditProjectSendTask;
+import org.minftel.mscrum.tasks.EditUserProjectSendTask;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 
@@ -169,7 +169,7 @@ public class EditUserProjectActivity extends android.app.ExpandableListActivity 
 			i++;
 		}
 	
-		EditProjectSendTask editprojectTask = new EditProjectSendTask(this);
+		EditUserProjectSendTask editprojectTask = new EditUserProjectSendTask(this);
 		editprojectTask.execute(idUsers);
 
 	}
