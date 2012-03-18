@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.minftel.mscrum.activities.R.id;
+import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.tasks.AddProjectTask;
 
 import android.app.Activity;
@@ -38,7 +39,7 @@ public class EditProjectActivity extends Activity {
 	private int actualYear;
 	private int actualMonth;
 	private int actualDay;
-
+	private String emailSm;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,14 +58,25 @@ public class EditProjectActivity extends Activity {
 		descripctionEdit.setHint(extras.getString("description"));
 		
 		initDateEdit = (TextView) findViewById(R.id.EditInitialDateProjectRes);
-	//	initDateEdit.setText(extras.getString("initdate"));
-		
 		endDateEdit = (TextView) findViewById(R.id.EditEndDateProjectRes);
-		//endDateEdit.setText(extras.getString("enddate"));
+
 		
 		mPickDate1 = (ImageView) findViewById(R.id.editProjectInitialCalendar);
 		mPickDate2 = (ImageView) findViewById(R.id.editProjectEndCalendar);
 
+		emailSm = extras.getString("ScrumMaster");
+		
+		 Date initdate ; 
+		
+		 initdate = (Date) extras.getSerializable("initdate");
+		 Calendar calInit=Calendar.getInstance();
+		 calInit.setTime(initdate);
+		 
+		 Date endDate;
+		 endDate = (Date) extras.getSerializable("enddate");
+		 Calendar calEnd = Calendar.getInstance();
+		 calEnd.setTime(endDate);
+		 
 		// add a click listener to the button
 		mPickDate1.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -77,12 +89,22 @@ public class EditProjectActivity extends Activity {
 				showDialog(DATE_DIALOG_ID2);
 			}
 		});
-
+		
 		 // get the current date
-		 final Calendar c = Calendar.getInstance();
-		 actualYear = mYear2 = mYear1 = c.get(Calendar.YEAR);
-		 actualMonth = mMonth2 = mMonth1 =  c.get(Calendar.MONTH);
-		 actualDay = mDay2 = mDay1 = c.get(Calendar.DAY_OF_MONTH);
+		 final Calendar actual = Calendar.getInstance();
+		 
+		 actualYear = actual.get(Calendar.YEAR);
+		 actualMonth = actual.get(Calendar.MONTH);
+		 actualDay = actual.get(Calendar.DAY_OF_MONTH);
+		 
+		 mYear1 = calInit.get(Calendar.MONTH);
+		 mMonth1 =  calInit.get(Calendar.MONTH);
+		 mDay1 = calInit.get(Calendar.DAY_OF_MONTH);
+		
+		 mYear2 = calEnd.get(Calendar.YEAR);
+		 mMonth2 = calEnd.get(Calendar.MONTH);
+		 mDay2 = calEnd.get(Calendar.DAY_OF_MONTH);
+		
 
 		// display the current date (this method is below)
 		 updateDisplay();
@@ -128,7 +150,7 @@ public class EditProjectActivity extends Activity {
 		}
 	};
 
-
+	@Override
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
 		case DATE_DIALOG_ID1:
@@ -154,7 +176,7 @@ public class EditProjectActivity extends Activity {
 	
 	
 
-	public void save(View view) {
+	public void saveData(View view) {
 	
 		
 		
@@ -189,10 +211,13 @@ public class EditProjectActivity extends Activity {
 			String sDay2 = String.valueOf(mDay2);
 			String sMonth2 = String.valueOf(mMonth2);
 			String sYear2 = String.valueOf(mYear2);
+			String varControl = "1";
 			
-//			AddProjectTask addProjectTask = new AddProjectTask(this);
-//			addProjectTask.execute(sName, sDescription, sDay1, sMonth1, sYear1,
-//					sDay2, sMonth2, sYear2, sEmail);
+			
+			//Reutilizamos la tarea de añadir proyecto por ser similar
+			AddProjectTask addProjectTask = new AddProjectTask(this);
+			addProjectTask.execute(varControl, name, description, sDay1, sMonth1, sYear1,
+					sDay2, sMonth2, sYear2, emailSm);
 		}
 
 	}
