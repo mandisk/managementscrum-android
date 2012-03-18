@@ -41,6 +41,7 @@ public class ProjectActivity extends ListActivity {
 
 		// Get Project List
 		String json = getIntent().getExtras().getString("projects");
+		Log.i(ScrumConstants.TAG,json);
 
 		try {
 			projectList = JSONConverter.fromJSONtoProjecList(json);

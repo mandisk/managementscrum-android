@@ -15,18 +15,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddProjectActivity extends Activity {
 	private TextView mDateDisplay1;
-	private TextView mPickDate1;
+//	private TextView mPickDate1;
 	private TextView mDateDisplay2;
-	private TextView mPickDate2;
+//	private TextView mPickDate2;
 
 	private EditText projectName;
 	private EditText projectDescription;
-
+	
+	private ImageView mPickDate1;
+	private ImageView mPickDate2;
+	
 	private int mYear1;
 	private int mMonth1;
 	private int mDay1;
@@ -48,11 +52,14 @@ public class AddProjectActivity extends Activity {
 
 		// capture our View elements
 		mDateDisplay1 = (TextView) findViewById(R.id.addInitialDateProjectRes);
-		mPickDate1 = (TextView) findViewById(R.id.addInitialDateProject);
+//		mPickDate1 = (TextView) findViewById(R.id.addInitialDateProject);
+		mPickDate1 = (ImageView) findViewById(R.id.addProjectInitialCalendar);
 		mDateDisplay2 = (TextView) findViewById(R.id.addEndDateProjectRes);
-		mPickDate2 = (TextView) findViewById(R.id.addEndDateProject);
+//		mPickDate2 = (TextView) findViewById(R.id.addEndDateProject);
+		mPickDate2 = (ImageView) findViewById(R.id.addProjectEndCalendar);
 		projectName = (EditText) findViewById(R.id.nameAddProjectText);
 		projectDescription = (EditText) findViewById(R.id.descriptionAddProjectText);
+		
 
 		// add a click listener to the button
 		mPickDate1.setOnClickListener(new View.OnClickListener() {

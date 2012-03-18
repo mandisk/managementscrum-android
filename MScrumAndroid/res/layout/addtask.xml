@@ -1,65 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/addTask"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    style="@style/LWMP.LHMP.OV" >
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+        android:id="@+id/linearLayout0"
+        style="@style/LWFP.LHFP.PAD20.OV" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            style="@style/LWMP.LHWC.OV.CH" >
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/TVHEADER"
+                android:text="@string/addTask" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/taskDescription"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            style="@style/TV"
+            android:text="@string/taskDescription" />
 
         <EditText
             android:id="@+id/DescriptionTask"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine" />
+            style="@style/ET.M"
+            android:hint="@string/taskDescription" />
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/TimeTask"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            style="@style/TV"
+            android:text="@string/TimeTask" />
 
         <EditText
             android:id="@+id/TimeTask"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number" />
+            style="@style/ET.N"
+            android:hint="@string/TimeTask" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="bottom"
-            android:orientation="vertical" >
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/addTask" 
-                android:onClick="save"/>
-
-        </LinearLayout>
-
+        <Button
+            android:id="@+id/button1"
+            style="@style/BUTTON_MW"
+            android:onClick="save"
+            android:text="@string/addTask" />
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

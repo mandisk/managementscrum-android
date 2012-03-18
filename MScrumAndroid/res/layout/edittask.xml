@@ -1,63 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    style="@style/LWMP.LHMP.OV" >
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/UserTask"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/LWFP.LHFP.PAD20.OV" >
 
-    <EditText
-        android:id="@+id/UserTaskEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            style="@style/LWMP.LHWC.OV.CH" >
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/StateTask"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:id="@+id/textView0"
+                style="@style/TVHEADER"
+                android:text="@string/EditTask" />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/stateTaskEditView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/LWFP.LHWC.OV" >
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ViewTaskDescription"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/TV"
+                android:text="@string/UserTask" />
 
-    <EditText
-        android:id="@+id/DescriptionTaskEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/UserTaskEdit"
+                style="@style/ET.T"
+                android:hint="@string/UserTask" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/timeTask"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/TV"
+                android:text="@string/StateTask" />
 
-    <EditText
-        android:id="@+id/timeTaskEdit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
+            <RadioGroup
+                android:id="@+id/radiogroup"
+                style="@style/LWFP.LHWC.OH.MB10"
+                 >
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="modify"
-        android:text="@string/Save" />
+                <RadioButton
+                    android:id="@+id/todo"
+                    android:text="@string/ToDo"
+                    style="@style/LWWC.LHWC" >
+                </RadioButton>
 
-</LinearLayout>
+                <RadioButton
+                    android:id="@+id/doing"
+                    style="@style/LWWC.LHWC"
+                    android:text="@string/Doing" >
+                </RadioButton>
+
+                <RadioButton
+                    android:id="@+id/done"
+                    style="@style/LWWC.LHWC"
+                    android:text="@string/Done" >
+                </RadioButton>
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView5"
+                android:text="@string/SprintTask"
+                style="@style/TV" />
+
+            <EditText
+                android:id="@+id/SprintTaskEdit"
+                android:hint="@string/editTaskHintSprint"
+                style="@style/ET.N" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:text="@string/ViewTaskDescription"
+                style="@style/TV" />
+
+            <EditText
+                android:id="@+id/DescriptionTaskEdit"
+                android:hint=""
+                style="@style/ET.T"/>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:text="@string/timeTask"
+                style="@style/TV" />
+
+            <EditText
+                android:id="@+id/timeTaskEdit"
+                android:hint="@string/editTaskHintTimeTask"
+                style="@style/ET.N"/>
+
+            <Button
+                android:id="@+id/button1"
+                android:text="@string/Save"
+                style="@style/BUTTON_MW"
+                android:layout_marginTop="20dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

@@ -1,94 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    style="@style/LWMP.LHMP.OV" >
 
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        style="@style/LWFP.LHFP.PAD20.OV" >
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="485dp"
-            android:orientation="vertical" >
+            android:id="@+id/linearLayout1"
+            style="@style/LWMP.LHWC.OV.CH" >
 
             <TextView
-                android:id="@+id/addProjectLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/nameAddProject"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/nameAddProjectText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
+                android:id="@+id/textView1"
+                style="@style/TVHEADER"
+                android:text="@string/addProjectMenu" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/addProjectDescriptionLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/descriptionAddProject"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/descriptionAddProjectText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine" />
+        <TextView
+            android:id="@+id/addProjectLabel"
+            style="@style/TV"
+            android:text="@string/nameAddProject" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+        <EditText
+            android:id="@+id/nameAddProjectText"
+            style="@style/ET.T"
+            android:hint="@string/nameAddProject" />
+
+        <TextView
+            android:id="@+id/addProjectDescriptionLabel"
+            style="@style/TV"
+            android:text="@string/descriptionAddProject" />
+
+        <EditText
+            android:id="@+id/descriptionAddProjectText"
+            style="@style/ET.M"
+            android:hint="@string/descriptionAddProject" />
+
+        <TableLayout
+            android:id="@+id/tableLayout1"
+            style="@style/LWMP.LHWC" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                style="@style/LWMP.LHWC" >
 
                 <TextView
                     android:id="@+id/addInitialDateProject"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:padding="9dp"
-                    android:text="@string/initialDateAddProject"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    style="@style/TVWCWC"
+                    android:text="@string/initialDateAddProject" />
 
                 <TextView
                     android:id="@+id/addInitialDateProjectRes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
+                    style="@style/TVWCWC"
+                    android:text="" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                <ImageView
+                    android:id="@+id/addProjectInitialCalendar"
+                    style="@style/LWWC.LHWC.IMAGE"
+                    android:clickable="true"
+                    android:contentDescription="@string/initialDateAddProject"
+                    android:src="@drawable/calendar" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                style="@style/LWMP.LHWC" >
 
                 <TextView
                     android:id="@+id/addEndDateProject"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:padding="9dp"
-                    android:layout_marginBottom="20dp"
-                    android:text="@string/endDateAddProject"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    style="@style/TVWCWC"
+                    android:text="@string/endDateAddProject" />
 
                 <TextView
                     android:id="@+id/addEndDateProjectRes"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
+                    style="@style/TVWCWC"
+                    android:text="" />
 
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/buttonAddProject" 
-                android:onClick="checkValues"/>
-        </LinearLayout>
-    </ScrollView>
+                <ImageView
+                    android:id="@+id/addProjectEndCalendar"
+                    style="@style/LWWC.LHWC.IMAGE"
+                    android:clickable="true"
+                    android:contentDescription="@string/endDateAddProject"
+                    android:src="@drawable/calendar" />
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/button1"
+            style="@style/BUTTON_MW"
+            android:onClick="checkValues"
+            android:text="@string/buttonAddProject" />
+    </LinearLayout>
+
+</ScrollView>

@@ -1,111 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    style="@style/LWMP.LHMP.OV" >
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical" >
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/LWFP.LHFP.PAD20.OV" >
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Register"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            style="@style/LWMP.LHWC.OV.CH" >
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/RegNombre"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/nombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/RegisName" >
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/TVHEADER"
+                android:text="@string/Register" />
+        </LinearLayout>
 
-        </EditText>
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            style="@style/LWFP.LHWC.OV">
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/RegApellido"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/apellido"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/RegLastName" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Email"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/login_hint_email"
-            android:inputType="textEmailAddress" />
+            <TextView
+                android:id="@+id/textView2"
+                android:text="@string/RegNombre"
+                style="@style/TV" >
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/RegContras"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/pass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/RegPass"
-            android:inputType="textPassword" >
+                <requestFocus />
+            </TextView>
 
-            <requestFocus />
-        </EditText>
-    </LinearLayout>
+            <EditText
+                android:id="@+id/nombre"
+                style="@style/ET"
+                android:hint="@string/RegisName" >
+            </EditText>
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:gravity="center_horizontal" >
-
-        <Button
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/RInport" 
-            android:onClick="importDate"/>
+            <TextView
+                android:id="@+id/textView3"
+                android:text="@string/RegApellido"
+                style="@style/TV" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Registrar" 
-            android:onClick="registerData"/>
+            <EditText
+                android:id="@+id/apellido"
+                style="@style/ET"
+                android:hint="@string/RegLastName" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:text="@string/Email"
+                style="@style/TV" />
+
+            <EditText
+                android:id="@+id/email"
+                style="@style/ET"
+                android:hint="@string/login_hint_email"
+                android:inputType="textEmailAddress" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:text="@string/RegContras"
+                style="@style/TV"/>
+
+            <EditText
+                android:id="@+id/pass"
+                style="@style/ET"
+                android:hint="@string/RegPass"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            style="@style/LWMP.LHWC.GCH"
+            android:baselineAligned="false" >
+
+            <Button
+                android:id="@+id/button1"
+                style="@style/BUTTON_WW"
+                android:onClick="importDate"
+                android:text="@string/RInport" />
+
+            <Button
+                android:id="@+id/button2"
+                style="@style/BUTTON_WW"
+                android:onClick="registerData"
+                android:text="@string/Registrar" />
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

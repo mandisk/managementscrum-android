@@ -1,88 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/addSprintIdLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/addSprintSprintNumberLabel"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/addSprintId"
-            android:layout_width="0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="number"
-            android:numeric="decimal">
-            <requestFocus />
-            
-        </EditText>
-
-    </LinearLayout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    style="@style/LWMP.LHMP.OV" >
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/addSprintInitialDateLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/addSprintInitialDate"
-            android:padding="10dp"
-            android:clickable="true"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/addSprintInitialDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+        style="@style/LWFP.LHFP.PAD20.OV" >
 
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            style="@style/LWMP.LHWC.OV.CH" >
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/TVHEADER"
+                android:text="@string/addSprintMenu" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            style="@style/LWMP.LHWC" >
+
+            <TextView
+                android:id="@+id/addSprintIdLabel"
+                style="@style/TVWCWC"
+                android:text="@string/addSprintSprintNumberLabel" />
+
+            <EditText
+                android:id="@+id/addSprintId"
+                style="@style/ET.N"
+                android:hint="@string/sprintHint" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+
+        <TableLayout
+            android:id="@+id/tableLayout1"
+            style="@style/LWMP.LHWC" >
+            <TableRow
+                android:id="@+id/tableRow1"
+                style="@style/LWMP.LHWC" >
+
+                <TextView
+                    android:id="@+id/addSprintInitialDateLabel"
+                    style="@style/TVWCWC"
+                    android:text="@string/addSprintInitialDate" />
+
+                <TextView
+                    android:id="@+id/addSprintInitialDate"
+                    style="@style/TVWCWC"
+                    android:text="" />
+
+                <ImageView
+                    android:id="@+id/addSprintInitialCalendar"
+                    style="@style/LWWC.LHWC.IMAGE"
+                    android:clickable="true"
+                    android:contentDescription="@string/addSprintInitialDate"
+                    android:src="@drawable/calendar" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/tableRow2"
+                style="@style/LWMP.LHWC" >
+
+                <TextView
+                    android:id="@+id/addSprintEndDateLabel"
+                    style="@style/TVWCWC"
+                    android:text="@string/addSprintEndDate" />
+
+                <TextView
+                    android:id="@+id/addSprintEndDate"
+                    style="@style/TVWCWC"
+                    android:text="" />
+
+                <ImageView
+                    android:id="@+id/addSprintEndCalendar"
+                    style="@style/LWWC.LHWC.IMAGE"
+                    android:clickable="true"
+                    android:contentDescription="@string/endDateAddProject"
+                    android:src="@drawable/calendar" />
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/addSprint"
+            style="@style/BUTTON_MW"
+            android:onClick="checkValues"
+            android:text="@string/addSprintButton" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <TextView
-            android:id="@+id/addSprintEndDateLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/addSprintEndDate"
-            android:padding="10dp"
-            android:clickable="true"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
-            android:id="@+id/addSprintEndDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/addSprint"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="checkValues"
-        android:padding="10dp"
-        android:text="@string/addSprintButton" />
-
-</LinearLayout>
+</ScrollView>

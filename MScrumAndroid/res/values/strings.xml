@@ -10,7 +10,7 @@
     <string name="RegisName">Write your name here</string>
     <string name="RegApellido">Surname</string>
     <string name="RegLastName">Write your surname here</string>
-    <string name="RegPass">Write your pass here</string>
+    <string name="RegPass">Enter your pass</string>
     <string name="RegContras">Pass</string>
     <string name="Registrar">Register</string>
     <string name="Email">Email</string>
@@ -67,10 +67,22 @@
     <string name="emailField">Email:</string>
     <string name="bt_call">Call</string>
     <string name="bt_send_message">Send message</string>
+    <string name="Projects">Projects</string>
+    <string name="Sprints">Sprints</string>
+    <string name="Tasks">Tasks</string>
+    <string name="EditTask">Edit task</string>
+    <string name="ToDo">To do</string>
+    <string name="Doing">Doing</string>
+    <string name="Done">Done</string>
+    <string name="editTaskHintTimeTask">Time</string>
+    <string name="editTaskHintSprint">Sprint</string>
+    <string name="editTaskHintDescription">Description</string>
     <string name="menu_view_charts">View charts</string>
     <string name="menu_edit_project">Edit project</string>
     <string name="editTaskMenu">Edit Task</string>
     <string name="EditProject">Edit project</string>
     <string name="menu_edit_user">Edit users</string>
-
+    <string name="sprintHint">"Sprint"</string>
+    <string name="users">Users</string>
+    <string name="userInfo">Contact info</string>
 </resources>

@@ -10,7 +10,7 @@
     <string name="RegisName">Introduzca su nombre aqui</string>
     <string name="RegApellido">Apellido</string>
     <string name="RegLastName">Introduzca su apellido aqui</string>
-    <string name="RegPass">Introduzca su contraseña</string>
+    <string name="RegPass">Escriba su contraseña</string>
     <string name="RegContras">Contraseña</string>
     <string name="Registrar">Registrar</string>
     <string name="Email">Email</string>
@@ -67,5 +67,17 @@
     <string name="bt_call">Hacer llamada</string>
     <string name="bt_send_message">Mandar mensaje</string>
     <string name="menu_view_charts">Ver estadísticas</string>
-
+    <string name="Projects">Proyectos</string>
+    <string name="Sprints">Sprints</string>
+	<string name="Tasks">Tareas</string>
+	<string name="EditTask">Editar tarea</string>
+	<string name="ToDo">Hacer</string>
+    <string name="Doing">Haciendo</string>
+    <string name="Done">Hecha</string>
+    <string name="editTaskHintTimeTask">Tiempo</string>
+    <string name="editTaskHintSprint">Sprint</string>
+    <string name="editTaskHintDescription">Descripción</string>
+    <string name="sprintHint">"Sprint"</string>
+    <string name="users">Usuarios</string>
+    <string name="userInfo">Información de contacto</string>
 </resources>
