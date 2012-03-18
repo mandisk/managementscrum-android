@@ -6,7 +6,7 @@ import org.json.JSONException;
 import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.tasks.DeleteProjectTask;
 import org.minftel.mscrum.tasks.DeleteTaskTask;
-import org.minftel.mscrum.tasks.EditProjectAskTask;
+import org.minftel.mscrum.tasks.EditUserProjectAskTask;
 import org.minftel.mscrum.tasks.ProjectsTask;
 import org.minftel.mscrum.tasks.UserTask;
 import org.minftel.mscrum.utils.JSONConverter;
@@ -129,6 +129,7 @@ public class ProjectActivity extends ListActivity {
 				intent.putExtra("description", projectDetail.getDescription());
 				intent.putExtra("initdate", projectDetail.getInitialDate());
 				intent.putExtra("enddate", projectDetail.getEndDate());
+				intent.putExtra("ScrumMaster", projectDetail.getScrumMaster().getEmail());
 				startActivity(intent);
 //			}
 //			else{
@@ -138,7 +139,7 @@ public class ProjectActivity extends ListActivity {
 			return true;
 		case R.id.ctx_menu_edit_user_in_project:
 			
-			EditProjectAskTask editprojectTask = new EditProjectAskTask(this);
+			EditUserProjectAskTask editprojectTask = new EditUserProjectAskTask(this);
 			editprojectTask.execute(Integer.toString(projectDetail.getIdProject()));
 			return true;
 		default:
