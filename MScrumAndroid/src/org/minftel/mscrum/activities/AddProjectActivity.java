@@ -171,9 +171,10 @@ public class AddProjectActivity extends Activity {
 			String sEmail = getSharedPreferences(
 					ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE)
 					.getString("email", "");
-
+			
+			String varControl = "0";
 			AddProjectTask addProjectTask = new AddProjectTask(this);
-			addProjectTask.execute(sName, sDescription, sDay1, sMonth1, sYear1,
+			addProjectTask.execute(varControl, sName, sDescription, sDay1, sMonth1, sYear1,
 					sDay2, sMonth2, sYear2, sEmail);
 		}
 	}
