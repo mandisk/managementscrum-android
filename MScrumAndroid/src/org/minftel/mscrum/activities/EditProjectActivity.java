@@ -52,10 +52,10 @@ public class EditProjectActivity extends Activity {
 		}
 
 		nameEdit = (EditText) findViewById(R.id.nameProjectEdit);
-		nameEdit.setHint(extras.getString("name"));
+		nameEdit.setText(extras.getString("name"));
 		
 		descripctionEdit = (EditText) findViewById(R.id.descriptionEditProject);
-		descripctionEdit.setHint(extras.getString("description"));
+		descripctionEdit.setText(extras.getString("description"));
 		
 		initDateEdit = (TextView) findViewById(R.id.EditInitialDateProjectRes);
 		endDateEdit = (TextView) findViewById(R.id.EditEndDateProjectRes);
@@ -97,7 +97,7 @@ public class EditProjectActivity extends Activity {
 		 actualMonth = actual.get(Calendar.MONTH);
 		 actualDay = actual.get(Calendar.DAY_OF_MONTH);
 		 
-		 mYear1 = calInit.get(Calendar.MONTH);
+		 mYear1 = calInit.get(Calendar.YEAR);
 		 mMonth1 =  calInit.get(Calendar.MONTH);
 		 mDay1 = calInit.get(Calendar.DAY_OF_MONTH);
 		
@@ -182,12 +182,12 @@ public class EditProjectActivity extends Activity {
 		
 		int envio = 3;
 		int res1 = checkDate(mYear1, mMonth1, mDay1, mYear2, mMonth2, mDay2);
-		int res2 = checkDate(actualYear, actualMonth, actualDay, mYear1, mMonth1, mDay1);
+
 		
 		String name = nameEdit.getText().toString();
 		String description = descripctionEdit.getText().toString();
 		
-		if (res1 > 0 || res2 > 0) {
+		if (res1 > 0) {
 			Toast.makeText(this, R.string.wrong_dates, Toast.LENGTH_SHORT)
 					.show();
 			envio--;
