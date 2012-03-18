@@ -182,8 +182,7 @@ public class EditProjectActivity extends Activity {
 		
 		int envio = 3;
 		int res1 = checkDate(mYear1, mMonth1, mDay1, mYear2, mMonth2, mDay2);
-		int res2 = checkDate(actualYear, actualMonth, actualDay, mYear1,
-				mMonth1, mDay1);
+		int res2 = checkDate(actualYear, actualMonth, actualDay, mYear1, mMonth1, mDay1);
 		
 		String name = nameEdit.getText().toString();
 		String description = descripctionEdit.getText().toString();
