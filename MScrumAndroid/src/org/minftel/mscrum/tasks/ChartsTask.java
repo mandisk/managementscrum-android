@@ -13,7 +13,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.minftel.mscrum.activities.ChartActivity;
-import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.utils.ScrumConstants;
