@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,8 +27,8 @@ public class EditProjectActivity extends Activity {
 	private EditText descripctionEdit;
 	private TextView initDateEdit;
 	private TextView endDateEdit;
-	private TextView mPickDate1;
-	private TextView mPickDate2;
+	private ImageView mPickDate1;
+	private ImageView mPickDate2;
 	private int mDay1;
 	private int mMonth1;
 	private int mYear1;
@@ -61,8 +62,8 @@ public class EditProjectActivity extends Activity {
 		endDateEdit = (TextView) findViewById(R.id.EditEndDateProjectRes);
 		//endDateEdit.setText(extras.getString("enddate"));
 		
-		mPickDate1 = (TextView) findViewById(R.id.EditInitialDateProject);
-		mPickDate2 = (TextView) findViewById(R.id.EditEndDateProject);
+		mPickDate1 = (ImageView) findViewById(R.id.editProjectInitialCalendar);
+		mPickDate2 = (ImageView) findViewById(R.id.editProjectEndCalendar);
 
 		// add a click listener to the button
 		mPickDate1.setOnClickListener(new View.OnClickListener() {
