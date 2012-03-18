@@ -54,14 +54,15 @@ public class AddProjectTask extends AsyncTask<String, Integer, String>{
 			DataOutputStream dos = new DataOutputStream(out);
 			
 			dos.writeInt(ScrumConstants.ACTION_ADD_PROJECT);
-			dos.writeUTF(params[0]);	// Name
-			dos.writeUTF(params[1]);	// Description
-			dos.writeUTF(params[2]);	// Initial Day
-			dos.writeUTF(params[3]);	// Initial Month
-			dos.writeUTF(params[4]);	// Initial Year
-			dos.writeUTF(params[5]);	// End Day
-			dos.writeUTF(params[6]);	// End Month
-			dos.writeUTF(params[7]);	// End Year
+			dos.writeUTF(params[0]);	// VarControl  0 addProject 1 EditPoject
+			dos.writeUTF(params[1]);	// Name
+			dos.writeUTF(params[2]);	// Description
+			dos.writeUTF(params[3]);	// Initial Day
+			dos.writeUTF(params[4]);	// Initial Month
+			dos.writeUTF(params[5]);	// Initial Year
+			dos.writeUTF(params[6]);	// End Day
+			dos.writeUTF(params[7]);	// End Month
+			dos.writeUTF(params[8]);	// End Year
 			
 
 			// Receive from server
