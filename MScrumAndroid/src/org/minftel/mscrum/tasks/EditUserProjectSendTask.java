@@ -25,12 +25,12 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class EditProjectSendTask extends AsyncTask<String, Integer, String>{
+public class EditUserProjectSendTask extends AsyncTask<String, Integer, String>{
 
 	private EditUserProjectActivity activity;
 	private ProgressDialog progressDialog;
 	
-	public EditProjectSendTask(Activity activity) {
+	public EditUserProjectSendTask(Activity activity) {
 		this.activity = (EditUserProjectActivity) activity;
 		this.progressDialog = new ProgressDialog(activity);
 	}
