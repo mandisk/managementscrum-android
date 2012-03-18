@@ -12,6 +12,8 @@ import org.minftel.mscrum.model.SprintDetail;
 import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.model.UserDetail;
 
+import android.util.Log;
+
 public class JSONConverter {
 	
 	/**
@@ -47,9 +49,11 @@ public class JSONConverter {
 		
 		for (int i = 0; i < jsonProjects.length(); i++) {
 			JSONObject project = jsonProjects.getJSONObject(i);
+			Log.i(ScrumConstants.TAG, project.toString());
 			ProjectDetail projectDetail = fromJSONObjectToProjectDetail(project);
 			
 			projects.add(projectDetail);
+			
 		}
 		
 		return projects;
@@ -63,7 +67,7 @@ public class JSONConverter {
 	 */
 	public static UserDetail fromJSONObjectToUserDetail(JSONObject jsonObject) throws JSONException {
 		UserDetail userDetail = new UserDetail();
-		userDetail.setId(Integer.valueOf(jsonObject.getString("id")));
+//		userDetail.setId(Integer.valueOf(jsonObject.getString("id")));
 		userDetail.setName(jsonObject.getString("name"));
 		userDetail.setSurname(jsonObject.getString("surname"));
 		userDetail.setEmail(jsonObject.getString("email"));

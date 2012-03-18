@@ -14,19 +14,23 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddSprintActivity extends Activity {
 
 	private TextView mDateDisplay1;
-	private TextView mPickDate1;
+//	private TextView mPickDate1;
 
 	private TextView mDateDisplay2;
-	private TextView mPickDate2;
+//	private TextView mPickDate2;
 
 	private TextView mSprintNumber;
 
+	private ImageView mPickDate1;
+	private ImageView mPickDate2;
+	
 	private int mYear1;
 	private int mMonth1;
 	private int mDay1;
@@ -50,8 +54,10 @@ public class AddSprintActivity extends Activity {
 		// Catch our view elements
 		mDateDisplay1 = (TextView) findViewById(R.id.addSprintInitialDate);
 		mDateDisplay2 = (TextView) findViewById(R.id.addSprintEndDate);
-		mPickDate1 = (TextView) findViewById(R.id.addSprintInitialDateLabel);
-		mPickDate2 = (TextView) findViewById(R.id.addSprintEndDateLabel);
+//		mPickDate1 = (TextView) findViewById(R.id.addSprintInitialDateLabel);
+//		mPickDate2 = (TextView) findViewById(R.id.addSprintEndDateLabel);
+		mPickDate1 = (ImageView) findViewById(R.id.addSprintInitialCalendar);
+		mPickDate2 = (ImageView) findViewById(R.id.addSprintEndCalendar);
 		mSprintNumber = (TextView) findViewById(R.id.addSprintId);
 
 		// Add a click listener to the button

@@ -53,7 +53,7 @@ public class EditProjectAskTask extends AsyncTask<String, Integer, String>{
 			OutputStream out = connection.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(out);
 			
-			dos.writeInt(ScrumConstants.ACTION_EDIT_PROJECT_ASK);
+//			dos.writeInt(ScrumConstants.ACTION_EDIT_PROJECT_ASK);
 			dos.writeUTF(params[0]);	// id project
 			
 			

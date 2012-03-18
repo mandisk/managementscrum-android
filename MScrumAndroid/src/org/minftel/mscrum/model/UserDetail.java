@@ -5,7 +5,7 @@ public class UserDetail {
 	private String surname;
 	private String email;
 	private String phone;
-	private int id;
+//	private int id;
 	
 	public UserDetail() {
 		
@@ -19,18 +19,18 @@ public class UserDetail {
 		this.surname = surname;
 		this.email = email;
 		this.phone = phone;
-		this.id = id;
+//		this.id = id;
 	}
 
 
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
+//	public int getId() {
+//		return id;
+//	}
+//
+//
+//	public void setId(int id) {
+//		this.id = id;
+//	}
 
 
 	public String getName() {

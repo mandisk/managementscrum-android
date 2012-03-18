@@ -1,33 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
- <TextView
-           android:id="@+id/name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textSize="16dp" >
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    style="@style/LWMP.LHMP.OV" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout0"
+        style="@style/LWFP.LHFP.PAD20.OV" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            style="@style/LWMP.LHWC.OV.CH" >
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/TVHEADER"
+                android:text="@string/userInfo" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/TV.P9DP" >
         </TextView>
-         <TextView
-           android:id="@+id/surname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12dp">
-        </TextView>
 
-         <Button
-             android:id="@+id/btCall"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="@string/bt_call" />
+        <TableLayout
+            android:id="@+id/tableLayout1"
+            style="@style/LWMP.LHWC" >
 
-         <Button
-             android:id="@+id/btSendMessage"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="@string/bt_send_message" />
+            <TableRow
+                android:id="@+id/tableRow1"
+                style="@style/LWMP.LHWC" >
 
-</LinearLayout>
+                <ImageView
+                    android:id="@+id/userContactCall"
+                    style="@style/LWWC.LHWC.IMAGE"
+                    android:clickable="true"
+                    android:contentDescription="@string/bt_call"
+                    android:src="@drawable/call" />
+
+                <TextView
+                    android:id="@+id/phone"
+                    style="@style/TVWCWC" >
+                </TextView>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                style="@style/LWMP.LHWC" >
+
+                <ImageView
+                    android:id="@+id/userContactEmail"
+                    style="@style/LWWC.LHWC.IMAGE"
+                    android:clickable="true"
+                    android:contentDescription="@string/bt_send_message"
+                    android:src="@drawable/email" />
+
+                <TextView
+                    android:id="@+id/email"
+                    style="@style/TV.P9DP" >
+                </TextView>
+            </TableRow>
+            <ImageView
+            android:id="@+id/imageContact"
+            style="@style/LWWC.LHWC.IMAGE"
+            android:layout_marginTop="30dp"
+            android:contentDescription="Imagen del contacto"
+            android:src="@drawable/android" />
+        </TableLayout>
+
+        
+
+    </LinearLayout>
+
+</ScrollView>

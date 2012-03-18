@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ContactActivity extends Activity {
@@ -16,9 +17,11 @@ public class ContactActivity extends Activity {
 		setContentView(R.layout.usercontact);
 
 		final TextView txtname = (TextView) findViewById(R.id.name);
-		final TextView txtsurname = (TextView) findViewById(R.id.surname);
-		final Button btCall = (Button) findViewById(R.id.btCall);
-		final Button btMessage = (Button) findViewById(R.id.btSendMessage);
+		final ImageView btCall = (ImageView) findViewById(R.id.userContactCall);
+		final ImageView btMessage = (ImageView) findViewById(R.id.userContactEmail);
+		final TextView txtphone = (TextView) findViewById(R.id.phone);
+		final TextView txtemail = (TextView) findViewById(R.id.email);
+		
 
 		// Get data from UserActivity
 		Bundle extras = getIntent().getExtras();
@@ -29,7 +32,8 @@ public class ContactActivity extends Activity {
 			final String email = extras.getString("email");
 
 			txtname.setText(name + " " + surname);
-			txtsurname.setText("Teléfono: " + phone + " | " + "Email: " + email);
+			txtphone.setText(phone);
+			txtemail.setText(email);
 
 			// Action invoked when call button is pressed.
 			btCall.setOnClickListener(new View.OnClickListener() {

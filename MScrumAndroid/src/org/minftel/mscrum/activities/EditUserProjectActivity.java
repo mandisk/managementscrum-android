@@ -165,7 +165,7 @@ public class EditUserProjectActivity extends android.app.ExpandableListActivity 
 
 		int i = 0;
 		for (Integer position : chekboxEnabled) {
-			idUsers[i] = String.valueOf(userListAll.get(position).getId());
+//			idUsers[i] = String.valueOf(userListAll.get(position).getId());
 			i++;
 		}
 	
