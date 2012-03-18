@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.json.JSONException;
 import org.minftel.mscrum.model.ProjectDetail;
+import org.minftel.mscrum.tasks.ChartsTask;
 import org.minftel.mscrum.tasks.DeleteProjectTask;
 import org.minftel.mscrum.tasks.DeleteTaskTask;
 import org.minftel.mscrum.tasks.EditUserProjectAskTask;
@@ -65,14 +66,7 @@ public class ProjectActivity extends ListActivity {
 		setListAdapter(new TextAdapter(this, R.layout.list_item, projectNames,
 				scrumMasters));
 
-	}
-	
-	//Stadistic Testing
-	public void estadistica(View v){
-		Intent intent = new Intent(ProjectActivity.this,ChartActivity.class);
-		startActivity(intent);
-	}
-	//End Testing
+	}	
 
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
@@ -93,21 +87,17 @@ public class ProjectActivity extends ListActivity {
 
 		switch (item.getItemId()) {
 		case R.id.ctx_menu_view_users:
-			// View Users
-			// Convert to string to send
 			
-			
+			// View project's users
 			UserTask ut = new UserTask(this);
-			ut.execute(idproject);
+			ut.execute(idproject);			
 			return true;
+			
 		case R.id.ctx_menu_delete:
 
-			// Convert to string to send
-			//String idproject = String.valueOf(projectDetail.getIdProject());
-			
+			// Delete a project			
 			DeleteProjectTask dpt = new DeleteProjectTask(this);
 			dpt.execute(idproject);
-
 			return true;
 			
 		case R.id.ctx_menu_edit_project:
@@ -142,6 +132,14 @@ public class ProjectActivity extends ListActivity {
 			EditUserProjectAskTask editprojectTask = new EditUserProjectAskTask(this);
 			editprojectTask.execute(Integer.toString(projectDetail.getIdProject()));
 			return true;
+			
+		case R.id.ctx_menu_view_charts:
+			
+			// View chart
+			ChartsTask ct = new ChartsTask(this);
+			ct.execute(idproject);
+			return true;					
+			
 		default:
 			return super.onContextItemSelected(item);
 		}
