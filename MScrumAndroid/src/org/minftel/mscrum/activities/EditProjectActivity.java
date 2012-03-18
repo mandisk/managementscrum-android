@@ -36,9 +36,6 @@ public class EditProjectActivity extends Activity {
 	private int mDay2;
 	private int mMonth2;
 	private int mYear2;
-	private int actualYear;
-	private int actualMonth;
-	private int actualDay;
 	private String emailSm;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -90,12 +87,6 @@ public class EditProjectActivity extends Activity {
 			}
 		});
 		
-		 // get the current date
-		 final Calendar actual = Calendar.getInstance();
-		 
-		 actualYear = actual.get(Calendar.YEAR);
-		 actualMonth = actual.get(Calendar.MONTH);
-		 actualDay = actual.get(Calendar.DAY_OF_MONTH);
 		 
 		 mYear1 = calInit.get(Calendar.YEAR);
 		 mMonth1 =  calInit.get(Calendar.MONTH);
