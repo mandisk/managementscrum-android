@@ -49,8 +49,8 @@ public class ScrumConstants {
 	public static final String ERROR_PROJECTS = "ERROR_PROJECTS";
 	public static final String ERROR_SPRINTS = "ERROR_SPRINTS";
 	public static final String ERROR_TASKS = "ERROR_TASKS";
-	public static final String ERROR_EDITING_USER_PROJECT_ASK = "EDITING_PROJECT_ASK";
-	public static final String ERROR_EDITING_PROJECT_SEND = "EDITING_PROJECT_SEND";
+	public static final String ERROR_EDITING_USER_PROJECT_ASK = "EDITING_PROJECT_USER_ASK";
+	public static final String ERROR_EDITING_PROJECT_SEND = "EDITING_PROJECT_USER_SEND";
 	
     public static final String REGISTER_OK = "REGISTER_OK";
 	public static final String SESSION_EXPIRED = "SESSION_EXPIRED";
