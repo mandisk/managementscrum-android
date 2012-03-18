@@ -48,13 +48,13 @@ public class EditTaskActivity extends Activity {
 		}
 
 		time = (EditText) findViewById(R.id.timeTaskEdit);
-		time.setHint(Integer.toString(extras.getInt("time")));
+		time.setText(Integer.toString(extras.getInt("time")));
 
 		user = (EditText) findViewById(R.id.UserTaskEdit);
-		user.setHint(extras.getString("user"));
+		user.setText(extras.getString("user"));
 
 		description = (EditText) findViewById(R.id.DescriptionTaskEdit);
-		description.setHint(extras.getString("description"));
+		description.setText(extras.getString("description"));
 
 	}
 
