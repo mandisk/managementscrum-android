@@ -42,11 +42,7 @@ public class LoginTask extends AsyncTask<String, Integer, String> {
 		
 		try {
 			Log.i(ScrumConstants.TAG, "Logging user");
-
-			String sessionId = activity.getSharedPreferences(
-					ScrumConstants.SHARED_PREFERENCES_FILE, 
-					Activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
-			String url = ScrumConstants.BASE_URL + ScrumConstants.SESSION_URL + sessionId;			
+			String url = ScrumConstants.BASE_URL;			
 			
 			URL urlDispatcher = new URL(url);
 			URLConnection connection = urlDispatcher.openConnection();
