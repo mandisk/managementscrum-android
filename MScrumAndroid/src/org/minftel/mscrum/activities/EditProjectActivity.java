@@ -80,9 +80,9 @@ public class EditProjectActivity extends Activity {
 
 		 // get the current date
 		 final Calendar c = Calendar.getInstance();
-		 actualYear = c.get(Calendar.YEAR);
-		 actualMonth =  c.get(Calendar.MONTH);
-		 actualDay = c.get(Calendar.DAY_OF_MONTH);
+		 actualYear = mYear2 = mYear1 = c.get(Calendar.YEAR);
+		 actualMonth = mMonth2 = mMonth1 =  c.get(Calendar.MONTH);
+		 actualDay = mDay2 = mDay1 = c.get(Calendar.DAY_OF_MONTH);
 
 		// display the current date (this method is below)
 		 updateDisplay();
