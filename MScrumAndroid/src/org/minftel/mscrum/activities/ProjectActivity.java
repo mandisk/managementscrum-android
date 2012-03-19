@@ -123,6 +123,7 @@ public class ProjectActivity extends ListActivity {
 				intent.putExtra("initdate", projectDetail.getInitialDate());
 				intent.putExtra("enddate", projectDetail.getEndDate());
 				intent.putExtra("ScrumMaster", projectDetail.getScrumMaster().getEmail());
+				intent.putExtra("idProject", projectDetail.getIdProject());
 				startActivity(intent);
 //			}
 //			else{

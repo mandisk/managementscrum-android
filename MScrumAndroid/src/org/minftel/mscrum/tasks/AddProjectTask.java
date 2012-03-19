@@ -12,7 +12,6 @@ import java.net.URLConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.minftel.mscrum.activities.AddProjectActivity;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.utils.ScrumConstants;
@@ -26,11 +25,11 @@ import android.util.Log;
 
 public class AddProjectTask extends AsyncTask<String, Integer, String>{
 
-	private AddProjectActivity activity;
+	private Activity activity;
 	private ProgressDialog progressDialog;
 	
 	public AddProjectTask(Activity activity) {
-		this.activity = (AddProjectActivity) activity;
+		this.activity = activity;
 		this.progressDialog = new ProgressDialog(activity);
 	}
 	@Override
@@ -53,8 +52,9 @@ public class AddProjectTask extends AsyncTask<String, Integer, String>{
 			OutputStream out = connection.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(out);
 			
-			dos.writeInt(ScrumConstants.ACTION_ADD_PROJECT);
-			dos.writeUTF(params[0]);	// VarControl  0 addProject 1 EditPoject
+			int action = params[0].equals("0") ? ScrumConstants.ACTION_ADD_PROJECT : ScrumConstants.ACTION_EDIT_PROJECT;
+			
+			dos.writeInt(action);
 			dos.writeUTF(params[1]);	// Name
 			dos.writeUTF(params[2]);	// Description
 			dos.writeUTF(params[3]);	// Initial Day
@@ -63,6 +63,9 @@ public class AddProjectTask extends AsyncTask<String, Integer, String>{
 			dos.writeUTF(params[6]);	// End Day
 			dos.writeUTF(params[7]);	// End Month
 			dos.writeUTF(params[8]);	// End Year
+			if (action == ScrumConstants.ACTION_EDIT_PROJECT) {
+				dos.writeUTF(params[10]);// Project ID 
+			}
 			
 
 			// Receive from server
@@ -105,6 +108,11 @@ public class AddProjectTask extends AsyncTask<String, Integer, String>{
 			
 			if (result.equals(ScrumConstants.ERROR_ADD_PROJECT)) {
 				Log.w(ScrumConstants.TAG, "Add project error");
+				return;
+			}
+			
+			if (result.equals(ScrumConstants.ERROR_EDIT_PROJECT)) {
+				Log.w(ScrumConstants.TAG, "Edit project error");
 				return;
 			}
 			

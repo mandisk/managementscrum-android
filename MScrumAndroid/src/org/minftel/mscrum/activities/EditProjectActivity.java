@@ -37,6 +37,8 @@ public class EditProjectActivity extends Activity {
 	private int mMonth2;
 	private int mYear2;
 	private String emailSm;
+	private int idProject;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,30 +52,30 @@ public class EditProjectActivity extends Activity {
 
 		nameEdit = (EditText) findViewById(R.id.nameProjectEdit);
 		nameEdit.setText(extras.getString("name"));
-		
+
 		descripctionEdit = (EditText) findViewById(R.id.descriptionEditProject);
 		descripctionEdit.setText(extras.getString("description"));
-		
+
 		initDateEdit = (TextView) findViewById(R.id.EditInitialDateProjectRes);
 		endDateEdit = (TextView) findViewById(R.id.EditEndDateProjectRes);
 
-		
 		mPickDate1 = (ImageView) findViewById(R.id.editProjectInitialCalendar);
 		mPickDate2 = (ImageView) findViewById(R.id.editProjectEndCalendar);
 
 		emailSm = extras.getString("ScrumMaster");
-		
-		 Date initdate ; 
-		
-		 initdate = (Date) extras.getSerializable("initdate");
-		 Calendar calInit=Calendar.getInstance();
-		 calInit.setTime(initdate);
-		 
-		 Date endDate;
-		 endDate = (Date) extras.getSerializable("enddate");
-		 Calendar calEnd = Calendar.getInstance();
-		 calEnd.setTime(endDate);
-		 
+		idProject = extras.getInt("idProject");
+
+		Date initdate;
+
+		initdate = (Date) extras.getSerializable("initdate");
+		Calendar calInit = Calendar.getInstance();
+		calInit.setTime(initdate);
+
+		Date endDate;
+		endDate = (Date) extras.getSerializable("enddate");
+		Calendar calEnd = Calendar.getInstance();
+		calEnd.setTime(endDate);
+
 		// add a click listener to the button
 		mPickDate1.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -86,19 +88,17 @@ public class EditProjectActivity extends Activity {
 				showDialog(DATE_DIALOG_ID2);
 			}
 		});
-		
-		 
-		 mYear1 = calInit.get(Calendar.YEAR);
-		 mMonth1 =  calInit.get(Calendar.MONTH);
-		 mDay1 = calInit.get(Calendar.DAY_OF_MONTH);
-		
-		 mYear2 = calEnd.get(Calendar.YEAR);
-		 mMonth2 = calEnd.get(Calendar.MONTH);
-		 mDay2 = calEnd.get(Calendar.DAY_OF_MONTH);
-		
+
+		mYear1 = calInit.get(Calendar.YEAR);
+		mMonth1 = calInit.get(Calendar.MONTH);
+		mDay1 = calInit.get(Calendar.DAY_OF_MONTH);
+
+		mYear2 = calEnd.get(Calendar.YEAR);
+		mMonth2 = calEnd.get(Calendar.MONTH);
+		mDay2 = calEnd.get(Calendar.DAY_OF_MONTH);
 
 		// display the current date (this method is below)
-		 updateDisplay();
+		updateDisplay();
 	}
 
 	// updates the date in the TextView
@@ -153,7 +153,7 @@ public class EditProjectActivity extends Activity {
 		}
 		return null;
 	}
-	
+
 	public int checkDate(int y1, int m1, int d1, int y2, int m2, int d2) {
 		Calendar c1 = new GregorianCalendar();
 		c1.set(y1, m1, d1);
@@ -164,20 +164,15 @@ public class EditProjectActivity extends Activity {
 
 		return date1.compareTo(date2);
 	}
-	
-	
 
 	public void saveData(View view) {
-	
-		
-		
+
 		int envio = 3;
 		int res1 = checkDate(mYear1, mMonth1, mDay1, mYear2, mMonth2, mDay2);
 
-		
 		String name = nameEdit.getText().toString();
 		String description = descripctionEdit.getText().toString();
-		
+
 		if (res1 > 0) {
 			Toast.makeText(this, R.string.wrong_dates, Toast.LENGTH_SHORT)
 					.show();
@@ -202,12 +197,12 @@ public class EditProjectActivity extends Activity {
 			String sMonth2 = String.valueOf(mMonth2);
 			String sYear2 = String.valueOf(mYear2);
 			String varControl = "1";
-			
-			
-			//Reutilizamos la tarea de añadir proyecto por ser similar
+
+			// Reutilizamos la tarea de añadir proyecto por ser similar
 			AddProjectTask addProjectTask = new AddProjectTask(this);
-			addProjectTask.execute(varControl, name, description, sDay1, sMonth1, sYear1,
-					sDay2, sMonth2, sYear2, emailSm);
+			addProjectTask
+					.execute(varControl, name, description, sDay1, sMonth1,
+							sYear1, sDay2, sMonth2, sYear2, emailSm, Integer.toString(idProject));
 		}
 
 	}
