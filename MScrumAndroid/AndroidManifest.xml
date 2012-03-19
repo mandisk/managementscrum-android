@@ -47,10 +47,10 @@
         <activity android:name="EditTaskActivity"></activity>
         <activity android:name="UserActivity"></activity>
         <activity android:name="ContactActivity"></activity>
-        <activity android:name=".EditUserProjectActivity"></activity>
         <activity android:name="EditProjectActivity"></activity>
          <activity android:name="ChartActivity" android:label="ESTADISTICAS">
        </activity>
+         <activity android:name="EditUserProjectActivity"></activity>
     </application>
 
 </manifest>
