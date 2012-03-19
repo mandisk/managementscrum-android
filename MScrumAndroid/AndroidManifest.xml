@@ -31,6 +31,7 @@
                 <action android:name="org.minftel.receiver.action.GO_USERS"/>
                 <action android:name="org.minftel.receiver.action.GO_CHARTS"/>
                  <action android:name="org.minftel.receiver.action.GO_EDIT_PROJECT"/>
+                  <action android:name="org.minftel.receiver.action.GO_EDIT_USER_PROJECT"/>
             </intent-filter>
         </receiver>
         <activity android:name="ProjectActivity"></activity>
