@@ -11,9 +11,9 @@ public class ScrumConstants {
 	// DIRECCION SERVLET FRONTAL
 //	private static String DIRECCION_IP_SERVER = "10.0.2.2";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.119";
-//	private static String DIRECCION_IP_SERVER = "10.0.2.2";
+	private static String DIRECCION_IP_SERVER = "10.0.2.2";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.134";
-	private static String DIRECCION_IP_SERVER = "192.168.1.16";
+//	private static String DIRECCION_IP_SERVER = "192.168.1.16";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.23";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.118";
 //	private static String DIRECCION_IP_SERVER = "192.168.133.151";
@@ -36,6 +36,7 @@ public class ScrumConstants {
 	public static final int ACTION_REQUEST_CHART = 12;	
 	public static final int ACTION_EDIT_PROJECT = 13;
 	public static final int ACTION_EDIT_USER_PROJECT_ASK = 14;
+	public static final int ACTION_EDIT_USER_PROJECT_SEND = 15;
 	
 	// SERVER RESPONSES
 	public static final String ERROR_ADD_PROJECT = "ERROR_ADD_PROJECT";
