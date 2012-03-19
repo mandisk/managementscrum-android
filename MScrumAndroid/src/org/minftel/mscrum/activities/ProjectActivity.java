@@ -67,7 +67,10 @@ public class ProjectActivity extends ListActivity {
 				scrumMasters));
 
 	}	
-
+    public void estadistica(View v){
+    	Intent intent = new Intent(ProjectActivity.this,ChartActivity.class);
+    	startActivity(intent);
+    }
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
