@@ -13,7 +13,7 @@ public class ScrumConstants {
 //	private static String DIRECCION_IP_SERVER = "192.168.1.119";
 //	private static String DIRECCION_IP_SERVER = "10.0.2.2";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.134";
-	private static String DIRECCION_IP_SERVER = "192.168.1.128";
+	private static String DIRECCION_IP_SERVER = "192.168.1.16";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.23";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.118";
 //	private static String DIRECCION_IP_SERVER = "192.168.133.151";
@@ -49,6 +49,7 @@ public class ScrumConstants {
 	public static final String ERROR_PROJECTS = "ERROR_PROJECTS";
 	public static final String ERROR_SPRINTS = "ERROR_SPRINTS";
 	public static final String ERROR_TASKS = "ERROR_TASKS";
+	public static final String ERROR_EDIT_PROJECT = "ERROR_EDIT_PROJECT";
 	public static final String ERROR_EDITING_USER_PROJECT_ASK = "EDITING_PROJECT_USER_ASK";
 	public static final String ERROR_EDITING_PROJECT_SEND = "EDITING_PROJECT_USER_SEND";
 	public static final String ERROR_CHART = "ERROR_CHART";
