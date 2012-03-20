@@ -78,7 +78,7 @@ public class ScrumReceiver extends BroadcastReceiver {
 			Intent chartsIntent = new Intent(context, ChartsActivity.class);
 			chartsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			
-		} else if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_EDIT_PROJECT)) {
+		} else if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_EDIT_USER_PROJECT)) {
 			
 			//Create Intent to start the activity EditProjectActivity
 			Log.i(ScrumConstants.TAG, "Launch Charts Activity");
@@ -93,7 +93,9 @@ public class ScrumReceiver extends BroadcastReceiver {
 			editProjectIntent.putExtra("usersnotinproject", jsonUsersNotInProject);
 			
 			context.startActivity(editProjectIntent);
-		}
+		} 
+			
+		
 	}
 
 }
