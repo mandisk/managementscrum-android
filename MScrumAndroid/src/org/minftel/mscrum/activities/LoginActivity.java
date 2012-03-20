@@ -65,7 +65,7 @@ public class LoginActivity extends Activity implements OnGesturePerformedListene
     public void doLogin(View view) {
     	String sEmail = email.getText().toString().trim();
     	String sPassword = password.getText().toString();
-    	
+    	Log.e(ScrumConstants.TAG, " "+sPassword);
     	if (sEmail.isEmpty() || sPassword.isEmpty()) {
     		Toast.makeText(this, getResources().getString(R.string.login_empty_fields), Toast.LENGTH_SHORT).show();
     		return;

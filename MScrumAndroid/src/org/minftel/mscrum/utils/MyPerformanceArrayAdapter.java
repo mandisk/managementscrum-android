@@ -36,13 +36,10 @@ public class MyPerformanceArrayAdapter extends ArrayAdapter<String> {
 			rowView = inflater.inflate(R.layout.row_item, null);
 			ViewHolder viewHolder = new ViewHolder();
 			viewHolder.text = (TextView) rowView.findViewById(R.id.grp_child);
-//			viewHolder. =  rowView
-//					.findViewById(R.id.check1);
-			if(position < 5){
-				
-			
-			CheckBox cb = (CheckBox) rowView.findViewById(R.id.check1);
-			cb.setChecked(true);
+
+			if(position < tam){
+				CheckBox cb = (CheckBox) rowView.findViewById(R.id.check1);
+				cb.setChecked(true);
 			}
 			rowView.setTag(viewHolder);
 		}

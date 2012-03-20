@@ -67,7 +67,7 @@ public class JSONConverter {
 	 */
 	public static UserDetail fromJSONObjectToUserDetail(JSONObject jsonObject) throws JSONException {
 		UserDetail userDetail = new UserDetail();
-//		userDetail.setId(Integer.valueOf(jsonObject.getString("id")));
+		userDetail.setId(Integer.valueOf(jsonObject.getString("id")));
 		userDetail.setName(jsonObject.getString("name"));
 		userDetail.setSurname(jsonObject.getString("surname"));
 		userDetail.setEmail(jsonObject.getString("email"));
