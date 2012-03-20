@@ -39,6 +39,7 @@ public class TaskActivity extends ListActivity implements OnGesturePerformedList
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.task);
 
+		//String[] countries = getResources().getStringArray(R.array.sprintsList);
 		String[] taskNames = null;
 		String[] taskTimes = null;
 
@@ -141,19 +142,22 @@ public class TaskActivity extends ListActivity implements OnGesturePerformedList
 
 		// Get selected task
 		TaskDetail selectedTask = this.taskList.get(position);
-		String userEmail = "";
-
+		String userEmail = null;
+		
 		Intent intent = new Intent(this, EditTaskActivity.class);
 		intent.putExtra("state", selectedTask.getState());
 		intent.putExtra("time", selectedTask.getTime());
 
 		if (selectedTask.getUser().getName() == null) {
 
+			// If it doesn't have user, we edit with the current user.
 			SharedPreferences prefs;
 			prefs = getSharedPreferences(
 					ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
-			prefs.getString("userEmail", userEmail);
+			
+			prefs.getString("email", userEmail);
 			intent.putExtra("user", userEmail);
+			
 		} else {
 			intent.putExtra("user", selectedTask.getUser().getEmail());
 		}
