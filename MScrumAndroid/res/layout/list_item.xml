@@ -8,7 +8,7 @@
          <TextView
            android:id="@+id/option_text_scrum"
             android:layout_below="@+id/option_text"
-            style="@style/TV">
+            style="@style/TV.listSub">
         </TextView>
 </RelativeLayout>
  
