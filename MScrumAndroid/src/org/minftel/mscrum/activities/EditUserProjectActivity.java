@@ -24,14 +24,12 @@ public class EditUserProjectActivity extends ListActivity {
 	private List<UserDetail> userListAll;
 	private List<Integer> chekboxEnabled;
 
-	
-	
 	public void onCreate(Bundle savedInstanceState) {
 		try {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.edituserproject);
 			chekboxEnabled = new ArrayList<Integer>();
-		
+
 			// Lista de usuarios
 			String json2 = getIntent().getExtras().getString(
 					"usersnotinproject");
@@ -40,43 +38,38 @@ public class EditUserProjectActivity extends ListActivity {
 			Log.e(ScrumConstants.TAG, "EDIT USER2: " + json2);
 
 			userList = JSONConverter.fromJSONtoUserList(json);
-
-			Log.e(ScrumConstants.TAG, "--------2-");
-
-			Log.e(ScrumConstants.TAG, "--------3-");
 			userListNotinProject = JSONConverter.fromJSONtoUserList(json2);
-			Log.e(ScrumConstants.TAG, "--------4-");
+			/*
+			 * Lo hago asi porque si esta lista solo contiene un usuario te
+			 * devuelve el numero de campos de la lista, y eso no estaria bien
+			 */
+
+			int tamUserList = 0;
+
+			for (UserDetail user : userList) {
+				chekboxEnabled.add(tamUserList);
+				tamUserList++;
+				// Estas posiciones estaran habilitadas
+			}
 
 			userListAll = userList;
 			userListAll.addAll(userListNotinProject);
-//			// Expandable list
-//			SimpleExpandableListAdapter expListAdapter = new SimpleExpandableListAdapter(
-//					this, createGroupList(), // Creating group List.
-//					R.layout.group_row, // Group item layout XML.
-//					new String[] { "Group Item" }, // the key of group item.
-//					new int[] { R.id.row_name }, // ID of each group item.-Data
-//													// under the key goes into
-//													// this TextView.
-//					createChildList(), // childData describes second-level
-//										// entries.
-//					R.layout.child_row, // Layout for sub-level entries(second
-//										// level).
-//					new String[] { "Sub Item" }, // Keys in childData maps to
-//													// display.
-//					new int[] { R.id.grp_child} // Data under the keys above go
-//				
-//			);
-//			setListAdapter(expListAdapter); // setting the adapter in the list.
-			
-			String [] names = new String[userListAll.size()];
-			int i=0;
+
+			Log.e(ScrumConstants.TAG, "tam: " + userList.size());
+			Log.e(ScrumConstants.TAG, "tam: " + tamUserList);
+			Log.e(ScrumConstants.TAG, "tam: " + userListNotinProject.size());
+			Log.e(ScrumConstants.TAG, "tam: " + userListAll.size());
+
+			String[] names = new String[userListAll.size()];
+			int i = 0;
 			for (UserDetail user : userListAll) {
-				names[i]=user.getName();
+				names[i] = user.getName();
 				i++;
 			}
-			
-			setListAdapter(new MyPerformanceArrayAdapter(this, names, userList.size()));
-			
+
+			setListAdapter(new MyPerformanceArrayAdapter(this, names,
+					tamUserList));
+
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,106 +77,35 @@ public class EditUserProjectActivity extends ListActivity {
 
 	}
 
-//	/* Creating the Hashmap for the row */
-//	@SuppressWarnings("unchecked")
-//	private List createGroupList() {
-//		ArrayList result = new ArrayList();
-//
-//		HashMap m = new HashMap();
-//		m.put("Group Item", "Usuarios"); // the key and it's value.
-//		result.add(m);
-//
-//		return (List) result;
-//	}
-//
-//	/* creatin the HashMap for the children */
-//	@SuppressWarnings("unchecked")
-//	private List createChildList() {
-//
-//		ArrayList result = new ArrayList();
-//	
-////		ExpandableListView lv = getExpandableListView();
-//		
-//		// /* each group need each HashMap-Here for each group we have 3
-//		// subgroups */
-//		secList = new ArrayList();
-////		int i=0;
-//		for (UserDetail user : userList) {
-//
-//			HashMap child = new HashMap();
-//			child.put("Sub Item", user.getName());
-//			
-////			chekbox = (CheckBox) ((View)lv.getChildAt(i)).findViewById
-////					(R.id.check1); 
-////			 chekbox.toggle();
-//			secList.add(child);
-////			i++;
-//		}
-//		for (UserDetail user : userListNotinProject) {
-//			HashMap child = new HashMap();
-//			child.put("Sub Item", user.getName());
-//			secList.add(child);
-//		}
-//		
-//		userListAll = userList;
-//		userListAll.addAll(userListNotinProject);
-//		result.add(secList);
-//		return result;
-//	}
-//
-//	public void onContentChanged() {
-//		System.out.println("onContentChanged");
-//		super.onContentChanged();
-//	}
-
-//	/* This function is called on each child click */
-//	public boolean onChildClick(ExpandableListView parent, View v,
-//			int groupPosition, int childPosition, long id) {
-//		CheckBox cb = (CheckBox) findViewById(R.id.check1);
-//
-//		if (cb != null)
-//			cb.toggle();
-//
-//		if (cb.isEnabled()) {
-//			chekboxEnabled.add(childPosition);
-//		}
-//		return true;
-//	}
-//
-//	/* This function is called on expansion of the group */
-//	public void onGroupExpand(int groupPosition) {
-//		try {
-//			System.out.println("Group exapanding Listener => groupPosition = "
-//					+ groupPosition);
-//		} catch (Exception e) {
-//			System.out.println(" groupPosition Errrr +++ " + e.getMessage());
-//		}
-//	}
-//	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-    
-	    CheckBox check = (CheckBox)v;
-	    check.toggle();
-	    
-	    if (check.isEnabled()) {
+
+		ListView vista = (ListView) findViewById(android.R.id.list);
+
+		CheckBox check = (CheckBox) ((View) vista.getChildAt(position))
+				.findViewById(R.id.check1);
+		check.setChecked(!check.isChecked());
+
+		if (check.isChecked()) {
 			chekboxEnabled.add(position);
+		} else {
+			chekboxEnabled.remove(position);
 		}
 	}
 
-
-
-	
 	public void save(View view) {
 		String[] idUsers = new String[chekboxEnabled.size()];
 
 		int i = 0;
 		for (Integer position : chekboxEnabled) {
 			idUsers[i] = String.valueOf(userListAll.get(position).getId());
+			Log.e(ScrumConstants.TAG, "Usuario:  " + idUsers[i] + "Position: "+position);
+
 			i++;
 		}
-	
-		EditUserProjectSendTask editprojectTask = new EditUserProjectSendTask(this);
+
+		EditUserProjectSendTask editprojectTask = new EditUserProjectSendTask(
+				this);
 		editprojectTask.execute(idUsers);
 
 	}
