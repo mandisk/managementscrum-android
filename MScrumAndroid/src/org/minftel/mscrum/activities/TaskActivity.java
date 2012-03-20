@@ -148,7 +148,7 @@ public class TaskActivity extends ListActivity implements OnGesturePerformedList
 		intent.putExtra("state", selectedTask.getState());
 		intent.putExtra("time", selectedTask.getTime());
 
-		if (selectedTask.getUser().getName() == null) {
+		if (selectedTask.getUser() == null) {
 
 			// If it doesn't have user, we edit with the current user.
 			SharedPreferences prefs;
