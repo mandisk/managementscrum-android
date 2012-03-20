@@ -1,10 +1,20 @@
 package org.minftel.mscrum.activities;
 
+import java.util.ArrayList;
+
 import org.minftel.mscrum.tasks.RegisterTask;
+import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.gesture.Gesture;
+import android.gesture.GestureLibraries;
+import android.gesture.GestureLibrary;
+import android.gesture.GestureOverlayView;
+import android.gesture.Prediction;
+import android.gesture.GestureOverlayView.OnGesturePerformedListener;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -15,7 +25,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Register extends Activity {
+public class Register extends Activity implements
+OnGesturePerformedListener{
+	private GestureLibrary gestureLib;
 
 	private static final int CONTACT_PICKER_RESULT = 0;
 	private EditText nombre;
@@ -30,6 +42,19 @@ public class Register extends Activity {
 		apellido = (EditText) findViewById(R.id.apellido);
 		email = (EditText) findViewById(R.id.email);
 		password = (EditText) findViewById(R.id.pass);
+		// Detección de gesto
+		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
+		View inflate = getLayoutInflater().inflate(R.layout.register, null);
+		gestureOverlayView.addView(inflate);
+		gestureOverlayView.addOnGesturePerformedListener(this);
+		// gestureOverlayView.setGestureColor(Color.TRANSPARENT);
+		gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
+		gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
+		if (!gestureLib.load()) {
+			// finish();
+			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
+		}
+		setContentView(gestureOverlayView);
 
 	}
 
@@ -92,15 +117,30 @@ public class Register extends Activity {
 		if (n == null || n.equals("") || sn == null || sn.equals("")
 				|| correo == null || correo.equals("") || pass == null
 				|| pass.equals("")) {
-			Toast.makeText(this, getResources().getString(R.string.login_empty_fields), Toast.LENGTH_SHORT).show();
+			Toast.makeText(this,
+					getResources().getString(R.string.login_empty_fields),
+					Toast.LENGTH_SHORT).show();
 		} else {
-			if(!correo.contains("@")){
-				Toast.makeText(this, getResources().getString(R.string.EmailError), Toast.LENGTH_SHORT).show();
-			}else{
+			if (!correo.contains("@")) {
+				Toast.makeText(this,
+						getResources().getString(R.string.EmailError),
+						Toast.LENGTH_SHORT).show();
+			} else {
 				RegisterTask Rtask = new RegisterTask(this);
 				Rtask.execute(n, sn, correo, pass);
 			}
-		
+
+		}
+	}
+	
+	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
+		ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
+		for (Prediction prediction : predictions) {
+			if (prediction.score > 2.0) {
+				if(prediction.name.equalsIgnoreCase("toleft")){
+					onBackPressed();
+				}
+			}
 		}
 	}
 }

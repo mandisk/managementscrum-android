@@ -1,21 +1,29 @@
 package org.minftel.mscrum.activities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONException;
 import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.tasks.ChartsTask;
 import org.minftel.mscrum.tasks.DeleteProjectTask;
-import org.minftel.mscrum.tasks.DeleteTaskTask;
 import org.minftel.mscrum.tasks.EditUserProjectAskTask;
 import org.minftel.mscrum.tasks.ProjectsTask;
 import org.minftel.mscrum.tasks.UserTask;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.gesture.Gesture;
+import android.gesture.GestureLibraries;
+import android.gesture.GestureLibrary;
+import android.gesture.GestureOverlayView;
+import android.gesture.Prediction;
+import android.gesture.GestureOverlayView.OnGesturePerformedListener;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -26,19 +34,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
-import android.widget.Toast;
 
-public class ProjectActivity extends ListActivity {
+public class ProjectActivity extends ListActivity implements OnGesturePerformedListener{
 
 	private List<ProjectDetail> projectList;
-
+	private GestureLibrary gestureLib;
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.project);
-
-		// Context menu
-		registerForContextMenu(getListView());
 
 		// Get Project List
 		String json = getIntent().getExtras().getString("projects");
@@ -65,6 +69,23 @@ public class ProjectActivity extends ListActivity {
 		// Load data in ListAdapter
 		setListAdapter(new TextAdapter(this, R.layout.list_item, projectNames,
 				scrumMasters));
+		
+		//Detección de gesto
+		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
+//		gestureOverlayView.setGestureColor(Color.TRANSPARENT);
+		gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
+		View inflate = getLayoutInflater().inflate(R.layout.project, null);
+		gestureOverlayView.addView(inflate);
+		gestureOverlayView.addOnGesturePerformedListener(this);
+		gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
+		if (!gestureLib.load()) {
+//			finish();
+			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
+		}
+		setContentView(gestureOverlayView);
+		
+		// Context menu
+		registerForContextMenu(getListView());
 
 	}	
     public void estadistica(View v){
@@ -178,18 +199,12 @@ public class ProjectActivity extends ListActivity {
 	/** Called when an item is selected. */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Intent intent;
 		switch (item.getItemId()) {
 		case R.id.LogOut:
-			SharedPreferences prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
-			prefs.edit().clear().commit();
-			intent = new Intent(this, LoginActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	        startActivity(intent);
+			logOut();
 			break;
 		case R.id.AddProject:
-			intent = new Intent(this, AddProjectActivity.class);
-			startActivity(intent);
+			add();
 		default:
 			break;
 		}
@@ -198,7 +213,6 @@ public class ProjectActivity extends ListActivity {
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 //		super.onBackPressed();
 		Intent intent = new Intent(Intent.ACTION_MAIN);
 		intent.addCategory(Intent.CATEGORY_HOME);
@@ -206,6 +220,35 @@ public class ProjectActivity extends ListActivity {
         startActivity(intent);
 	}
 	
-	
+	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
+		ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
+		for (Prediction prediction : predictions) {
+			Log.i(ScrumConstants.TAG, String.valueOf(prediction.score));
+			if (prediction.score > 2.0) {
+				if(prediction.name.equalsIgnoreCase("toleft")){
+					onBackPressed();
+				}
+				if(prediction.name.equalsIgnoreCase("logout")){
+					logOut();
+				}
+				if(prediction.name.equalsIgnoreCase("add")){
+					add();
+				}
+			}
+		}
+	}
+	public void logOut() {
 
+		SharedPreferences prefs = getSharedPreferences(
+				ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
+		prefs.edit().clear().commit();
+		Intent intent = new Intent(this, LoginActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
+	}
+	
+	public void add(){
+		Intent intent = new Intent(this, AddProjectActivity.class);
+		startActivity(intent);
+	}
 }

@@ -1,6 +1,7 @@
 package org.minftel.mscrum.activities;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import org.minftel.mscrum.model.SprintDetail;
 import org.minftel.mscrum.tasks.DeleteSprintTask;
@@ -11,6 +12,13 @@ import org.minftel.mscrum.utils.TextAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.gesture.Gesture;
+import android.gesture.GestureLibraries;
+import android.gesture.GestureLibrary;
+import android.gesture.GestureOverlayView;
+import android.gesture.Prediction;
+import android.gesture.GestureOverlayView.OnGesturePerformedListener;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -22,10 +30,11 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 
-public class SprintsActivity extends ListActivity {
+public class SprintsActivity extends ListActivity implements OnGesturePerformedListener{
 
 	private List<SprintDetail> sprintList = null;
-
+	private GestureLibrary gestureLib;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,9 +42,6 @@ public class SprintsActivity extends ListActivity {
 
 		String[] sprintNumbers = null;
 		String[] dates = null;
-
-		// Context Menu
-		registerForContextMenu(getListView());
 
 		// Get theSprints List
 		String json = getIntent().getExtras().getString("sprints");
@@ -50,14 +56,34 @@ public class SprintsActivity extends ListActivity {
 		DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
 		for (int i = 0; i < sprintList.size(); i++) {
 			SprintDetail sprint = sprintList.get(i);
-			sprintNumbers[i] = getString(R.string.sprint) + sprint.getSprintNumber();
-			dates[i] = getString(R.string.from) + df.format(sprint.getInitialDate()) + getString(R.string.to)
-					+ df.format(sprint.getEndDate());
+			sprintNumbers[i] = getString(R.string.sprint)
+					+ sprint.getSprintNumber();
+			dates[i] = getString(R.string.from)
+					+ df.format(sprint.getInitialDate())
+					+ getString(R.string.to) + df.format(sprint.getEndDate());
 		}
 
 		// Load data in ListAdapter
 		setListAdapter(new TextAdapter(this, R.layout.list_item, sprintNumbers,
 				dates));
+
+		// Detección de gesto
+		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
+		View inflate = getLayoutInflater().inflate(R.layout.sprints, null);
+		gestureOverlayView.addView(inflate);
+		gestureOverlayView.addOnGesturePerformedListener(this);
+//		gestureOverlayView.setGestureColor(Color.TRANSPARENT);
+		gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
+		gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
+		if (!gestureLib.load()) {
+			// finish();
+			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
+		}
+		setContentView(gestureOverlayView);
+
+		// Context Menu
+		registerForContextMenu(getListView());
+
 	}
 
 	@Override
@@ -70,18 +96,12 @@ public class SprintsActivity extends ListActivity {
 	/** Called when an item is selected. */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Intent intent;
 		switch (item.getItemId()) {
 		case R.id.LogOut:
-			SharedPreferences prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
-			prefs.edit().clear().commit();
-			intent = new Intent(this, LoginActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	        startActivity(intent);
+			logOut();
 			break;
 		case R.id.addsprint:
-			intent = new Intent(this, AddSprintActivity.class);
-			startActivity(intent);
+			add();
 		default:
 			break;
 		}
@@ -110,11 +130,11 @@ public class SprintsActivity extends ListActivity {
 
 			// Convert to string sprint ID
 			String idSprint = String.valueOf(sprintDetail.getIdSprint());
-
+ 
 			DeleteSprintTask dst = new DeleteSprintTask(this);
 			dst.execute(idSprint);
 			return true;
-			
+
 		default:
 			return super.onContextItemSelected(item);
 		}
@@ -126,12 +146,12 @@ public class SprintsActivity extends ListActivity {
 		// Get selected sprint
 		SprintDetail selectedSprint = this.sprintList.get(position);
 
-//		Toast.makeText(
-//				this,
-//				"Number of selected sprint : "
-//						+ selectedSprint.getSprintNumber() + " [ ID: "
-//						+ selectedSprint.getIdSprint() + " ]",
-//				Toast.LENGTH_SHORT).show();
+		// Toast.makeText(
+		// this,
+		// "Number of selected sprint : "
+		// + selectedSprint.getSprintNumber() + " [ ID: "
+		// + selectedSprint.getIdSprint() + " ]",
+		// Toast.LENGTH_SHORT).show();
 
 		// Converted to string to send
 		String idSprint = String.valueOf(selectedSprint.getIdSprint());
@@ -140,5 +160,36 @@ public class SprintsActivity extends ListActivity {
 		sprintTask.execute(idSprint);
 
 	}
+	
+	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
+		ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
+		for (Prediction prediction : predictions) {
+			if (prediction.score > 2.0) {
+				if(prediction.name.equalsIgnoreCase("toleft")){
+					onBackPressed();
+				}
+				if(prediction.name.equalsIgnoreCase("logout")){
+					logOut();
+				}
+				if(prediction.name.equalsIgnoreCase("add")){
+					add();
+				}
+			}
+		}
+	}
 
+	public void logOut() {
+
+		SharedPreferences prefs = getSharedPreferences(
+				ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
+		prefs.edit().clear().commit();
+		Intent intent = new Intent(this, LoginActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
+	}
+	
+	public void add(){
+		Intent intent = new Intent(this, AddSprintActivity.class);
+		startActivity(intent);
+	}
 }
