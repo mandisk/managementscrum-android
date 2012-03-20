@@ -3,17 +3,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android">
         <TextView
            android:id="@+id/option_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:textSize="16dp" >
+           style="@style/TV.list">
         </TextView>
          <TextView
            android:id="@+id/option_text_scrum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_below="@+id/option_text"
-            android:textSize="12dp">
+            style="@style/TV">
         </TextView>
 </RelativeLayout>
  
