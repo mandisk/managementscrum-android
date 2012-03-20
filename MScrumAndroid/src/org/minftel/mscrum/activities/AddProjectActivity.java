@@ -1,6 +1,7 @@
 package org.minftel.mscrum.activities;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -11,7 +12,17 @@ import org.minftel.mscrum.utils.ScrumConstants;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.gesture.Gesture;
+import android.gesture.GestureLibraries;
+import android.gesture.GestureLibrary;
+import android.gesture.GestureOverlayView;
+import android.gesture.Prediction;
+import android.gesture.GestureOverlayView.OnGesturePerformedListener;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -19,18 +30,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AddProjectActivity extends Activity {
+public class AddProjectActivity extends Activity implements
+		OnGesturePerformedListener {
+	private GestureLibrary gestureLib;
 	private TextView mDateDisplay1;
-//	private TextView mPickDate1;
+	// private TextView mPickDate1;
 	private TextView mDateDisplay2;
-//	private TextView mPickDate2;
+	// private TextView mPickDate2;
 
 	private EditText projectName;
 	private EditText projectDescription;
-	
+
 	private ImageView mPickDate1;
 	private ImageView mPickDate2;
-	
+
 	private int mYear1;
 	private int mMonth1;
 	private int mDay1;
@@ -49,17 +62,30 @@ public class AddProjectActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addproject);
-
+		
+		// Detección de gesto
+		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
+		View inflate = getLayoutInflater().inflate(R.layout.addproject, null);
+		gestureOverlayView.addView(inflate);
+		gestureOverlayView.addOnGesturePerformedListener(this);
+		// gestureOverlayView.setGestureColor(Color.TRANSPARENT);
+		gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
+		gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
+		if (!gestureLib.load()) {
+			// finish();
+			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
+		}
+		setContentView(gestureOverlayView);
+		
 		// capture our View elements
 		mDateDisplay1 = (TextView) findViewById(R.id.addInitialDateProjectRes);
-//		mPickDate1 = (TextView) findViewById(R.id.addInitialDateProject);
+		// mPickDate1 = (TextView) findViewById(R.id.addInitialDateProject);
 		mPickDate1 = (ImageView) findViewById(R.id.addProjectInitialCalendar);
 		mDateDisplay2 = (TextView) findViewById(R.id.addEndDateProjectRes);
-//		mPickDate2 = (TextView) findViewById(R.id.addEndDateProject);
+		// mPickDate2 = (TextView) findViewById(R.id.addEndDateProject);
 		mPickDate2 = (ImageView) findViewById(R.id.addProjectEndCalendar);
 		projectName = (EditText) findViewById(R.id.nameAddProjectText);
 		projectDescription = (EditText) findViewById(R.id.descriptionAddProjectText);
-		
 
 		// add a click listener to the button
 		mPickDate1.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +108,7 @@ public class AddProjectActivity extends Activity {
 
 		// display the current date (this method is below)
 		updateDisplay();
+
 	}
 
 	// updates the date in the TextView
@@ -171,11 +198,11 @@ public class AddProjectActivity extends Activity {
 			String sEmail = getSharedPreferences(
 					ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE)
 					.getString("email", "");
-			
+
 			String varControl = "0";
 			AddProjectTask addProjectTask = new AddProjectTask(this);
-			addProjectTask.execute(varControl, sName, sDescription, sDay1, sMonth1, sYear1,
-					sDay2, sMonth2, sYear2, sEmail);
+			addProjectTask.execute(varControl, sName, sDescription, sDay1,
+					sMonth1, sYear1, sDay2, sMonth2, sYear2, sEmail);
 		}
 	}
 
@@ -188,5 +215,29 @@ public class AddProjectActivity extends Activity {
 		Date date2 = c2.getTime();
 
 		return date1.compareTo(date2);
+	}
+
+	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
+		ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
+		for (Prediction prediction : predictions) {
+			if (prediction.score > 2.0) {
+				if (prediction.name.equalsIgnoreCase("toleft")) {
+					onBackPressed();
+				}
+				if (prediction.name.equalsIgnoreCase("logout")) {
+					logOut();
+				}
+			}
+		}
+	}
+
+	public void logOut() {
+
+		SharedPreferences prefs = getSharedPreferences(
+				ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
+		prefs.edit().clear().commit();
+		Intent intent = new Intent(this, LoginActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
 	}
 }

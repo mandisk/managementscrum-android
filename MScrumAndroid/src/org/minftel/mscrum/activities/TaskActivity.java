@@ -1,5 +1,6 @@
 package org.minftel.mscrum.activities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.minftel.mscrum.model.TaskDetail;
@@ -10,6 +11,13 @@ import org.minftel.mscrum.utils.TextAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.gesture.Gesture;
+import android.gesture.GestureLibraries;
+import android.gesture.GestureLibrary;
+import android.gesture.GestureOverlayView;
+import android.gesture.Prediction;
+import android.gesture.GestureOverlayView.OnGesturePerformedListener;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -21,9 +29,10 @@ import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 
-public class TaskActivity extends ListActivity {
+public class TaskActivity extends ListActivity implements OnGesturePerformedListener{
 
 	private List<TaskDetail> taskList;
+	private GestureLibrary gestureLib;
 
 	public void onCreate(Bundle savedInstanceState) {
 
@@ -33,11 +42,9 @@ public class TaskActivity extends ListActivity {
 		String[] taskNames = null;
 		String[] taskTimes = null;
 
-		registerForContextMenu(getListView());
-
 		String json = getIntent().getExtras().getString("tasks");
-		Log.e(ScrumConstants.TAG, " "+json);
-	
+		Log.e(ScrumConstants.TAG, " " + json);
+
 		try {
 			taskList = JSONConverter.fromJSONtoTaskList(json);
 			taskTimes = new String[taskList.size()];
@@ -47,20 +54,38 @@ public class TaskActivity extends ListActivity {
 		}
 
 		for (int i = 0; i < taskList.size(); i++) {
-            TaskDetail task = taskList.get(i);
-            taskNames[i] = "" + task.getDescription();
-            String userName = "N/A";
-            if (task.getUser() != null)
-                    userName = task.getUser().getName();
-            taskTimes[i] = getString(R.string.user)  + userName + getString(R.string.time) + task.getTime();
+			TaskDetail task = taskList.get(i);
+			taskNames[i] = "" + task.getDescription();
+			String userName = "N/A";
+			if (task.getUser() != null)
+				userName = task.getUser().getName();
+			taskTimes[i] = getString(R.string.user) + userName
+					+ getString(R.string.time) + task.getTime();
 		}
 		// Load data in ListAdapter
 		setListAdapter(new TextAdapter(this, R.layout.list_item, taskNames,
 				taskTimes));
 
+		// Detección de gesto
+		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
+		View inflate = getLayoutInflater().inflate(R.layout.task, null);
+		gestureOverlayView.addView(inflate);
+		gestureOverlayView.addOnGesturePerformedListener(this);
+//		gestureOverlayView.setGestureColor(Color.TRANSPARENT);
+		gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
+		gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
+		if (!gestureLib.load()) {
+			// finish();
+			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
+		}
+		setContentView(gestureOverlayView);
+
+		// Context Menu
+		registerForContextMenu(getListView());
+
 	}
 
-	//Menu que sale al dejar pulsado  una tarea
+	// Menu que sale al dejar pulsado una tarea
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -87,8 +112,8 @@ public class TaskActivity extends ListActivity {
 			return super.onContextItemSelected(item);
 		}
 	}
-	
-	//Menu que sale al pulsar tecla menu
+
+	// Menu que sale al pulsar tecla menu
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -99,18 +124,12 @@ public class TaskActivity extends ListActivity {
 	/** Called when an item is selected. */
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Intent intent;
 		switch (item.getItemId()) {
 		case R.id.LogOut:
-			SharedPreferences prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
-			prefs.edit().clear().commit();
-			intent = new Intent(this, LoginActivity.class);
-			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	        startActivity(intent);
+			logOut();
 			break;
 		case R.id.AddTask:
-			intent = new Intent(this, AddTask.class);
-			startActivity(intent);
+			add();
 
 		default:
 			break;
@@ -118,32 +137,61 @@ public class TaskActivity extends ListActivity {
 		return true;
 	}
 
-
 	public void onListItemClick(ListView parent, View v, int position, long id) {
 
 		// Get selected task
 		TaskDetail selectedTask = this.taskList.get(position);
-		String userEmail="";
-		
+		String userEmail = "";
+
 		Intent intent = new Intent(this, EditTaskActivity.class);
 		intent.putExtra("state", selectedTask.getState());
 		intent.putExtra("time", selectedTask.getTime());
-		
-		if(selectedTask.getUser().getName()==null){
-			
+
+		if (selectedTask.getUser().getName() == null) {
+
 			SharedPreferences prefs;
-			prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
+			prefs = getSharedPreferences(
+					ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
 			prefs.getString("userEmail", userEmail);
 			intent.putExtra("user", userEmail);
-		}else
-		{
+		} else {
 			intent.putExtra("user", selectedTask.getUser().getEmail());
 		}
-		
+
 		intent.putExtra("description", selectedTask.getDescription());
-		
+
 		startActivity(intent);
 
 	}
 
+	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
+		ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
+		for (Prediction prediction : predictions) {
+			if (prediction.score > 2.0) {
+				if(prediction.name.equalsIgnoreCase("toleft")){
+					onBackPressed();
+				}
+				if(prediction.name.equalsIgnoreCase("logout")){
+					logOut();
+				}
+				if(prediction.name.equalsIgnoreCase("add")){
+					add();
+				}
+			}
+		}
+	}
+	public void logOut() {
+
+		SharedPreferences prefs = getSharedPreferences(
+				ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
+		prefs.edit().clear().commit();
+		Intent intent = new Intent(this, LoginActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
+	}
+	
+	public void add(){
+		Intent intent = new Intent(this, AddTask.class);
+		startActivity(intent);
+	}
 }

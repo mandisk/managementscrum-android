@@ -1,6 +1,7 @@
 package org.minftel.mscrum.activities;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -11,26 +12,37 @@ import org.minftel.mscrum.utils.ScrumConstants;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.gesture.Gesture;
+import android.gesture.GestureLibraries;
+import android.gesture.GestureLibrary;
+import android.gesture.GestureOverlayView;
+import android.gesture.Prediction;
+import android.gesture.GestureOverlayView.OnGesturePerformedListener;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class AddSprintActivity extends Activity {
-
+public class AddSprintActivity extends Activity implements
+		OnGesturePerformedListener {
+	private GestureLibrary gestureLib;
 	private TextView mDateDisplay1;
-//	private TextView mPickDate1;
+	// private TextView mPickDate1;
 
 	private TextView mDateDisplay2;
-//	private TextView mPickDate2;
+	// private TextView mPickDate2;
 
 	private TextView mSprintNumber;
 
 	private ImageView mPickDate1;
 	private ImageView mPickDate2;
-	
+
 	private int mYear1;
 	private int mMonth1;
 	private int mDay1;
@@ -50,12 +62,26 @@ public class AddSprintActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addsprint);
-
+		
+		// Detección de gesto
+		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
+		View inflate = getLayoutInflater().inflate(R.layout.addsprint, null);
+		gestureOverlayView.addView(inflate);
+		gestureOverlayView.addOnGesturePerformedListener(this);
+		// gestureOverlayView.setGestureColor(Color.TRANSPARENT);
+		gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
+		gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
+		if (!gestureLib.load()) {
+			// finish();
+			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
+		}
+		setContentView(gestureOverlayView);
+		
 		// Catch our view elements
 		mDateDisplay1 = (TextView) findViewById(R.id.addSprintInitialDate);
 		mDateDisplay2 = (TextView) findViewById(R.id.addSprintEndDate);
-//		mPickDate1 = (TextView) findViewById(R.id.addSprintInitialDateLabel);
-//		mPickDate2 = (TextView) findViewById(R.id.addSprintEndDateLabel);
+		// mPickDate1 = (TextView) findViewById(R.id.addSprintInitialDateLabel);
+		// mPickDate2 = (TextView) findViewById(R.id.addSprintEndDateLabel);
 		mPickDate1 = (ImageView) findViewById(R.id.addSprintInitialCalendar);
 		mPickDate2 = (ImageView) findViewById(R.id.addSprintEndCalendar);
 		mSprintNumber = (TextView) findViewById(R.id.addSprintId);
@@ -81,6 +107,7 @@ public class AddSprintActivity extends Activity {
 
 		// Display the current date (this method is below)
 		updateDisplay();
+
 	}
 
 	// Updates the date in the TextView
@@ -103,7 +130,7 @@ public class AddSprintActivity extends Activity {
 	private DatePickerDialog.OnDateSetListener mDateSetListener1 = new DatePickerDialog.OnDateSetListener() {
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
 				int dayOfMonth) {
-			
+
 			mYear1 = year;
 			mMonth1 = monthOfYear;
 			mDay1 = dayOfMonth;
@@ -112,11 +139,11 @@ public class AddSprintActivity extends Activity {
 
 		}
 	};
-	
+
 	private DatePickerDialog.OnDateSetListener mDateSetListener2 = new DatePickerDialog.OnDateSetListener() {
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
 				int dayOfMonth) {
-	
+
 			mYear2 = year;
 			mMonth2 = monthOfYear;
 			mDay2 = dayOfMonth;
@@ -128,7 +155,7 @@ public class AddSprintActivity extends Activity {
 
 	@Override
 	protected Dialog onCreateDialog(int id) {
-		
+
 		switch (id) {
 		case DATE_DIALOG_ID1:
 			return new DatePickerDialog(this, mDateSetListener1, mYear1,
@@ -137,7 +164,7 @@ public class AddSprintActivity extends Activity {
 			return new DatePickerDialog(this, mDateSetListener2, mYear2,
 					mMonth2, mDay2);
 		}
-		
+
 		return null;
 	}
 
@@ -152,30 +179,37 @@ public class AddSprintActivity extends Activity {
 		String sSprintNumber = mSprintNumber.getText().toString().trim();
 
 		if (res1 > 0 || res2 > 0) {
-			Toast.makeText(this, R.string.wrong_dates, Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.wrong_dates, Toast.LENGTH_SHORT)
+					.show();
 			envio--;
 		}
 		if (sSprintNumber.isEmpty()) {
-			Toast.makeText(this, R.string.sprint_number_required, Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, R.string.sprint_number_required,
+					Toast.LENGTH_SHORT).show();
 			envio--;
 		}
 
 		if (envio == 2) {
-			
+
 			String sDay1 = String.valueOf(mDay1);
 			String sMonth1 = String.valueOf(mMonth1);
 			String sYear1 = String.valueOf(mYear1);
-			
+
 			String sDay2 = String.valueOf(mDay2);
 			String sMonth2 = String.valueOf(mMonth2);
 			String sYear2 = String.valueOf(mYear2);
 
 			// Get the Project ID from the preferences
-//			String idproject = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE).getString("idproject", "");
+			// String idproject =
+			// getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE,
+			// MODE_PRIVATE).getString("idproject", "");
 			
+			Log.w(ScrumConstants.TAG, sDay1+"/"+sMonth1+"/"+sYear1+"/"+sDay2+"/"+sMonth2+"/"+sYear2);
 			AddSprintTask addSprintTask = new AddSprintTask(this);
-			addSprintTask.execute(sSprintNumber, sDay1, sMonth1, sYear1, sDay2, sMonth2, sYear2);
-//			addSprintTask.execute(sSprintNumber, sDay1, sMonth1, sYear1, sDay2, sMonth2, sYear2, idproject);
+			addSprintTask.execute(sSprintNumber, sDay1, sMonth1, sYear1, sDay2,
+					sMonth2, sYear2);
+			// addSprintTask.execute(sSprintNumber, sDay1, sMonth1, sYear1,
+			// sDay2, sMonth2, sYear2, idproject);
 		}
 	}
 
@@ -184,12 +218,36 @@ public class AddSprintActivity extends Activity {
 		Calendar c1 = new GregorianCalendar();
 		c1.set(y1, m1, d1);
 		Date date1 = c1.getTime();
-		
+
 		Calendar c2 = new GregorianCalendar();
 		c2.set(y2, m2, d2);
 		Date date2 = c2.getTime();
 
 		return date1.compareTo(date2);
+	}
+
+	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
+		ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
+		for (Prediction prediction : predictions) {
+			if (prediction.score > 2.0) {
+				if (prediction.name.equalsIgnoreCase("toleft")) {
+					onBackPressed();
+				}
+				if (prediction.name.equalsIgnoreCase("logout")) {
+					logOut();
+				}
+			}
+		}
+	}
+
+	public void logOut() {
+
+		SharedPreferences prefs = getSharedPreferences(
+				ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
+		prefs.edit().clear().commit();
+		Intent intent = new Intent(this, LoginActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		startActivity(intent);
 	}
 
 }
