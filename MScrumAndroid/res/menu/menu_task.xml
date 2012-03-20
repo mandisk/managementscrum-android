@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item 
-        android:id="@+id/LogOut" android:title="@string/logout">
-        
-    </item>
-    <item 
-        android:id="@+id/AddTask" android:title="@string/addTaskMenu">
-        
-    </item>
-    
+
+    <item
+        android:id="@+id/LogOut"
+        android:icon="@drawable/cancel"
+        android:title="@string/logout"/>
+    <item
+        android:id="@+id/AddTask"
+        android:icon="@drawable/new_pst"
+        android:title="@string/addTaskMenu"/>
 
 </menu>
