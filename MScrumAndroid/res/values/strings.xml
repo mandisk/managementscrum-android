@@ -86,4 +86,6 @@
     <string name="users">Users</string>
     <string name="userInfo">Contact info</string>
     <string name="TaskState">Estado</string>
+    <string name="editUserProjectSelectAll">Select all</string>
+    <string name="editUserProjectUnselectAll">Unselect all</string>
 </resources>

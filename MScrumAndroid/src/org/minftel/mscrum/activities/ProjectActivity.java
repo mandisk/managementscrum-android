@@ -43,9 +43,6 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.project);
-
-		// Context menu
-		registerForContextMenu(getListView());
 			
 		// Get the project List
 		String json = getIntent().getExtras().getString("projects");
@@ -107,31 +104,64 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
-		
 		ProjectDetail projectDetail = this.projectList.get(info.position);
 		String idproject = String.valueOf(projectDetail.getIdProject());
 
 		switch (item.getItemId()) {
-		case R.id.ctx_menu_view_users:			
+		case R.id.ctx_menu_view_users:
 			
-			// View Users
+			// View project's users
 			UserTask ut = new UserTask(this);
 			ut.execute(idproject);			
 			return true;
 			
 		case R.id.ctx_menu_delete:
-			
-			// Delete project
+
+			// Delete a project			
 			DeleteProjectTask dpt = new DeleteProjectTask(this);
 			dpt.execute(idproject);
-			return true;	
+			return true;
+			
+		case R.id.ctx_menu_edit_project:
+			String SmEmail = "";
+			
+			SharedPreferences prefs;
+			prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
+			prefs.getString("userEmail", SmEmail);
+			
+			/**********************************************************/
+			//Lo de arriba falla ¿por que? <<<<<<<<<<---------------------
+			/*******************************************************/
+			Log.e(ScrumConstants.TAG, " " + SmEmail);
+			Log.e(ScrumConstants.TAG, " " + projectDetail.getScrumMaster().getEmail() );
+//			if(projectDetail.getScrumMaster().getEmail() == SmEmail)
+//			{
+				Intent intent = new Intent(this, EditProjectActivity.class);
+				intent.putExtra("name", projectDetail.getName());
+				intent.putExtra("description", projectDetail.getDescription());
+				intent.putExtra("initdate", projectDetail.getInitialDate());
+				intent.putExtra("enddate", projectDetail.getEndDate());
+				intent.putExtra("ScrumMaster", projectDetail.getScrumMaster().getEmail());
+				intent.putExtra("idProject", projectDetail.getIdProject());
+				startActivity(intent);
+//			}
+//			else{
+//				Toast.makeText(this, "You aren't Scrum Master", Toast.LENGTH_SHORT)
+//				.show();
+//			}
+			return true;
+		case R.id.ctx_menu_edit_user_in_project:
+			
+			EditUserProjectAskTask editprojectTask = new EditUserProjectAskTask(this);
+			editprojectTask.execute(Integer.toString(projectDetail.getIdProject()));
+			return true;
 			
 		case R.id.ctx_menu_view_charts:
 			
-			// View charts
+			// View chart
 			ChartsTask ct = new ChartsTask(this);
-			ct.execute(idproject);			
-			return true;
+			ct.execute(idproject);
+			return true;					
 			
 		default:
 			return super.onContextItemSelected(item);

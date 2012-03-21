@@ -14,10 +14,11 @@
         android:orientation="vertical" >
 
         <CheckBox
-            android:id="@+id/checkBox1"
+            android:id="@+id/editUserProjectSelectAll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CheckBox" />
+            android:text="@string/editUserProjectSelectAll"
+            android:onClick="select" />
 
     </LinearLayout>
 
