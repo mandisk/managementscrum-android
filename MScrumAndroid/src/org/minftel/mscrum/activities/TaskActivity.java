@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.tasks.DeleteTaskTask;
+import org.minftel.mscrum.tasks.ModifyTaskAsk;
+import org.minftel.mscrum.tasks.ModifyTaskSendTask;
+import org.minftel.mscrum.tasks.ProjectsTask;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
@@ -67,7 +70,7 @@ public class TaskActivity extends ListActivity implements OnGesturePerformedList
 		setListAdapter(new TextAdapter(this, R.layout.list_item, taskNames,
 				taskTimes));
 
-		// Detección de gesto
+		// Detecciï¿½n de gesto
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.task, null);
 		gestureOverlayView.addView(inflate);
@@ -144,27 +147,30 @@ public class TaskActivity extends ListActivity implements OnGesturePerformedList
 		TaskDetail selectedTask = this.taskList.get(position);
 		String userEmail = null;
 		
-		Intent intent = new Intent(this, EditTaskActivity.class);
-		intent.putExtra("state", selectedTask.getState());
-		intent.putExtra("time", selectedTask.getTime());
+//		Intent intent = new Intent(this, EditTaskActivity.class);
+//		intent.putExtra("state", selectedTask.getState());
+//		intent.putExtra("time", selectedTask.getTime());
+//
+//		if (selectedTask.getUser() == null) {
+//
+//			// If it doesn't have user, we edit with the current user.
+//			SharedPreferences prefs;
+//			prefs = getSharedPreferences(
+//					ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
+//			
+//			prefs.getString("email", userEmail);
+//			intent.putExtra("user", userEmail);
+//			
+//		} else {
+//			intent.putExtra("user", selectedTask.getUser().getEmail());
+//		}
+//
+//		intent.putExtra("description", selectedTask.getDescription());
+//
+//		startActivity(intent);
 
-		if (selectedTask.getUser() == null) {
-
-			// If it doesn't have user, we edit with the current user.
-			SharedPreferences prefs;
-			prefs = getSharedPreferences(
-					ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
-			
-			prefs.getString("email", userEmail);
-			intent.putExtra("user", userEmail);
-			
-		} else {
-			intent.putExtra("user", selectedTask.getUser().getEmail());
-		}
-
-		intent.putExtra("description", selectedTask.getDescription());
-
-		startActivity(intent);
+		 ModifyTaskAsk modifyTask = new ModifyTaskAsk(this);
+		 modifyTask.execute(Integer.toString(selectedTask.getIdTask()));       
 
 	}
 
