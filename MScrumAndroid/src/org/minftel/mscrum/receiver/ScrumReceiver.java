@@ -78,6 +78,11 @@ public class ScrumReceiver extends BroadcastReceiver {
 			Intent chartsIntent = new Intent(context, ChartActivity.class);
 			chartsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			
+			String json = intent.getStringExtra("tasks");
+			chartsIntent.putExtra("tasks", json);
+			
+			context.startActivity(chartsIntent);
+			
 		} else if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_EDIT_USER_PROJECT)) {
 			
 			//Create Intent to start the activity EditProjectActivity
