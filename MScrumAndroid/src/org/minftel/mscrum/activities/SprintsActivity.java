@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.minftel.mscrum.model.SprintDetail;
+import org.minftel.mscrum.tasks.ChartsTask;
 import org.minftel.mscrum.tasks.DeleteSprintTask;
 import org.minftel.mscrum.tasks.SprintsTask;
 import org.minftel.mscrum.utils.JSONConverter;
@@ -30,11 +31,12 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ListView;
 
-public class SprintsActivity extends ListActivity implements OnGesturePerformedListener{
+public class SprintsActivity extends ListActivity implements
+		OnGesturePerformedListener {
 
 	private List<SprintDetail> sprintList = null;
 	private GestureLibrary gestureLib;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,7 +45,7 @@ public class SprintsActivity extends ListActivity implements OnGesturePerformedL
 		String[] sprintNumbers = null;
 		String[] dates = null;
 
-		// Get theSprints List
+		// Get the Sprints List
 		String json = getIntent().getExtras().getString("sprints");
 
 		try {
@@ -67,12 +69,12 @@ public class SprintsActivity extends ListActivity implements OnGesturePerformedL
 		setListAdapter(new TextAdapter(this, R.layout.list_item, sprintNumbers,
 				dates));
 
-		// Detección de gesto
+		// Gesture detection
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.sprints, null);
 		gestureOverlayView.addView(inflate);
 		gestureOverlayView.addOnGesturePerformedListener(this);
-//		gestureOverlayView.setGestureColor(Color.TRANSPARENT);
+		// gestureOverlayView.setGestureColor(Color.TRANSPARENT);
 		gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
 		gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
 		if (!gestureLib.load()) {
@@ -125,14 +127,22 @@ public class SprintsActivity extends ListActivity implements OnGesturePerformedL
 
 		SprintDetail sprintDetail = this.sprintList.get(info.position);
 
-		switch (item.getItemId()) {
-		case R.id.ctx_menu_sprints:
+		// Convert to string sprint ID
+		String idSprint = String.valueOf(sprintDetail.getIdSprint());
 
-			// Convert to string sprint ID
-			String idSprint = String.valueOf(sprintDetail.getIdSprint());
- 
+		switch (item.getItemId()) {
+		
+		case R.id.ctx_menu_sprints:
+			
 			DeleteSprintTask dst = new DeleteSprintTask(this);
 			dst.execute(idSprint);
+			return true;
+
+		case R.id.ctx_menu_view_charts:
+			
+			// View charts
+			ChartsTask ct = new ChartsTask(this);
+			ct.execute(idSprint);
 			return true;
 
 		default:
@@ -160,18 +170,18 @@ public class SprintsActivity extends ListActivity implements OnGesturePerformedL
 		sprintTask.execute(idSprint);
 
 	}
-	
+
 	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
 		ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
 		for (Prediction prediction : predictions) {
 			if (prediction.score > 2.0) {
-				if(prediction.name.equalsIgnoreCase("toRight")){
+				if (prediction.name.equalsIgnoreCase("toleft")) {
 					onBackPressed();
 				}
-				if(prediction.name.equalsIgnoreCase("logout")){
+				if (prediction.name.equalsIgnoreCase("logout")) {
 					logOut();
 				}
-				if(prediction.name.equalsIgnoreCase("add")){
+				if (prediction.name.equalsIgnoreCase("add")) {
 					add();
 				}
 			}
@@ -187,8 +197,8 @@ public class SprintsActivity extends ListActivity implements OnGesturePerformedL
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		startActivity(intent);
 	}
-	
-	public void add(){
+
+	public void add() {
 		Intent intent = new Intent(this, AddSprintActivity.class);
 		startActivity(intent);
 	}
