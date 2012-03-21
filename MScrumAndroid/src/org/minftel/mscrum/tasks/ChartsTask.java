@@ -12,7 +12,7 @@ import java.net.URLConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.minftel.mscrum.activities.ChartActivity;
+import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.utils.ScrumConstants;
@@ -38,51 +38,51 @@ public class ChartsTask extends AsyncTask<String, Integer, String> {
 	protected String doInBackground(String... params) {
 		
 		String result = null;
-		
+				
 		try {
-		
-			Log.i(ScrumConstants.TAG, "Showing the project chart");
+			
+			Log.i(ScrumConstants.TAG, "Showing charts");
 			
 			String sessionId = activity.getSharedPreferences(
 					ScrumConstants.SHARED_PREFERENCES_FILE, 
 					Activity.MODE_PRIVATE).getString(ScrumConstants.SESSION_ID, "");
-			String url = ScrumConstants.BASE_URL + ScrumConstants.SESSION_URL + sessionId;			
-			
+			String url = ScrumConstants.BASE_URL + ScrumConstants.SESSION_URL + sessionId;
+		
 			URL urlDispatcher = new URL(url);
 			URLConnection connection = urlDispatcher.openConnection();
-						
+			
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
 			
 			// To send to the server
 			OutputStream out = connection.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(out);
-						
-			dos.writeInt(ScrumConstants.ACTION_REQUEST_CHART);
-			dos.writeUTF(params[0]); // project ID
 			
-			// To receive from the server
+			dos.writeInt(ScrumConstants.ACTION_REQUEST_LIST_TASKS);
+			dos.writeUTF(params[0]); // ID project
+			
+			// To receive to the server			
 			InputStream in = connection.getInputStream();
 			DataInputStream dis = new DataInputStream(in);
 			
-			result = dis.readUTF();
-			
+			result = dis.readUTF(); 
+		
 			dos.close();
 			dis.close();
 			
 			connection = null;
 			
-		} catch(MalformedURLException e) {
-			Log.i(ScrumConstants.TAG, "MalformedURLException: " + e.getMessage());
+		} catch (MalformedURLException e) {
+			Log.i(ScrumConstants.TAG, "MalformedURLException");
 		} catch (IOException e) {
-			Log.i(ScrumConstants.TAG, "IOException: " + e.getMessage());
+			Log.i(ScrumConstants.TAG, "IOException");
 		}
 		
 		return result;
 	}
 	
-	@Override
 	protected void onPostExecute(String result) {
+		
 		if (progressDialog.isShowing()) {
 			progressDialog.dismiss();
 		}
@@ -94,33 +94,31 @@ public class ChartsTask extends AsyncTask<String, Integer, String> {
 				SharedPreferences prefs = activity.getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, Activity.MODE_PRIVATE);
 				prefs.edit().clear().commit();
 				
-				Intent intent = new Intent(this.activity, ChartActivity.class);
+				Intent intent = new Intent(this.activity, LoginActivity.class);
 				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		        activity.startActivity(intent);
 				return;
 			}
 			
-			if (result.equals(ScrumConstants.ERROR_CHART)) {
-				Log.w(ScrumConstants.TAG, "Error showing the project chart");
-				return;
-			}
 			
 			try {
 				
 				JSONObject json = new JSONObject(result);
-				JSONArray jsonProjects = json.getJSONArray("projects");
+				JSONArray jsonTasks = json.getJSONArray("tasks");
+				
+				Log.i(ScrumConstants.TAG, jsonTasks.toString());
 				
 				// Send broadcast to open ProjectActivity
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_CHARTS);
-				broadCastIntent.putExtra("projects", jsonProjects.toString());
+			    broadCastIntent.putExtra("tasks", jsonTasks.toString());
 				this.activity.sendBroadcast(broadCastIntent);
 				
 			} catch (JSONException e) {
 				Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
 			}
 		}
-	}
+	}	
 	
 	@Override
 	protected void onPreExecute() {
