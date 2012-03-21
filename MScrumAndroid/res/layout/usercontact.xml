@@ -7,68 +7,60 @@
         android:id="@+id/linearLayout0"
         style="@style/LWFP.LHFP.PAD20.OV" >
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            style="@style/LWMP.LHWC.OV.CH" >
-
-            <TextView
-                android:id="@+id/textView1"
-                style="@style/TVHEADER"
-                android:text="@string/userInfo" />
-        </LinearLayout>
-
         <TextView
             android:id="@+id/name"
             style="@style/TV.P9DP" >
         </TextView>
 
-        <TableLayout
-            android:id="@+id/tableLayout1"
-            style="@style/LWMP.LHWC" >
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            style="@style/LWFP.LHWC.OH" >
 
-            <TableRow
-                android:id="@+id/tableRow1"
-                style="@style/LWMP.LHWC" >
-
-                <ImageView
-                    android:id="@+id/userContactCall"
-                    style="@style/LWWC.LHWC.IMAGE"
-                    android:clickable="true"
-                    android:contentDescription="@string/bt_call"
-                    android:src="@drawable/call" />
-
-                <TextView
-                    android:id="@+id/phone"
-                    style="@style/TVWCWC" >
-                </TextView>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow2"
-                style="@style/LWMP.LHWC" >
-
-                <ImageView
-                    android:id="@+id/userContactEmail"
-                    style="@style/LWWC.LHWC.IMAGE"
-                    android:clickable="true"
-                    android:contentDescription="@string/bt_send_message"
-                    android:src="@drawable/email" />
-
-                <TextView
-                    android:id="@+id/email"
-                    style="@style/TV.P9DP" >
-                </TextView>
-            </TableRow>
             <ImageView
-            android:id="@+id/imageContact"
-            style="@style/LWWC.LHWC.IMAGE"
-            android:layout_marginTop="30dp"
-            android:contentDescription="Imagen del contacto"
-            android:src="@drawable/android" />
-        </TableLayout>
+                android:id="@+id/imageContact"
+                style="@style/userPhoto"
+                android:contentDescription="Imagen del contacto"
+                android:src="@drawable/android" />
 
-        
+            <TableLayout
+                android:id="@+id/tableLayout1"
+                style="@style/LWMP.LHWC" >
 
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    style="@style/LWMP.LHWC" >
+
+                    <ImageView
+                        android:id="@+id/userContactCall"
+                        style="@style/LWWC.LHWC.IMAGE"
+                        android:clickable="true"
+                        android:contentDescription="@string/bt_call"
+                        android:src="@drawable/call" />
+
+                    <TextView
+                        android:id="@+id/phone"
+                        style="@style/TVWCWC" >
+                    </TextView>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    style="@style/LWMP.LHWC" >
+
+                    <ImageView
+                        android:id="@+id/userContactEmail"
+                        style="@style/LWWC.LHWC.IMAGE"
+                        android:clickable="true"
+                        android:contentDescription="@string/bt_send_message"
+                        android:src="@drawable/email" />
+
+                    <TextView
+                        android:id="@+id/email"
+                        style="@style/TV.P9DP" >
+                    </TextView>
+                </TableRow>
+            </TableLayout>
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

@@ -7,16 +7,6 @@
         android:id="@+id/linearLayout0"
         style="@style/LWFP.LHFP.PAD20.OV" >
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            style="@style/LWMP.LHWC.OV.CH" >
-
-            <TextView
-                android:id="@+id/textView1"
-                style="@style/TVHEADER"
-                android:text="@string/EditProject" />
-        </LinearLayout>
-
         <TextView
             android:id="@+id/textView3"
             style="@style/TV"
