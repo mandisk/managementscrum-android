@@ -11,44 +11,28 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             style="@style/LWFP.LHWC.OV" >
 
+
             <TextView
                 android:id="@+id/textView3"
                 style="@style/TV"
                 android:text="@string/UserTask" />
 
-            <EditText
-                android:id="@+id/UserTaskEdit"
-                style="@style/ET.T"
-                android:hint="@string/UserTask" />
-
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            
             <TextView
                 android:id="@+id/textView4"
                 style="@style/TV"
                 android:text="@string/StateTask" />
 
-            <RadioGroup
-                android:id="@+id/radiogroup"
-                style="@style/LWFP.LHWC.OH.MB10"
-                 >
-
-                <RadioButton
-                    android:id="@+id/todo"
-                    android:text="@string/ToDo"
-                    style="@style/LWWC.LHWC" >
-                </RadioButton>
-
-                <RadioButton
-                    android:id="@+id/doing"
-                    style="@style/LWWC.LHWC"
-                    android:text="@string/Doing" >
-                </RadioButton>
-
-                <RadioButton
-                    android:id="@+id/done"
-                    style="@style/LWWC.LHWC"
-                    android:text="@string/Done" >
-                </RadioButton>
-            </RadioGroup>
+            <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/taskSpinner"
+            android:prompt="@string/TaskState" />
 
             <TextView
                 android:id="@+id/textView5"
