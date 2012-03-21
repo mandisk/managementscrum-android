@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.R;
+import org.minftel.mscrum.activities.SprintsActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
@@ -26,11 +27,11 @@ import android.util.Log;
 
 public class ChartsTask extends AsyncTask<String, Integer, String> {
 
-	private ProjectActivity activity;
+	private SprintsActivity activity;
 	private ProgressDialog progressDialog;
 	
 	public ChartsTask(Activity activity) {
-		this.activity = (ProjectActivity) activity;
+		this.activity = (SprintsActivity) activity;
 		this.progressDialog = new ProgressDialog(activity);
 	}
 	
@@ -59,7 +60,7 @@ public class ChartsTask extends AsyncTask<String, Integer, String> {
 			DataOutputStream dos = new DataOutputStream(out);
 			
 			dos.writeInt(ScrumConstants.ACTION_REQUEST_LIST_TASKS);
-			dos.writeUTF(params[0]); // ID project
+			dos.writeUTF(params[0]); // ID sprint
 			
 			// To receive to the server			
 			InputStream in = connection.getInputStream();
