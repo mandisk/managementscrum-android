@@ -19,19 +19,21 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ListView;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ListView;
 
 public class EditUserProjectActivity extends Activity {
 
 	private CheckListAdapter adapter;
 	private ListView list;
+	private CheckBox check;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edituserproject);
 
 		list = (ListView) findViewById(R.id.editUserProjectList);
+		check = (CheckBox) findViewById(R.id.editUserProjectSelectAll);
 		
 		loadData();
 	}
@@ -63,6 +65,26 @@ public class EditUserProjectActivity extends Activity {
 		}
 		
 		list.setAdapter(adapter);
+	}
+	
+	public void select(View view) {
+		boolean checked = check.isChecked();
+		for (int i = 0; i < adapter.getItemsLength(); i++) {
+			adapter.set(i, checked);
+		}
+		
+		int pos = list.getFirstVisiblePosition();
+		list.setAdapter(adapter);
+		list.setSelection(pos);
+		
+		changeCheckBoxText(checked);
+	}
+	
+	private void changeCheckBoxText(boolean checked) {
+		if (checked)
+			check.setText(getResources().getString(R.string.editUserProjectUnselectAll));
+		else
+			check.setText(getResources().getString(R.string.editUserProjectSelectAll));
 	}
 
 	public void save(View view) {
@@ -118,6 +140,10 @@ public class EditUserProjectActivity extends Activity {
 								boolean isChecked) {
 							itemSelection[position] = holder.chkItem
 									.isChecked();
+							if (check.isChecked() && !isChecked) {
+								changeCheckBoxText(isChecked);
+								check.setChecked(isChecked);
+							}
 						}
 					});
 
