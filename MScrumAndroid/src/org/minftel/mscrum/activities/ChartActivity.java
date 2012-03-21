@@ -34,7 +34,7 @@ public class ChartActivity extends Activity {
 		Log.i(ScrumConstants.TAG, json);
 
 		try {
-			tasks = JSONConverter.fromJSONtoTaskList("json");
+			tasks = JSONConverter.fromJSONtoTaskList(json);
 		} catch (JSONException e) {
 			Log.i(ScrumConstants.TAG, "JSONException" + e.getMessage());
 		}
