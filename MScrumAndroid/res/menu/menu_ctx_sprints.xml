@@ -1,13 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?><menu
-  xmlns:android="http://schemas.android.com/apk/res/android">
- 
-	<item 
-	    android:id="@+id/ctx_menu_sprints"
-	    android:title="@string/menu_delete_sprints">	   
-	</item>
-	<item android:id="@+id/ctx__view_sprint_charts" android:title="@string/menu_view_charts"></item>
-	<item
-        android:id="@+id/ctx_menu_view_charts"
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/ctx_menu_sprints"
+        android:title="@string/menu_delete_sprints">
+    </item>
+    <item
+        android:id="@+id/ctx__view_sprint_charts"
         android:title="@string/menu_view_charts">
     </item>
+    <item>
+    </item>
+
 </menu>
