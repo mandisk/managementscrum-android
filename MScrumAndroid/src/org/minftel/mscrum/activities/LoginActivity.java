@@ -94,7 +94,7 @@ public class LoginActivity extends Activity implements
 		for (Prediction prediction : predictions) {
 			Log.i(ScrumConstants.TAG, String.valueOf(prediction.score));
 			if (prediction.score > 2.0) {
-				if (prediction.name.equalsIgnoreCase("toleft")) {
+				if (prediction.name.equalsIgnoreCase("toRight")) {
 					onBackPressed();
 				}
 			}

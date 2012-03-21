@@ -230,7 +230,7 @@ public class AddSprintActivity extends Activity implements
 		ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
 		for (Prediction prediction : predictions) {
 			if (prediction.score > 2.0) {
-				if (prediction.name.equalsIgnoreCase("toleft")) {
+				if (prediction.name.equalsIgnoreCase("toRight")) {
 					onBackPressed();
 				}
 				if (prediction.name.equalsIgnoreCase("logout")) {
