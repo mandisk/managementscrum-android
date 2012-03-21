@@ -15,7 +15,7 @@ public class ScrumConstants {
 //	private static String DIRECCION_IP_SERVER = "192.168.1.134";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.16";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.23";
-	private static String DIRECCION_IP_SERVER = "192.168.1.118";
+	private static String DIRECCION_IP_SERVER = "192.168.1.128";
 //	private static String DIRECCION_IP_SERVER = "192.168.133.151";
 	public static String BASE_URL = "http://" + DIRECCION_IP_SERVER + ":8080/MScrum-war/Dispatcher";
 	public static String SESSION_URL = ";jsessionid=";
@@ -32,11 +32,12 @@ public class ScrumConstants {
 	public static final int ACTION_DELETE_PROJECT = 8;
 	public static final int ACTION_DELETE_SPRINT = 9;
 	public static final int ACTION_DELETE_TASK = 10;
-	public static final int ACTION_MODIFY_TASK = 11;
+	public static final int ACTION_MODIFY_TASK_ASK = 11;
 	public static final int ACTION_REQUEST_CHART = 12;	
 	public static final int ACTION_EDIT_PROJECT = 13;
 	public static final int ACTION_EDIT_USER_PROJECT_ASK = 14;
 	public static final int ACTION_EDIT_USER_PROJECT_SEND = 15;
+	public static final int ACTION_MODIFY_TASK_SEND = 16;
 	
 	// SERVER RESPONSES
 	public static final String ERROR_ADD_PROJECT = "ERROR_ADD_PROJECT";
@@ -54,7 +55,7 @@ public class ScrumConstants {
 	public static final String ERROR_EDITING_USER_PROJECT_ASK = "EDITING_PROJECT_USER_ASK";
 	public static final String ERROR_EDITING_PROJECT_SEND = "EDITING_PROJECT_USER_SEND";
 	public static final String ERROR_CHART = "ERROR_CHART";
-	
+	public static final String ERROR_EDITING_TASK_ASK = "ERROR_EDITING_TASK_ASK";
     public static final String REGISTER_OK = "REGISTER_OK";
 	public static final String SESSION_EXPIRED = "SESSION_EXPIRED";
 	
@@ -67,4 +68,5 @@ public class ScrumConstants {
 	public static final String BROADCAST_GO_CHARTS = "org.minftel.receiver.action.GO_CHARTS";
 	public static final String BROADCAST_GO_EDIT_PROJECT = "org.minftel.receiver.action.GO_EDIT_PROJECT";
 	public static final String BROADCAST_GO_EDIT_USER_PROJECT = "org.minftel.receiver.action.GO_EDIT_USER_PROJECT";
+	public static final String BROADCAST_GO_EDIT_TASK = "org.minftel.receiver.action.BROADCAST_GO_EDIT_TASK";
 }
