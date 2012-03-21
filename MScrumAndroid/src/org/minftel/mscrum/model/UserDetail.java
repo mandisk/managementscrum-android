@@ -66,6 +66,6 @@ public class UserDetail {
 	}
 	
 	public String toString(){
-		return name;
+		return name + " " + surname;
 	}
 }

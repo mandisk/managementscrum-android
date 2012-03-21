@@ -10,12 +10,12 @@ public class ScrumConstants {
 	
 	// DIRECCION SERVLET FRONTAL
 //	private static String DIRECCION_IP_SERVER = "10.0.2.2";
-	private static String DIRECCION_IP_SERVER = "192.168.1.107";
+//	private static String DIRECCION_IP_SERVER = "192.168.1.107";
 //	private static String DIRECCION_IP_SERVER = "10.0.2.2";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.134";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.16";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.23";
-//	private static String DIRECCION_IP_SERVER = "192.168.1.118";
+	private static String DIRECCION_IP_SERVER = "192.168.1.118";
 //	private static String DIRECCION_IP_SERVER = "192.168.133.151";
 	public static String BASE_URL = "http://" + DIRECCION_IP_SERVER + ":8080/MScrum-war/Dispatcher";
 	public static String SESSION_URL = ";jsessionid=";

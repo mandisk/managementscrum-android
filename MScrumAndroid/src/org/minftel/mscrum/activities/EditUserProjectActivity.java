@@ -7,107 +7,150 @@ import org.json.JSONException;
 import org.minftel.mscrum.model.UserDetail;
 import org.minftel.mscrum.tasks.EditUserProjectSendTask;
 import org.minftel.mscrum.utils.JSONConverter;
-import org.minftel.mscrum.utils.MyPerformanceArrayAdapter;
 import org.minftel.mscrum.utils.ScrumConstants;
 
-import android.app.ListActivity;
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
-public class EditUserProjectActivity extends ListActivity {
+public class EditUserProjectActivity extends Activity {
 
-	private List<UserDetail> userListNotinProject;
-	private List<UserDetail> userList;
-	private List<UserDetail> userListAll;
-	private List<Integer> chekboxEnabled;
+	private CheckListAdapter adapter;
+	private ListView list;
 
 	public void onCreate(Bundle savedInstanceState) {
-		try {
-			super.onCreate(savedInstanceState);
-			setContentView(R.layout.edituserproject);
-			chekboxEnabled = new ArrayList<Integer>();
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.edituserproject);
 
-			// Lista de usuarios
-			String json2 = getIntent().getExtras().getString(
-					"usersnotinproject");
-			String json = getIntent().getExtras().getString("users");
-			Log.e(ScrumConstants.TAG, "EDIT USER: " + json);
-			Log.e(ScrumConstants.TAG, "EDIT USER2: " + json2);
-
-			userList = JSONConverter.fromJSONtoUserList(json);
-			userListNotinProject = JSONConverter.fromJSONtoUserList(json2);
-			/*
-			 * Lo hago asi porque si esta lista solo contiene un usuario te
-			 * devuelve el numero de campos de la lista, y eso no estaria bien
-			 */
-
-			int tamUserList = 0;
-
-			for (UserDetail user : userList) {
-				chekboxEnabled.add(tamUserList);
-				tamUserList++;
-				// Estas posiciones estaran habilitadas
-			}
-
-			userListAll = userList;
-			userListAll.addAll(userListNotinProject);
-
-			Log.e(ScrumConstants.TAG, "tam: " + userList.size());
-			Log.e(ScrumConstants.TAG, "tam: " + tamUserList);
-			Log.e(ScrumConstants.TAG, "tam: " + userListNotinProject.size());
-			Log.e(ScrumConstants.TAG, "tam: " + userListAll.size());
-
-			String[] names = new String[userListAll.size()];
-			int i = 0;
-			for (UserDetail user : userListAll) {
-				names[i] = user.getName();
-				i++;
-			}
-
-			setListAdapter(new MyPerformanceArrayAdapter(this, names,
-					tamUserList));
-
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		list = (ListView) findViewById(R.id.editUserProjectList);
+		
+		loadData();
 	}
-
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-
-		ListView vista = (ListView) findViewById(android.R.id.list);
-
-		CheckBox check = (CheckBox) ((View) vista.getChildAt(position))
-				.findViewById(R.id.check1);
-		check.setChecked(!check.isChecked());
-
-		if (check.isChecked()) {
-			chekboxEnabled.add(position);
-		} else {
-			chekboxEnabled.remove(position);
+	
+	private void loadData() {
+		Bundle extras = getIntent().getExtras();
+		String jsonUserNotInProjectList = extras.getString("usersnotinproject"); 
+		String jsonUserInProjectList = extras.getString("users");
+		
+		List<UserDetail> usersInProject = null;
+		List<UserDetail> usersNotInProject = null;
+		try {
+			usersInProject = JSONConverter.fromJSONtoUserList(jsonUserInProjectList);
+			usersNotInProject = JSONConverter.fromJSONtoUserList(jsonUserNotInProjectList);
+		} catch (JSONException e) {
+			Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
 		}
+
+		adapter = new CheckListAdapter(usersInProject.size() + usersNotInProject.size());
+		int size = usersInProject.size();
+		for (int i = 0; i < size; i++) {
+			UserDetail user = usersInProject.get(i);
+			adapter.addItem(user);
+			adapter.set(i, true);
+		}
+		
+		for (UserDetail userDetail: usersNotInProject) {
+			adapter.addItem(userDetail);
+		}
+		
+		list.setAdapter(adapter);
 	}
 
 	public void save(View view) {
-		String[] idUsers = new String[chekboxEnabled.size()];
+		List<UserDetail> userList = adapter.getItemsChecked();
+		int size = userList.size();
+		
+		String[] idUsers = new String[size];
+		for(int i = 0; i < size; i++) {
+			idUsers[i] = String.valueOf(userList.get(i).getId());
+		}
+		
+		EditUserProjectSendTask editUserProjectSendTask = new EditUserProjectSendTask(this);
+		editUserProjectSendTask.execute(idUsers);
+	}
+	
+	// Static classes to chaeckBox list
+	private class CheckListAdapter extends BaseAdapter {
+		private ArrayList<UserDetail> items = new ArrayList<UserDetail>();
+		private LayoutInflater inflater;
+		private boolean[] itemSelection;
 
-		int i = 0;
-		for (Integer position : chekboxEnabled) {
-			idUsers[i] = String.valueOf(userListAll.get(position).getId());
-			Log.e(ScrumConstants.TAG, "Usuario:  " + idUsers[i] + "Position: "+position);
-
-			i++;
+		public CheckListAdapter(int size) {
+			inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			this.itemSelection = new boolean[size];
 		}
 
-		EditUserProjectSendTask editprojectTask = new EditUserProjectSendTask(
-				this);
-		editprojectTask.execute(idUsers);
+		public void addItem(final UserDetail userDetail) {
+			items.add(userDetail);
+			notifyDataSetChanged();
+		}
 
+		public int getCount() {
+			return items.size();
+		}
+
+		public String getItem(int position) {
+			return items.get(position).toString();
+		}
+
+		public long getItemId(int position) {
+			return position;
+		}
+
+		public View getView(final int position, View convertView,
+				ViewGroup parent) {
+			convertView = inflater.inflate(R.layout.row_item, null);
+			final ViewHolder holder = new ViewHolder();
+			holder.chkItem = (CheckBox) convertView
+					.findViewById(R.id.checkItem);
+			holder.chkItem
+					.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+						public void onCheckedChanged(CompoundButton buttonView,
+								boolean isChecked) {
+							itemSelection[position] = holder.chkItem
+									.isChecked();
+						}
+					});
+
+			holder.chkItem.setChecked(itemSelection[position]);
+			convertView.setTag(holder);
+			holder.chkItem.setText(getItem(position));
+			return convertView;
+		}
+
+		public int getItemsLength() {
+			if (itemSelection == null)
+				return 0;
+			return itemSelection.length;
+		}
+
+		public void set(int i, boolean b) {
+			itemSelection[i] = b;
+		}
+
+		public List<UserDetail> getItemsChecked() {
+			List<UserDetail> userList = new ArrayList<UserDetail>();
+			int size = itemSelection.length;
+			for (int i = 0; i < size; i++) {
+				if (itemSelection[i]) {
+					userList.add(items.get(i));
+				}
+			}
+			
+			return userList;
+		}
 	}
 
+	public static class ViewHolder {
+		public CheckBox chkItem;
+	}
 }
