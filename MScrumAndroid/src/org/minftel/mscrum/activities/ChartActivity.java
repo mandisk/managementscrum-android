@@ -9,7 +9,6 @@ import org.minftel.mscrum.chart.flot.FlotDraw;
 import org.minftel.mscrum.chart.flot.Options;
 import org.minftel.mscrum.chart.flot.data.PointData;
 import org.minftel.mscrum.chart.flot.data.SeriesData;
-import org.minftel.mscrum.chart.flot.data.TickData;
 import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
@@ -45,14 +44,19 @@ public class ChartActivity extends Activity {
 
 		Vector<PointData> pds = new Vector<PointData>();
 
+		int max = 0;
+		
 		for (int i = 0; i < tasks.size(); i++) {
 			TaskDetail td = tasks.get(i);
 			pds.add(new PointData(td.getIdTask(), td.getTime()));
+			if (max < td.getTime()) {
+				max=td.getTime();
+			}
 		}
 		
 		// Series1
 		sd1.setData(pds);
-		sd1.label = "Series 1";
+		sd1.label = "Burn Down";
 		sds.add(sd1);
 	
 		Options opt = new Options();
@@ -62,7 +66,7 @@ public class ChartActivity extends Activity {
 		opt.series.lines.setShow(true);
 		opt.series.points.show = true;
 
-		opt.yaxis.max = 10;
+		opt.yaxis.max = max;
 		opt.yaxis.min = 0;
 
 		FlotDraw fd = new FlotDraw(sds, opt, null);
