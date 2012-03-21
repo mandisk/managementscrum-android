@@ -126,4 +126,10 @@
 	<style name="LWWC.LHWC.IMAGE">
 	    <item name="android:padding">3dp</item>
 	</style>
+	
+	<style name="userPhoto">
+	    <item name="android:layout_width">70dp</item>
+	    <item name="android:layout_height">70dp</item>
+	    <item name="android:paddingTop">9dp</item>
+	</style>
 </resources>
