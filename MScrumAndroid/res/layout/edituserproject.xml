@@ -1,27 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical" >
-  <Button
-                android:id="@+id/button1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/buttonAddProject" 
-                android:onClick="save"/>
+    
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
 
-  <ListView
-      android:id="@android:id/list"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content" >
-  </ListView>
- 
-     <TextView android:id="@+id/android:empty"
-               android:layout_width="fill_parent" 
-               android:layout_height="fill_parent"
-               android:text="No items"/>
+        <CheckBox
+            android:id="@+id/checkBox1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CheckBox" />
 
-   
+    </LinearLayout>
 
+    <ListView
+        android:id="@+id/editUserProjectList"
+        android:layout_width="match_parent"
+        android:layout_height="385dp"
+        android:layout_above="@+id/linearLayout1"
+        android:layout_below="@+id/linearLayout2"
+        android:drawSelectorOnTop="false" >
 
-</LinearLayout>
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/editUsersProjectSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="save"
+            android:text="@string/Save" />
+    </LinearLayout>
+
+</RelativeLayout>

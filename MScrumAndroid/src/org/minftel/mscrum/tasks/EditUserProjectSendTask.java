@@ -55,7 +55,10 @@ public class EditUserProjectSendTask extends AsyncTask<String, Integer, String>{
 			DataOutputStream dos = new DataOutputStream(out);
 			
 			dos.writeInt(ScrumConstants.ACTION_EDIT_USER_PROJECT_SEND);
-			dos.writeUTF(params[0]);	//array id user
+			dos.writeInt(params.length);
+			for (String param : params) {
+				dos.writeUTF(param);
+			}
 			
 			// Receive from server
 			InputStream in = connection.getInputStream();
