@@ -1,6 +1,6 @@
 package org.minftel.mscrum.receiver;
 
-import org.minftel.mscrum.activities.ChartsActivity;
+import org.minftel.mscrum.activities.ChartActivity;
 import org.minftel.mscrum.activities.EditUserProjectActivity;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.ProjectActivity;
@@ -75,7 +75,7 @@ public class ScrumReceiver extends BroadcastReceiver {
 			//Create Intent to start the activity ChartsActivity
 			Log.i(ScrumConstants.TAG, "Launch Charts Activity");
 			
-			Intent chartsIntent = new Intent(context, ChartsActivity.class);
+			Intent chartsIntent = new Intent(context, ChartActivity.class);
 			chartsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			
 		} else if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_EDIT_USER_PROJECT)) {
