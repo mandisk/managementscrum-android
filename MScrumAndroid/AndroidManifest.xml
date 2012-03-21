@@ -49,7 +49,7 @@
         <activity android:name="EditProjectActivity" android:label="@string/EditProject"></activity>
          <activity android:name="ChartActivity" android:label="ESTADISTICAS">
        </activity>
-         <activity android:name="EditUserProjectActivity"></activity>
+         <activity android:name="EditUserProjectActivity" android:label="@string/EditUsers"></activity>
     </application>
 
 </manifest>
