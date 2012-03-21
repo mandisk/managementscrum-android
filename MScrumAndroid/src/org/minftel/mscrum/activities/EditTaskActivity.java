@@ -50,7 +50,7 @@ public class EditTaskActivity extends Activity {
 	
 			
 			//Buscamos e inicializamos los distintos componentes
-			taskSpinner = (Spinner)findViewById(R.id.spinner1);
+			taskSpinner = (Spinner)findViewById(R.id.spinner2);
 			taskState = taskSpinner.getSelectedItem().toString();
 			
 			
