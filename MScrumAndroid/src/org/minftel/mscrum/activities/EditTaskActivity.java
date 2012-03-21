@@ -3,6 +3,7 @@ package org.minftel.mscrum.activities;
 import java.util.List;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.model.UserDetail;
 import org.minftel.mscrum.tasks.ModifyTaskSendTask;
@@ -46,7 +47,8 @@ public class EditTaskActivity extends Activity {
 			String json2 = getIntent().getExtras().getString("task");
 			
 			userList = JSONConverter.fromJSONtoUserList(json);
-			task = JSONConverter.fromJSONObjectToTaskDetail(json2);
+			JSONObject tarea = new JSONObject(json2);
+			task = JSONConverter.fromJSONObjectToTaskDetail(tarea);
 	
 			
 			//Buscamos e inicializamos los distintos componentes
