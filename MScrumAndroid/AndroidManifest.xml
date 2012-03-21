@@ -34,20 +34,19 @@
                   <action android:name="org.minftel.receiver.action.GO_EDIT_USER_PROJECT"/>
             </intent-filter>
         </receiver>
-        <activity android:name="ProjectActivity"></activity>
+        <activity android:name="ProjectActivity" android:label="@string/Projects"></activity>
         <activity android:name="Preferences"></activity>
-        <activity android:name="ProjectActivity"></activity>
-        <activity android:name="Register"></activity>
-        <activity android:name="AddProjectActivity"></activity>
-        <activity android:name="AddSprintActivity"
+        <activity android:name="Register" android:label="@string/Register"></activity>
+        <activity android:name="AddProjectActivity" android:label="@string/addProjectMenu"></activity>
+        <activity android:name="AddSprintActivity" android:label="@string/addSprintMenu"
             android:windowSoftInputMode="stateVisible|adjustResize"></activity>
-        <activity android:name="TaskActivity"></activity>
-        <activity android:name="SprintsActivity"></activity>
-        <activity android:name="AddTask"></activity>
-        <activity android:name="EditTaskActivity"></activity>
-        <activity android:name="UserActivity"></activity>
-        <activity android:name="ContactActivity"></activity>
-        <activity android:name="EditProjectActivity"></activity>
+        <activity android:name="TaskActivity" android:label="@string/Tasks"></activity>
+        <activity android:name="SprintsActivity" android:label="@string/Sprints"></activity>
+        <activity android:name="AddTask" android:label="@string/addTask"></activity>
+        <activity android:name="EditTaskActivity" android:label="@string/EditTask"></activity>
+        <activity android:name="UserActivity" android:label="@string/users"></activity>
+        <activity android:name="ContactActivity" android:label="@string/userInfo"></activity>
+        <activity android:name="EditProjectActivity" android:label="@string/EditProject"></activity>
          <activity android:name="ChartActivity" android:label="ESTADISTICAS">
        </activity>
          <activity android:name="EditUserProjectActivity"></activity>
