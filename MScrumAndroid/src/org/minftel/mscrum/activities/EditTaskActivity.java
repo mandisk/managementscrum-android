@@ -57,7 +57,6 @@ public class EditTaskActivity extends Activity {
 			
 			
 			String a = String.valueOf(task.getState());
-			// state.setHint(a);
 			switch (a.charAt(0)) 
 			{
 			case 't':
@@ -123,11 +122,8 @@ public class EditTaskActivity extends Activity {
 		// Envio al servidor para guardar en la bbdd
 		Log.i(ScrumConstants.TAG, "Saving modified");
 
-		// String stateTask = state.getText().toString();
 		String timeTask = time.getText().toString();
 		String descriptionTask = description.getText().toString();
-
-		
 
 		String stateTask = "";
 
