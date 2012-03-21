@@ -85,4 +85,5 @@
     <string name="sprintHint">"Sprint"</string>
     <string name="users">Users</string>
     <string name="userInfo">Contact info</string>
+    <string name="TaskState">Estado</string>
 </resources>
