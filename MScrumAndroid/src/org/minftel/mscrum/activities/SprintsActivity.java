@@ -126,21 +126,23 @@ public class SprintsActivity extends ListActivity implements
 				.getMenuInfo();
 
 		SprintDetail sprintDetail = this.sprintList.get(info.position);
-
 		// Convert to string sprint ID
 		String idSprint = String.valueOf(sprintDetail.getIdSprint());
 
 		switch (item.getItemId()) {
 		
 		case R.id.ctx_menu_sprints:
+
 			
+ 
 			DeleteSprintTask dst = new DeleteSprintTask(this);
 			dst.execute(idSprint);
 			return true;
-
-		case R.id.ctx_menu_view_charts:
 			
+
+		case R.id.ctx__view_sprint_charts:
 			// View charts
+			Log.i(ScrumConstants.TAG, "Entrando a estadisticas...");
 			ChartsTask ct = new ChartsTask(this);
 			ct.execute(idSprint);
 			return true;
