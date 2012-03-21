@@ -9,7 +9,5 @@
         android:id="@+id/ctx__view_sprint_charts"
         android:title="@string/menu_view_charts">
     </item>
-    <item>
-    </item>
 
 </menu>
