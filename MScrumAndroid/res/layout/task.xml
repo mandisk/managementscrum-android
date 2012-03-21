@@ -5,11 +5,6 @@
     <LinearLayout
         android:id="@+id/linearLayout1"
         style="@style/LWMP.LHWC.OV.CH" >
-
-        <TextView
-            android:id="@+id/textView1"
-            style="@style/TVHEADER"
-            android:text="@string/Tasks" />
     </LinearLayout>
 
     <ListView

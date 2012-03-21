@@ -6,11 +6,6 @@
         android:id="@+id/linearLayout1"
         style="@style/LWMP.LHWC.OV.CH" >
 
-        <TextView
-            android:id="@+id/textView1"
-            style="@style/TVHEADER"
-            android:text="@string/Projects" />
-
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

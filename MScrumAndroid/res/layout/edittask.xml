@@ -8,16 +8,6 @@
         style="@style/LWFP.LHFP.PAD20.OV" >
 
         <LinearLayout
-            android:id="@+id/linearLayout1"
-            style="@style/LWMP.LHWC.OV.CH" >
-
-            <TextView
-                android:id="@+id/textView0"
-                style="@style/TVHEADER"
-                android:text="@string/EditTask" />
-        </LinearLayout>
-
-        <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             style="@style/LWFP.LHWC.OV" >
 
