@@ -74,7 +74,7 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 		setListAdapter(new TextAdapter(this, R.layout.list_item, projectNames,
 				scrumMasters));
 		
-		//Detección de gesto
+		// Gesture detection
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 //		gestureOverlayView.setGestureColor(Color.TRANSPARENT);
 		gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
@@ -118,18 +118,21 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 
 		switch (item.getItemId()) {
 		case R.id.ctx_menu_view_users:			
+			
 			// View Users
 			UserTask ut = new UserTask(this);
 			ut.execute(idproject);			
 			return true;
 			
 		case R.id.ctx_menu_delete:
+			
 			// Delete project
 			DeleteProjectTask dpt = new DeleteProjectTask(this);
 			dpt.execute(idproject);
 			return true;	
 			
 		case R.id.ctx_menu_view_charts:
+			
 			// View charts
 			ChartsTask ct = new ChartsTask(this);
 			ct.execute(idproject);			
