@@ -44,7 +44,10 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.project);
 
-		// Get Project List
+		// Context menu
+		registerForContextMenu(getListView());
+			
+		// Get the project List
 		String json = getIntent().getExtras().getString("projects");
 		Log.i(ScrumConstants.TAG,json);
 
@@ -62,6 +65,7 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 		for (int i = 0; i < size; i++) {
 			ProjectDetail project = projectList.get(i);
 			projectNames[i] = project.getName();
+			scrumMasters[i] = "Scrum Master: "+project.getScrumMaster().getName();
 			scrumMasters[i] = getString(R.string.scrum_master)
 					+ project.getScrumMaster().getName();
 		}
@@ -87,11 +91,13 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 		// Context menu
 		registerForContextMenu(getListView());
 
-	}	
+	}
+	
     public void estadistica(View v){
     	Intent intent = new Intent(ProjectActivity.this,ChartActivity.class);
     	startActivity(intent);
     }
+    
 	@Override
 	public void onCreateContextMenu(ContextMenu menu, View v,
 			ContextMenuInfo menuInfo) {
@@ -106,64 +112,28 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
+		
 		ProjectDetail projectDetail = this.projectList.get(info.position);
 		String idproject = String.valueOf(projectDetail.getIdProject());
 
 		switch (item.getItemId()) {
-		case R.id.ctx_menu_view_users:
-			
-			// View project's users
+		case R.id.ctx_menu_view_users:			
+			// View Users
 			UserTask ut = new UserTask(this);
 			ut.execute(idproject);			
 			return true;
 			
 		case R.id.ctx_menu_delete:
-
-			// Delete a project			
+			// Delete project
 			DeleteProjectTask dpt = new DeleteProjectTask(this);
 			dpt.execute(idproject);
-			return true;
-			
-		case R.id.ctx_menu_edit_project:
-			String SmEmail = "";
-			
-			SharedPreferences prefs;
-			prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
-			prefs.getString("userEmail", SmEmail);
-			
-			/**********************************************************/
-			//Lo de arriba falla ¿por que? <<<<<<<<<<---------------------
-			/*******************************************************/
-			Log.e(ScrumConstants.TAG, " " + SmEmail);
-			Log.e(ScrumConstants.TAG, " " + projectDetail.getScrumMaster().getEmail() );
-//			if(projectDetail.getScrumMaster().getEmail() == SmEmail)
-//			{
-				Intent intent = new Intent(this, EditProjectActivity.class);
-				intent.putExtra("name", projectDetail.getName());
-				intent.putExtra("description", projectDetail.getDescription());
-				intent.putExtra("initdate", projectDetail.getInitialDate());
-				intent.putExtra("enddate", projectDetail.getEndDate());
-				intent.putExtra("ScrumMaster", projectDetail.getScrumMaster().getEmail());
-				intent.putExtra("idProject", projectDetail.getIdProject());
-				startActivity(intent);
-//			}
-//			else{
-//				Toast.makeText(this, "You aren't Scrum Master", Toast.LENGTH_SHORT)
-//				.show();
-//			}
-			return true;
-		case R.id.ctx_menu_edit_user_in_project:
-			
-			EditUserProjectAskTask editprojectTask = new EditUserProjectAskTask(this);
-			editprojectTask.execute(Integer.toString(projectDetail.getIdProject()));
-			return true;
+			return true;	
 			
 		case R.id.ctx_menu_view_charts:
-			
-			// View chart
+			// View charts
 			ChartsTask ct = new ChartsTask(this);
-			ct.execute(idproject);
-			return true;					
+			ct.execute(idproject);			
+			return true;
 			
 		default:
 			return super.onContextItemSelected(item);
@@ -183,9 +153,14 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 
 		// Converted to string to send
 		String idProject = String.valueOf(selectedProject.getIdProject());
-
-		ProjectsTask projectTask = new ProjectsTask(this);
-		projectTask.execute(idProject);
+		
+		// Save in preferences to use with sprints
+		getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE).edit().putString("idproject", idProject).commit();
+		
+		String idproject = String.valueOf(selectedProject.getIdProject());
+		          			
+        ProjectsTask projectTask = new ProjectsTask(this);
+        projectTask.execute(idproject);       
 
 	}
 
