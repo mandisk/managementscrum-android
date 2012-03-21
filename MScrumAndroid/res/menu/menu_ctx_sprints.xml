@@ -5,4 +5,8 @@
 	    android:id="@+id/ctx_menu_sprints"
 	    android:title="@string/menu_delete_sprints">	   
 	</item>
+	<item
+        android:id="@+id/ctx_menu_view_charts"
+        android:title="@string/menu_view_charts">
+    </item>
 </menu>
