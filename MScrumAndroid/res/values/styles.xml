@@ -86,11 +86,12 @@
 	    <item name="android:layout_marginTop">20dp</item>
 	    <item name="android:textSize">18dp</item>
 	</style>
-	<style name="BUTTON_WW" parent="@android:style/TextAppearance.Medium.Inverse">
+	<style name="BUTTON_WW">
 	    <item name="android:layout_width">wrap_content</item>
 	    <item name="android:layout_height">wrap_content</item>
 	    <item name="android:typeface">normal</item>
 	    <item name="android:layout_marginTop">10dp</item>
+	    <item name="android:textSize">18dp</item>
 	</style>
 	
 	<style name="TV" parent="@android:style/TextAppearance.Medium">
