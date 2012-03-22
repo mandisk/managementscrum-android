@@ -54,7 +54,7 @@ public class ModifyTaskSendTask extends AsyncTask<String, Integer, String>{
 			OutputStream out = connection.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(out);
 			
-			dos.writeInt(ScrumConstants.ACTION_MODIFY_TASK_SEND);
+			//dos.writeInt(ScrumConstants.ACTION_MODIFY_TASK_SEND);
 			dos.writeUTF(params[0]);	// state Task
 			dos.writeUTF(params[1]);	// id user task
 			dos.writeUTF(params[2]);	//time task

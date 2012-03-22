@@ -1,50 +1,27 @@
 package org.minftel.mscrum.model;
 
-public class TaskDetail {
+import java.io.Serializable;
+
+public class TaskDetail implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private int idTask;
 	private char state;
 	private String description;
 	private int time;
 	private UserDetail user;
-	private ProjectDetail project;
-	private SprintDetail sprint;
 	
 	public TaskDetail() {
 	}
 
-		
 	public TaskDetail(int idTask, char state, String description,
-			int time, UserDetail user, ProjectDetail project,
-			SprintDetail sprint) {
+			int time, UserDetail user) {
 		super();
 		this.idTask = idTask;
 		this.state = state;
 		this.description = description;
 		this.time = time;
 		this.user = user;
-		this.project = project;
-		this.sprint = sprint;
-	}
-
-
-
-
-
-	public ProjectDetail getProject() {
-		return project;
-	}
-
-	public void setProject(ProjectDetail project) {
-		this.project = project;
-	}
-
-	public SprintDetail getSprint() {
-		return sprint;
-	}
-
-	public void setSprint(SprintDetail sprint) {
-		this.sprint = sprint;
 	}
 
 	public int getIdTask() {

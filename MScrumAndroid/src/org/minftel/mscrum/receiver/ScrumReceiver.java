@@ -1,12 +1,14 @@
 package org.minftel.mscrum.receiver;
 
 import org.minftel.mscrum.activities.ChartActivity;
+import org.minftel.mscrum.activities.EditTaskActivity;
 import org.minftel.mscrum.activities.EditUserProjectActivity;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.SprintsActivity;
 import org.minftel.mscrum.activities.TaskActivity;
 import org.minftel.mscrum.activities.UserActivity;
+import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.content.BroadcastReceiver;
@@ -86,7 +88,7 @@ public class ScrumReceiver extends BroadcastReceiver {
 		} else if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_EDIT_USER_PROJECT)) {
 			
 			//Create Intent to start the activity EditProjectActivity
-			Log.i(ScrumConstants.TAG, "Launch Charts Activity");
+			Log.i(ScrumConstants.TAG, "Launch Edit Project Activity");
 			
 			Intent editProjectIntent = new Intent(context, EditUserProjectActivity.class);
 			editProjectIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -98,7 +100,20 @@ public class ScrumReceiver extends BroadcastReceiver {
 			editProjectIntent.putExtra("usersnotinproject", jsonUsersNotInProject);
 			
 			context.startActivity(editProjectIntent);
-		} 
+		} else if (intent.getAction().equals(ScrumConstants.BROADCAST_GO_EDIT_TASK)) {
+			
+			//Create Intent to start the activity EditProjectActivity
+			Intent editTaskIntent = new Intent(context, EditTaskActivity.class);
+			editTaskIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			
+			String jsonUsers = intent.getStringExtra("users");
+			TaskDetail task = (TaskDetail) intent.getSerializableExtra("task");
+			
+			editTaskIntent.putExtra("users", jsonUsers);
+			editTaskIntent.putExtra("task", task);
+			
+			context.startActivity(editTaskIntent);
+		}
 			
 		
 	}

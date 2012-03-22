@@ -37,19 +37,16 @@ public class EditTaskActivity extends Activity {
 		
 		
 		try{
+			
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.edittask);
-		
 			
 			//Recogida informacion servidor
-			String json = getIntent().getExtras().getString(
-					"usersinproject");
-			String json2 = getIntent().getExtras().getString("task");
+			Bundle extras = getIntent().getExtras();
+			task = (TaskDetail) extras.getSerializable("task");
+			String json = extras.getString("users");
 			
 			userList = JSONConverter.fromJSONtoUserList(json);
-			JSONObject tarea = new JSONObject(json2);
-			task = JSONConverter.fromJSONObjectToTaskDetail(tarea);
-	
 			
 			//Buscamos e inicializamos los distintos componentes
 			taskSpinner = (Spinner)findViewById(R.id.spinner2);
@@ -110,8 +107,7 @@ public class EditTaskActivity extends Activity {
 			});
 		
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Log.e(ScrumConstants.TAG, "JSONException: "+ e.getMessage());
 		}
 		
 	}
