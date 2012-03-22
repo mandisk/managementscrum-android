@@ -93,4 +93,5 @@
     <string name="Project">Proyecto</string>
     <string name="Sprint">Sprint</string>
     <string name="Task">Tarea</string>
+    <string name="UserInProject">Usuarios del Proyecto</string>
 </resources>
