@@ -5,8 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.minftel.mscrum.activities.R.id;
-import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.tasks.AddProjectTask;
 
 import android.app.Activity;
@@ -43,7 +41,8 @@ public class EditProjectActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.editproject);
-		// Get SelectedTask
+		
+		// Get the selected task
 		Bundle extras = getIntent().getExtras();
 
 		if (extras == null) {
@@ -76,7 +75,7 @@ public class EditProjectActivity extends Activity {
 		Calendar calEnd = Calendar.getInstance();
 		calEnd.setTime(endDate);
 
-		// add a click listener to the button
+		// Add a onClick listener to the button
 		mPickDate1.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				showDialog(DATE_DIALOG_ID1);
@@ -97,11 +96,11 @@ public class EditProjectActivity extends Activity {
 		mMonth2 = calEnd.get(Calendar.MONTH);
 		mDay2 = calEnd.get(Calendar.DAY_OF_MONTH);
 
-		// display the current date (this method is below)
+		// Displays the current date (this method is below)
 		updateDisplay();
 	}
 
-	// updates the date in the TextView
+	// Updates the date in the TextView
 	private void updateDisplay() {
 		DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
 		Date date = new Date();
@@ -117,7 +116,7 @@ public class EditProjectActivity extends Activity {
 		endDateEdit.setText(fecha);
 	}
 
-	// the callback received when the user "sets" the date in the dialog
+	// The callback it's received when the user "sets" the date in the dialog
 	private DatePickerDialog.OnDateSetListener mDateSetListener1 = new DatePickerDialog.OnDateSetListener() {
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
 				int dayOfMonth) {
@@ -129,6 +128,7 @@ public class EditProjectActivity extends Activity {
 
 		}
 	};
+	
 	private DatePickerDialog.OnDateSetListener mDateSetListener2 = new DatePickerDialog.OnDateSetListener() {
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
 				int dayOfMonth) {
@@ -198,7 +198,7 @@ public class EditProjectActivity extends Activity {
 			String sYear2 = String.valueOf(mYear2);
 			String varControl = "1";
 
-			// Reutilizamos la tarea de añadir proyecto por ser similar
+			// Reuse the task of AddProjectTask by its similar behaviour 
 			AddProjectTask addProjectTask = new AddProjectTask(this);
 			addProjectTask
 					.execute(varControl, name, description, sDay1, sMonth1,
