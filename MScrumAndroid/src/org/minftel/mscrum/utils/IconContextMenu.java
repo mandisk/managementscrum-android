@@ -2,6 +2,7 @@ package org.minftel.mscrum.utils;
 
 import java.util.ArrayList;
 
+import android.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -159,11 +160,11 @@ public class IconContextMenu implements DialogInterface.OnCancelListener,
 	        	temp.setLayoutParams(param);
 	        	temp.setPadding((int)toPixel(res, 15), 0, (int)toPixel(res, 15), 0);
 	        	temp.setGravity(android.view.Gravity.CENTER_VERTICAL);
-	        	
+	        	context.setTheme(android.R.style.Theme);
 	        	Theme th = context.getTheme();
 				TypedValue tv = new TypedValue();
-				
-				if (th.resolveAttribute(android.R.attr.textAppearanceLargeInverse, tv, true)) {
+//				android.R.attr.textAppearanceLargeInverse
+				if (th.resolveAttribute(android.R.attr.text, tv, true)) {
 					temp.setTextAppearance(context, tv.resourceId);
 				}
 	        	
