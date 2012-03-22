@@ -64,7 +64,7 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
         iconContextMenu.addItem(res, R.string.menu_delete_project, R.drawable.discard, R.id.ctx_menu_delete);
         iconContextMenu.addItem(res, R.string.menu_edit_project, R.drawable.edit, R.id.ctx_menu_edit_project);
         iconContextMenu.addItem(res, R.string.menu_edit_user, R.drawable.add_person, R.id.ctx_menu_edit_user_in_project);
-        iconContextMenu.addItem(res, R.string.menu_view_charts, R.drawable.stadistic, R.id.ctx_menu_view_charts);
+//        iconContextMenu.addItem(res, R.string.menu_view_charts, R.drawable.stadistic, R.id.ctx_menu_view_charts);
 		
 		// Get Project List
 		String json = getIntent().getExtras().getString("projects");
@@ -163,10 +163,10 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 					EditUserProjectAskTask editprojectTask = new EditUserProjectAskTask(activity);
 					editprojectTask.execute(Integer.toString(projectDetail.getIdProject()));
 					break;
-				case R.id.ctx_menu_view_charts:
-					ChartsTask ct = new ChartsTask(activity);
-					ct.execute(idproject);
-					break;
+//				case R.id.ctx_menu_view_charts:
+//					ChartsTask ct = new ChartsTask(activity);
+//					ct.execute(idproject);
+//					break;
 				}
 			}
 		});
