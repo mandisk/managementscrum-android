@@ -85,6 +85,12 @@
 	    <item name="android:typeface">normal</item>
 	    <item name="android:layout_marginTop">20dp</item>
 	</style>
+	<style name="BUTTON_MW_all">
+	    <item name="android:layout_width">match_parent</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:typeface">normal</item>
+	    <item name="android:layout_marginTop">20dp</item>
+	</style>
 	<style name="BUTTON_WW" parent="@android:style/TextAppearance.Medium.Inverse">
 	    <item name="android:layout_width">wrap_content</item>
 	    <item name="android:layout_height">wrap_content</item>
