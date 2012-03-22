@@ -5,12 +5,6 @@
     <LinearLayout
         android:id="@+id/linearLayout1"
         style="@style/LWMP.LHWC.OV.CH" >
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:onClick="estadistica"
-            android:text="Estadistica" />
     </LinearLayout>
 
     <ListView
