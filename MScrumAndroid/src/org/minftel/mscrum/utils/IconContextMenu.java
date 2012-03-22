@@ -159,7 +159,7 @@ public class IconContextMenu implements DialogInterface.OnCancelListener,
 	        	AbsListView.LayoutParams param = new AbsListView.LayoutParams(AbsListView.LayoutParams.FILL_PARENT, 
 	        																  AbsListView.LayoutParams.WRAP_CONTENT);
 	        	temp.setLayoutParams(param);
-	        	temp.setPadding((int)toPixel(res, 15), 0, (int)toPixel(res, 15), 0);
+	        	temp.setPadding((int)toPixel(res, 20), 20, (int)toPixel(res, 20), 20);
 	        	temp.setGravity(android.view.Gravity.CENTER_VERTICAL);
 //	        	context.setTheme(android.R.style.Theme);
 	        	Theme th = context.getTheme();
@@ -179,7 +179,7 @@ public class IconContextMenu implements DialogInterface.OnCancelListener,
 			textView.setText(item.text);
 			textView.setCompoundDrawablesWithIntrinsicBounds(item.image, null, null, null);
 			textView.setBackgroundColor(Color.WHITE);
-			textView.setHeight(80);
+//			textView.setHeight(80);
         	
 	        return textView;
 		}
