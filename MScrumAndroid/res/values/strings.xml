@@ -85,8 +85,11 @@
     <string name="sprintHint">"Sprint"</string>
     <string name="users">Users</string>
     <string name="userInfo">Contact info</string>
-    <string name="TaskState">Estado</string>
+    <string name="TaskState">State</string>
     <string name="editUserProjectSelectAll">Select all</string>
     <string name="editUserProjectUnselectAll">Unselect all</string>
     <string name="EditUsers">Edit Users</string>
+    <string name="Project">Project</string>
+    <string name="Sprint">Sprint</string>
+    <string name="Task">Task</string>
 </resources>

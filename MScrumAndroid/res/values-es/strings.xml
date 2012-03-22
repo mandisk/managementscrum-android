@@ -56,7 +56,7 @@
     <string name="addTaskMenu">"Añadir tarea"</string>
     <string name="deleteTaskMenu">"Borrar tarea"</string>
     <string name="idTask">Id Tarea</string>
-    <string name="StateTask">Stado</string>
+    <string name="StateTask">Estado</string>
     <string name="UserTask">Usuario</string>
     <string name="ViewTaskDescription">Descripción</string>
     <string name="SprintTask">Sprint</string>
@@ -64,6 +64,7 @@
     <string name="ModifyTask">Modificar Tarea</string>
     <string name="Save">Guardar</string>
     <string name="timeTask">Tiempo</string>
+    <string name="emailField">Email:</string>
     <string name="bt_call">Hacer llamada</string>
     <string name="bt_send_message">Mandar mensaje</string>
     <string name="menu_view_charts">Ver estadísticas</string>
@@ -77,7 +78,18 @@
     <string name="editTaskHintTimeTask">Tiempo</string>
     <string name="editTaskHintSprint">Sprint</string>
     <string name="editTaskHintDescription">Descripción</string>
+    <string name="menu_edit_project">Edit project</string>
+    <string name="editTaskMenu">Editar tarea</string>
+    <string name="EditProject">Editar proyecto</string>
+    <string name="menu_edit_user">Editar usuarios</string>
     <string name="sprintHint">"Sprint"</string>
     <string name="users">Usuarios</string>
     <string name="userInfo">Información de contacto</string>
+    <string name="TaskState">Estado</string>
+    <string name="editUserProjectSelectAll">Seleccionar todos</string>
+    <string name="editUserProjectUnselectAll">Deseleccionar todos</string>
+    <string name="EditUsers">Editar usuarios</string>
+    <string name="Project">Proyecto</string>
+    <string name="Sprint">Sprint</string>
+    <string name="Task">Tarea</string>
 </resources>

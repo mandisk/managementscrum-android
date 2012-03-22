@@ -14,6 +14,10 @@
 	<style name="LWFP.LHFP.PAD20.OV">
 	    <item name="android:orientation">vertical</item>
 	</style>
+	<style name="LWFP.LHFP.PAD20.OV.all">
+	    <item name="android:paddingTop">20dp</item>
+	    
+	</style>
 	
 	<style name="LWMP">
 	    <item name="android:layout_width">match_parent</item>
