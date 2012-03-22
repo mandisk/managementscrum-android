@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.content.res.Resources.Theme;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.View;
@@ -160,11 +161,11 @@ public class IconContextMenu implements DialogInterface.OnCancelListener,
 	        	temp.setLayoutParams(param);
 	        	temp.setPadding((int)toPixel(res, 15), 0, (int)toPixel(res, 15), 0);
 	        	temp.setGravity(android.view.Gravity.CENTER_VERTICAL);
-	        	context.setTheme(android.R.style.Theme);
+//	        	context.setTheme(android.R.style.Theme);
 	        	Theme th = context.getTheme();
 				TypedValue tv = new TypedValue();
 //				android.R.attr.textAppearanceLargeInverse
-				if (th.resolveAttribute(android.R.attr.text, tv, true)) {
+				if (th.resolveAttribute(android.R.attr.textAppearanceLargeInverse, tv, true)) {
 					temp.setTextAppearance(context, tv.resourceId);
 				}
 	        	
@@ -177,6 +178,7 @@ public class IconContextMenu implements DialogInterface.OnCancelListener,
 			textView.setTag(item);
 			textView.setText(item.text);
 			textView.setCompoundDrawablesWithIntrinsicBounds(item.image, null, null, null);
+			textView.setBackgroundColor(Color.WHITE);
         	
 	        return textView;
 		}
