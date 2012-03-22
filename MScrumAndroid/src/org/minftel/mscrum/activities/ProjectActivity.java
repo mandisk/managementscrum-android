@@ -68,7 +68,6 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 		
 		// Get Project List
 		String json = getIntent().getExtras().getString("projects");
-		Log.i(ScrumConstants.TAG,json);
 
 		try {
 			projectList = JSONConverter.fromJSONtoProjecList(json);
@@ -118,48 +117,31 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 	    		String idproject = String.valueOf(projectDetail.getIdProject());
 				switch(menuId) {
 				case R.id.ctx_menu_view_users:
-					
-//					Toast.makeText(getApplicationContext(), "You've clicked on menu item 1 and "+ pos + "/"+idproject, 1000).show();
-					// View project's users
 					UserTask ut = new UserTask(activity);
 					ut.execute(idproject);	
 					break;
 				case R.id.ctx_menu_delete:
-//					Toast.makeText(getApplicationContext(), "You've clicked on menu item 2", 1000).show();
 					DeleteProjectTask dpt = new DeleteProjectTask(activity);
 					dpt.execute(idproject);
 					break;
 				case R.id.ctx_menu_edit_project:
-//					Toast.makeText(getApplicationContext(), "You've clicked on menu item 3", 1000).show();
 					String SmEmail = "";
 					
 					SharedPreferences prefs;
 					prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
 					prefs.getString("userEmail", SmEmail);
 					
-					/**********************************************************/
-					//Lo de arriba falla ¿por que? <<<<<<<<<<---------------------
-					/*******************************************************/
-					Log.e(ScrumConstants.TAG, " " + SmEmail);
-					Log.e(ScrumConstants.TAG, " " + projectDetail.getScrumMaster().getEmail() );
-//					if(projectDetail.getScrumMaster().getEmail() == SmEmail)
-//					{
-						Intent intent = new Intent(activity, EditProjectActivity.class);
-						intent.putExtra("name", projectDetail.getName());
-						intent.putExtra("description", projectDetail.getDescription());
-						intent.putExtra("initdate", projectDetail.getInitialDate());
-						intent.putExtra("enddate", projectDetail.getEndDate());
-						intent.putExtra("ScrumMaster", projectDetail.getScrumMaster().getEmail());
-						intent.putExtra("idProject", projectDetail.getIdProject());
-						startActivity(intent);
-//					}
-//					else{
-//						Toast.makeText(this, "You aren't Scrum Master", Toast.LENGTH_SHORT)
-//						.show();
-//					}
+					Intent intent = new Intent(activity, EditProjectActivity.class);
+					intent.putExtra("name", projectDetail.getName());
+					intent.putExtra("description", projectDetail.getDescription());
+					intent.putExtra("initdate", projectDetail.getInitialDate());
+					intent.putExtra("enddate", projectDetail.getEndDate());
+					intent.putExtra("ScrumMaster", projectDetail.getScrumMaster().getEmail());
+					intent.putExtra("idProject", projectDetail.getIdProject());
+					startActivity(intent);
+						
 					break;
 				case R.id.ctx_menu_edit_user_in_project:
-//					Toast.makeText(getApplicationContext(), "You've clicked on menu item 4", 1000).show();
 					EditUserProjectAskTask editprojectTask = new EditUserProjectAskTask(activity);
 					editprojectTask.execute(Integer.toString(projectDetail.getIdProject()));
 					break;
@@ -207,88 +189,10 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
     	startActivity(intent);
     }
 
-//
-//	@Override
-//	public boolean onContextItemSelected(MenuItem item) {
-//
-//		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
-//				.getMenuInfo();
-//		ProjectDetail projectDetail = this.projectList.get(info.position);
-//		String idproject = String.valueOf(projectDetail.getIdProject());
-//
-//		switch (item.getItemId()) {
-//		case R.id.ctx_menu_view_users:
-//			
-//			// View project's users
-//			UserTask ut = new UserTask(this);
-//			ut.execute(idproject);			
-//			return true;
-//			
-//		case R.id.ctx_menu_delete:
-//
-//			// Delete a project			
-//			DeleteProjectTask dpt = new DeleteProjectTask(this);
-//			dpt.execute(idproject);
-//			return true;
-//			
-//		case R.id.ctx_menu_edit_project:
-//			String SmEmail = "";
-//			
-//			SharedPreferences prefs;
-//			prefs = getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
-//			prefs.getString("userEmail", SmEmail);
-//			
-//			/**********************************************************/
-//			//Lo de arriba falla ¿por que? <<<<<<<<<<---------------------
-//			/*******************************************************/
-//			Log.e(ScrumConstants.TAG, " " + SmEmail);
-//			Log.e(ScrumConstants.TAG, " " + projectDetail.getScrumMaster().getEmail() );
-////			if(projectDetail.getScrumMaster().getEmail() == SmEmail)
-////			{
-//				Intent intent = new Intent(this, EditProjectActivity.class);
-//				intent.putExtra("name", projectDetail.getName());
-//				intent.putExtra("description", projectDetail.getDescription());
-//				intent.putExtra("initdate", projectDetail.getInitialDate());
-//				intent.putExtra("enddate", projectDetail.getEndDate());
-//				intent.putExtra("ScrumMaster", projectDetail.getScrumMaster().getEmail());
-//				intent.putExtra("idProject", projectDetail.getIdProject());
-//				startActivity(intent);
-////			}
-////			else{
-////				Toast.makeText(this, "You aren't Scrum Master", Toast.LENGTH_SHORT)
-////				.show();
-////			}
-//			return true;
-//		case R.id.ctx_menu_edit_user_in_project:
-//			
-//			EditUserProjectAskTask editprojectTask = new EditUserProjectAskTask(this);
-//			editprojectTask.execute(Integer.toString(projectDetail.getIdProject()));
-//			return true;
-//			
-//		case R.id.ctx_menu_view_charts:
-//			
-//			// View chart
-//			ChartsTask ct = new ChartsTask(this);
-//			ct.execute(idproject);
-//			return true;					
-//			
-//		default:
-//			return super.onContextItemSelected(item);
-//		}
-//	}
-
 	public void onListItemClick(ListView parent, View v, int position, long id) {
 
 		// Get selected project
 		ProjectDetail selectedProject = this.projectList.get(position);
-
-//		Toast.makeText(
-//				this,
-//				"Project selected: " + selectedProject.getName() + " [ ID: "
-//						+ selectedProject.getIdProject() + " ]",
-//				Toast.LENGTH_SHORT).show();
-
-		// Converted to string to send
 		String idProject = String.valueOf(selectedProject.getIdProject());
 
 		ProjectsTask projectTask = new ProjectsTask(this);
@@ -320,7 +224,6 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 
 	@Override
 	public void onBackPressed() {
-//		super.onBackPressed();
 		Intent intent = new Intent(Intent.ACTION_MAIN);
 		intent.addCategory(Intent.CATEGORY_HOME);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

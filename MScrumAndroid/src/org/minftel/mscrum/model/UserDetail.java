@@ -1,6 +1,10 @@
 package org.minftel.mscrum.model;
 
-public class UserDetail {
+import java.io.Serializable;
+
+public class UserDetail implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String surname;
 	private String email;
@@ -11,7 +15,6 @@ public class UserDetail {
 		
 	}
 	
-
 	public UserDetail(String name, String surname, String email, String phone,
 			int id) {
 		super();
@@ -22,16 +25,13 @@ public class UserDetail {
 		this.id = id;
 	}
 
-
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;

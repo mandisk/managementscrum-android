@@ -83,6 +83,7 @@ public class JSONConverter {
 	 * @throws JSONException
 	 */
 	public static List<UserDetail> fromJSONtoUserList(String json) throws JSONException {
+		Log.i(ScrumConstants.TAG, "JSONConverter: " + json);
 		JSONArray jsonUsers = new JSONArray(json);
 		List<UserDetail> users = new ArrayList<UserDetail>();
 		

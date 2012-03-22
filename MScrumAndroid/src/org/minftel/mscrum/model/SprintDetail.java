@@ -1,9 +1,11 @@
 package org.minftel.mscrum.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class SprintDetail {
+public class SprintDetail implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private int idSprint;
 	private int sprintNumber;
 	private Date initialDate;

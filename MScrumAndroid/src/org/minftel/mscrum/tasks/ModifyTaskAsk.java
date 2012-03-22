@@ -13,9 +13,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.minftel.mscrum.activities.LoginActivity;
-import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.activities.TaskActivity;
+import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
@@ -29,11 +29,14 @@ public class ModifyTaskAsk extends AsyncTask<String, Integer, String>{
 
 	private	TaskActivity activity;
 	private ProgressDialog progressDialog;
+	private TaskDetail task;
 	
-	public ModifyTaskAsk(Activity activity) {
+	public ModifyTaskAsk(Activity activity, TaskDetail task) {
 		this.activity = (TaskActivity) activity;
 		this.progressDialog = new ProgressDialog(activity);
+		this.task = task;
 	}
+	
 	@Override
 	protected String doInBackground(String... params) {
 		String result = null;
@@ -104,15 +107,14 @@ public class ModifyTaskAsk extends AsyncTask<String, Integer, String>{
 			
 			try {
 				JSONObject json = new JSONObject(result);
-				JSONArray jsonUserInProject = json.getJSONArray("usersinproject");
-				JSONObject jsonTask = json.getJSONObject("task");
+				JSONArray jsonUserInProject = json.getJSONArray("users");
 				
 				
 				// Send broadcast to open EditProjectActivity
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_EDIT_TASK);
-				broadCastIntent.putExtra("usersinproject", jsonUserInProject.toString());
-				broadCastIntent.putExtra("task", jsonTask.toString());
+				broadCastIntent.putExtra("users", jsonUserInProject.toString());
+				broadCastIntent.putExtra("task", task);
 				this.activity.sendBroadcast(broadCastIntent);
 				
 			} catch (JSONException e) {
