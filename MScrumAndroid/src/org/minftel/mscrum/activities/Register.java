@@ -25,8 +25,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Register extends Activity implements
-OnGesturePerformedListener{
+public class Register extends Activity implements OnGesturePerformedListener {
 	private GestureLibrary gestureLib;
 
 	private static final int CONTACT_PICKER_RESULT = 0;
@@ -38,11 +37,13 @@ OnGesturePerformedListener{
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
+
 		nombre = (EditText) findViewById(R.id.nombre);
 		apellido = (EditText) findViewById(R.id.apellido);
 		email = (EditText) findViewById(R.id.email);
 		password = (EditText) findViewById(R.id.pass);
-		// Detección de gesto
+
+		// Gesture Detection
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.register, null);
 		gestureOverlayView.addView(inflate);
@@ -66,9 +67,11 @@ OnGesturePerformedListener{
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		String correo = "";
+
+		String correo = null;
 
 		if (resultCode == RESULT_OK) {
+
 			switch (requestCode) {
 			case CONTACT_PICKER_RESULT:
 
@@ -76,15 +79,15 @@ OnGesturePerformedListener{
 				String id = result.getLastPathSegment();
 				Cursor c = managedQuery(result, null, null, null, null);
 
-				// Recupera el nombre del contacto
+				// Gets the contact name
 				c.moveToFirst();
 				String name = c
 						.getString(c
 								.getColumnIndexOrThrow(ContactsContract.Contacts.DISPLAY_NAME));
-				Log.d("", "" + name);
 
 				c = null;
-				// Recupera email de contacto
+
+				// Gests the contact email
 				c = getContentResolver().query(Email.CONTENT_URI, null,
 						Email.CONTACT_ID + "=?", new String[] { id }, null);
 
@@ -93,15 +96,14 @@ OnGesturePerformedListener{
 				if (c.moveToFirst()) {
 					correo = c.getString(emaildx);
 				}
-				// String lastName =
-				// c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.StructuredName.FAMILY_NAME));
 
 				nombre.setText(name);
 				email.setText(correo);
-				// apellido.setText(lastName);
+
 				if (c != null) {
 					c.close();
 				}
+
 				break;
 			}
 		}
@@ -132,12 +134,12 @@ OnGesturePerformedListener{
 
 		}
 	}
-	
+
 	public void onGesturePerformed(GestureOverlayView overlay, Gesture gesture) {
 		ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
 		for (Prediction prediction : predictions) {
 			if (prediction.score > 2.0) {
-				if(prediction.name.equalsIgnoreCase("toRight")){
+				if (prediction.name.equalsIgnoreCase("toRight")) {
 					onBackPressed();
 				}
 			}
