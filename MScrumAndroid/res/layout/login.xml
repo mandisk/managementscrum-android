@@ -23,7 +23,7 @@
 
         <Button
             android:id="@+id/buttonLogin"
-            style="@style/BUTTON_MW_all"
+            style="@style/BUTTON_MW"
             android:onClick="doLogin"
             android:text="@string/login_button" />
 
