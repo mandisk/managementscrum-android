@@ -53,7 +53,7 @@ public class TaskActivity extends ListActivity implements
 		Resources res = getResources();
 		// init the menu
 		iconContextMenu = new IconContextMenu(this, CONTEXT_MENU_ID);
-		iconContextMenu.addItem(res, R.string.menu_delete_sprints,
+		iconContextMenu.addItem(res, R.string.menu_delete_task,
 				R.drawable.discard, R.id.ctx_menu_delete);
 
 		String[] taskNames = null;
