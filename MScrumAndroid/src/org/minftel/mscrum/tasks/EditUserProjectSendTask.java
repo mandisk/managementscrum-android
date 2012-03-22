@@ -12,7 +12,6 @@ import java.net.URLConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.minftel.mscrum.activities.AddProjectActivity;
 import org.minftel.mscrum.activities.EditUserProjectActivity;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.R;
@@ -50,7 +49,7 @@ public class EditUserProjectSendTask extends AsyncTask<String, Integer, String>{
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
 
-			// Send to server
+			// Sends to the server
 			OutputStream out = connection.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(out);
 			
@@ -60,7 +59,7 @@ public class EditUserProjectSendTask extends AsyncTask<String, Integer, String>{
 				dos.writeUTF(param);
 			}
 			
-			// Receive from server
+			// Receives from the server
 			InputStream in = connection.getInputStream();
 			DataInputStream dis = new DataInputStream(in);
 			
@@ -106,7 +105,7 @@ public class EditUserProjectSendTask extends AsyncTask<String, Integer, String>{
 				JSONObject json = new JSONObject(result);
 				JSONArray jsonProjects = json.getJSONArray("projects");
 				
-				// Send broadcast to open ProjectActivity
+				// Sends broadcast to open UserActivity
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_PROJECTS);
 				broadCastIntent.putExtra("projects", jsonProjects.toString());
