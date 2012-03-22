@@ -27,6 +27,7 @@
     <string name="dialog_loading">Cargando</string>
     <string name="menu_view_users">Ver usuarios</string>
     <string name="menu_delete_project">Borrar proyecto</string>
+    <string name="menu_delete_task">Borrar tarea</string>
     <string name="addTask">Añadir tarea</string>
     <string name="TaskName">Introduzca nombre:</string>
     <string name="taskDescription">Introduzca descripción</string>
