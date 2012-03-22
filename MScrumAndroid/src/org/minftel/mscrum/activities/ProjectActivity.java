@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.json.JSONException;
 import org.minftel.mscrum.model.ProjectDetail;
-import org.minftel.mscrum.tasks.ChartsTask;
 import org.minftel.mscrum.tasks.DeleteProjectTask;
 import org.minftel.mscrum.tasks.EditUserProjectAskTask;
 import org.minftel.mscrum.tasks.ProjectsTask;
@@ -16,7 +15,6 @@ import org.minftel.mscrum.utils.TextAdapter;
 
 import org.minftel.mscrum.utils.IconContextMenu;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Intent;
@@ -30,19 +28,14 @@ import android.gesture.Prediction;
 import android.gesture.GestureOverlayView.OnGesturePerformedListener;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 public class ProjectActivity extends ListActivity implements OnGesturePerformedListener{
 	private final int CONTEXT_MENU_ID = 1;
@@ -58,13 +51,13 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 		setContentView(R.layout.project);
 		activity = this;
 		Resources res = getResources();
-		//init the menu
+		
+		// Initializae the menu
         iconContextMenu = new IconContextMenu(this, CONTEXT_MENU_ID);
         iconContextMenu.addItem(res, R.string.menu_view_users, R.drawable.group, R.id.ctx_menu_view_users);
         iconContextMenu.addItem(res, R.string.menu_delete_project, R.drawable.discard, R.id.ctx_menu_delete);
         iconContextMenu.addItem(res, R.string.menu_edit_project, R.drawable.edit, R.id.ctx_menu_edit_project);
         iconContextMenu.addItem(res, R.string.menu_edit_user, R.drawable.add_person, R.id.ctx_menu_edit_user_in_project);
-//        iconContextMenu.addItem(res, R.string.menu_view_charts, R.drawable.stadistic, R.id.ctx_menu_view_charts);
 		
 		// Get Project List
 		String json = getIntent().getExtras().getString("projects");
@@ -87,7 +80,7 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 					+ project.getScrumMaster().getName();
 		}
 
-		//Detección de gesto
+		// Gesture Detection
 				GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 //				gestureOverlayView.setGestureColor(Color.TRANSPARENT);
 				gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
@@ -100,16 +93,13 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 					Log.w(ScrumConstants.TAG, "Gesture not loaded!");
 				}
 				setContentView(gestureOverlayView);
+				
 		// Load data in ListAdapter
 		setListAdapter(new TextAdapter(this, R.layout.list_item, projectNames,
 				scrumMasters));
 		getListView().setOnItemLongClickListener(itemLongClickHandler);
-		
-		
-		
-//		// Context menu
-//		registerForContextMenu(getListView());
-		//set onclick listener for context menu
+				
+		// Sets onClick Listener for context menu
         iconContextMenu.setOnClickListener(new IconContextMenu.IconContextMenuOnClickListener() {
         	
 			public void onClick(int menuId) {
@@ -145,19 +135,16 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 					EditUserProjectAskTask editprojectTask = new EditUserProjectAskTask(activity);
 					editprojectTask.execute(Integer.toString(projectDetail.getIdProject()));
 					break;
-//				case R.id.ctx_menu_view_charts:
-//					ChartsTask ct = new ChartsTask(activity);
-//					ct.execute(idproject);
-//					break;
+
 				}
 			}
 		});
 	}	
-	
-	
+		
 	public List<ProjectDetail> getList(){
 		return this.projectList;
 	}
+	
 	/**
      * list item long click handler
      * used to show the context menu
@@ -191,7 +178,7 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 
 	public void onListItemClick(ListView parent, View v, int position, long id) {
 
-		// Get selected project
+		// Gets the selected project
 		ProjectDetail selectedProject = this.projectList.get(position);
 		String idProject = String.valueOf(selectedProject.getIdProject());
 
