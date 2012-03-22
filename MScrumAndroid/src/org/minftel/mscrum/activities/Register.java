@@ -38,10 +38,10 @@ public class Register extends Activity implements OnGesturePerformedListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
 
-		nombre = (EditText) findViewById(R.id.nombre);
-		apellido = (EditText) findViewById(R.id.apellido);
-		email = (EditText) findViewById(R.id.email);
-		password = (EditText) findViewById(R.id.pass);
+		nombre = (EditText) findViewById(R.id.nombreRegister);
+		apellido = (EditText) findViewById(R.id.apellidoRegister);
+		email = (EditText) findViewById(R.id.emailRegister);
+		password = (EditText) findViewById(R.id.passRegister);
 
 		// Gesture Detection
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
@@ -96,7 +96,7 @@ public class Register extends Activity implements OnGesturePerformedListener {
 				if (c.moveToFirst()) {
 					correo = c.getString(emaildx);
 				}
-
+				Log.i(ScrumConstants.TAG, "nombre contacto--> "+name);
 				nombre.setText(name);
 				email.setText(correo);
 
