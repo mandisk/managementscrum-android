@@ -34,9 +34,7 @@ public class AddProjectActivity extends Activity implements
 		OnGesturePerformedListener {
 	private GestureLibrary gestureLib;
 	private TextView mDateDisplay1;
-	// private TextView mPickDate1;
 	private TextView mDateDisplay2;
-	// private TextView mPickDate2;
 
 	private EditText projectName;
 	private EditText projectDescription;
@@ -62,8 +60,8 @@ public class AddProjectActivity extends Activity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addproject);
-		
-		// Detección de gesto
+
+		// Gesture detection
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.addproject, null);
 		gestureOverlayView.addView(inflate);
@@ -72,17 +70,14 @@ public class AddProjectActivity extends Activity implements
 		gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
 		gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
 		if (!gestureLib.load()) {
-			// finish();
 			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
 		}
 		setContentView(gestureOverlayView);
-		
+
 		// capture our View elements
 		mDateDisplay1 = (TextView) findViewById(R.id.addInitialDateProjectRes);
-		// mPickDate1 = (TextView) findViewById(R.id.addInitialDateProject);
 		mPickDate1 = (ImageView) findViewById(R.id.addProjectInitialCalendar);
 		mDateDisplay2 = (TextView) findViewById(R.id.addEndDateProjectRes);
-		// mPickDate2 = (TextView) findViewById(R.id.addEndDateProject);
 		mPickDate2 = (ImageView) findViewById(R.id.addProjectEndCalendar);
 		projectName = (EditText) findViewById(R.id.nameAddProjectText);
 		projectDescription = (EditText) findViewById(R.id.descriptionAddProjectText);

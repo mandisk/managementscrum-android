@@ -32,12 +32,9 @@ import android.widget.Toast;
 public class AddSprintActivity extends Activity implements
 		OnGesturePerformedListener {
 	private GestureLibrary gestureLib;
+
 	private TextView mDateDisplay1;
-	// private TextView mPickDate1;
-
 	private TextView mDateDisplay2;
-	// private TextView mPickDate2;
-
 	private TextView mSprintNumber;
 
 	private ImageView mPickDate1;
@@ -62,8 +59,8 @@ public class AddSprintActivity extends Activity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addsprint);
-		
-		// Detección de gesto
+
+		// Gesture detection
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.addsprint, null);
 		gestureOverlayView.addView(inflate);
@@ -76,12 +73,10 @@ public class AddSprintActivity extends Activity implements
 			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
 		}
 		setContentView(gestureOverlayView);
-		
+
 		// Catch our view elements
 		mDateDisplay1 = (TextView) findViewById(R.id.addSprintInitialDate);
 		mDateDisplay2 = (TextView) findViewById(R.id.addSprintEndDate);
-		// mPickDate1 = (TextView) findViewById(R.id.addSprintInitialDateLabel);
-		// mPickDate2 = (TextView) findViewById(R.id.addSprintEndDateLabel);
 		mPickDate1 = (ImageView) findViewById(R.id.addSprintInitialCalendar);
 		mPickDate2 = (ImageView) findViewById(R.id.addSprintEndCalendar);
 		mSprintNumber = (TextView) findViewById(R.id.addSprintId);
@@ -199,17 +194,11 @@ public class AddSprintActivity extends Activity implements
 			String sMonth2 = String.valueOf(mMonth2);
 			String sYear2 = String.valueOf(mYear2);
 
-			// Get the Project ID from the preferences
-			// String idproject =
-			// getSharedPreferences(ScrumConstants.SHARED_PREFERENCES_FILE,
-			// MODE_PRIVATE).getString("idproject", "");
-			
-			Log.w(ScrumConstants.TAG, sDay1+"/"+sMonth1+"/"+sYear1+"/"+sDay2+"/"+sMonth2+"/"+sYear2);
+			Log.w(ScrumConstants.TAG, sDay1 + "/" + sMonth1 + "/" + sYear1
+					+ "/" + sDay2 + "/" + sMonth2 + "/" + sYear2);
 			AddSprintTask addSprintTask = new AddSprintTask(this);
 			addSprintTask.execute(sSprintNumber, sDay1, sMonth1, sYear1, sDay2,
 					sMonth2, sYear2);
-			// addSprintTask.execute(sSprintNumber, sDay1, sMonth1, sYear1,
-			// sDay2, sMonth2, sYear2, idproject);
 		}
 	}
 

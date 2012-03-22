@@ -26,6 +26,7 @@ public class AddTask extends Activity implements OnGesturePerformedListener {
 
 	EditText descriptionTask;
 	EditText timeTask;
+	
 	String descripcion;
 	String time;
 
@@ -33,7 +34,8 @@ public class AddTask extends Activity implements OnGesturePerformedListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addtask);
-		// Detección de gesto
+		
+		// Gesture detection
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.addtask, null);
 		gestureOverlayView.addView(inflate);
@@ -46,6 +48,7 @@ public class AddTask extends Activity implements OnGesturePerformedListener {
 			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
 		}
 		setContentView(gestureOverlayView);
+		
 		descriptionTask = (EditText) findViewById(R.id.DescriptionTask);
 		timeTask = (EditText) findViewById(R.id.TimeTask);
 
