@@ -3,7 +3,6 @@ package org.minftel.mscrum.activities;
 import java.util.List;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.model.UserDetail;
 import org.minftel.mscrum.tasks.ModifyTaskSendTask;
@@ -15,10 +14,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -75,23 +72,47 @@ public class EditTaskActivity extends Activity {
 			description = (EditText) findViewById(R.id.DescriptionTaskEdit);
 			description.setText(task.getDescription());
 			
+			userSpinner = (Spinner) findViewById(R.id.spinner1);
+			
+			int position=0; //Variable para guardar la posicion en la que se encuentra el usuario que esta asignado a la tarea
+			String email = "";
+			
+			if(task.getUser() != null){
+				email = task.getUser().getEmail();
+			}
+			Log.i(ScrumConstants.TAG, "name: "+email);
+			
 			//Carga dinamica del spinner de usuario
 			String[] items = new String[userList.size()];
 			
 			int i=0;
+			int vueltas=0;
 			for(UserDetail user: userList)
 			{
+				if(user.getEmail().equalsIgnoreCase(email) ){
+					if(vueltas!=i){
+						position=i+1;
+					}else
+					{
+						position=i;
+					}
+					
+				}
 				items[i] = user.getName();
 				i++;
+				vueltas++;
+			
 			}
 			
-			userSpinner = (Spinner) findViewById(R.id.spinner1);
+			Log.i(ScrumConstants.TAG, "position: "+position);
 			
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 			            android.R.layout.simple_spinner_item, items);
 			
 			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			userSpinner.setAdapter(adapter);
+			
+			userSpinner.setSelection(position);
 			
 			
 			userSpinner.setOnItemSelectedListener(
@@ -132,7 +153,7 @@ public class EditTaskActivity extends Activity {
 		
 		if (chekValues(stateTask, userSelected.getName(), timeTask, descriptionTask)) {
 			ModifyTaskSendTask modifyTaskTask = new ModifyTaskSendTask(this);
-			modifyTaskTask.execute(stateTask, Integer.toString(userSelected.getId()), timeTask,
+			modifyTaskTask.execute(Integer.toString(task.getIdTask()),stateTask, Integer.toString(userSelected.getId()), timeTask,
 					descriptionTask);
 		} else {
 			Toast.makeText(this, R.string.check_empty_fields,
