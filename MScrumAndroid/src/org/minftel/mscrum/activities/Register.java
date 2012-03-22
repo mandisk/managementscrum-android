@@ -37,12 +37,7 @@ public class Register extends Activity implements OnGesturePerformedListener {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
-
-		nombre = (EditText) findViewById(R.id.nombreRegister);
-		apellido = (EditText) findViewById(R.id.apellidoRegister);
-		email = (EditText) findViewById(R.id.emailRegister);
-		password = (EditText) findViewById(R.id.passRegister);
-
+		Log.w(ScrumConstants.TAG, "id nombre: "+nombre);
 		// Gesture Detection
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.register, null);
@@ -56,6 +51,11 @@ public class Register extends Activity implements OnGesturePerformedListener {
 			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
 		}
 		setContentView(gestureOverlayView);
+		nombre = (EditText) findViewById(R.id.nombreRegister);
+		apellido = (EditText) findViewById(R.id.apellidoRegister);
+		email = (EditText) findViewById(R.id.emailRegister);
+		password = (EditText) findViewById(R.id.passRegister);
+		
 
 	}
 
@@ -97,6 +97,7 @@ public class Register extends Activity implements OnGesturePerformedListener {
 					correo = c.getString(emaildx);
 				}
 				Log.i(ScrumConstants.TAG, "nombre contacto--> "+name);
+			
 				nombre.setText(name);
 				email.setText(correo);
 
