@@ -3,17 +3,24 @@ package org.minftel.mscrum.activities;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minftel.mscrum.model.SprintDetail;
 import org.minftel.mscrum.model.TaskDetail;
+import org.minftel.mscrum.tasks.ChartsTask;
+import org.minftel.mscrum.tasks.DeleteSprintTask;
 import org.minftel.mscrum.tasks.DeleteTaskTask;
 import org.minftel.mscrum.tasks.ModifyTaskAsk;
 import org.minftel.mscrum.tasks.ModifyTaskSendTask;
 import org.minftel.mscrum.tasks.ProjectsTask;
+import org.minftel.mscrum.utils.IconContextMenu;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
+
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
@@ -30,6 +37,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class TaskActivity extends ListActivity implements OnGesturePerformedListener{
@@ -37,11 +46,23 @@ public class TaskActivity extends ListActivity implements OnGesturePerformedList
 	private List<TaskDetail> taskList;
 	private GestureLibrary gestureLib;
 
+	private final int CONTEXT_MENU_ID = 1;
+	private IconContextMenu iconContextMenu = null;
+	private int pos;
+	private ListActivity activity;
+	
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.task);
 
+		activity = this;
+		Resources res = getResources();
+		//init the menu
+        iconContextMenu = new IconContextMenu(this, CONTEXT_MENU_ID);
+        iconContextMenu.addItem(res, R.string.menu_delete_sprints, R.drawable.discard, R.id.ctx_menu_delete);
+		
+        
 		//String[] countries = getResources().getStringArray(R.array.sprintsList);
 		String[] taskNames = null;
 		String[] taskTimes = null;
@@ -66,9 +87,7 @@ public class TaskActivity extends ListActivity implements OnGesturePerformedList
 			taskTimes[i] = getString(R.string.user) + userName
 					+ getString(R.string.time) + task.getTime();
 		}
-		// Load data in ListAdapter
-		setListAdapter(new TextAdapter(this, R.layout.list_item, taskNames,
-				taskTimes));
+		
 
 		// Detecci�n de gesto
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
@@ -86,36 +105,82 @@ public class TaskActivity extends ListActivity implements OnGesturePerformedList
 
 		// Context Menu
 		registerForContextMenu(getListView());
+		// Load data in ListAdapter
+				setListAdapter(new TextAdapter(this, R.layout.list_item, taskNames,
+						taskTimes));
+				getListView().setOnItemLongClickListener(itemLongClickHandler);
+				//set onclick listener for context menu
+		        iconContextMenu.setOnClickListener(new IconContextMenu.IconContextMenuOnClickListener() {
+		        	
+					public void onClick(int menuId) {
+						TaskDetail taskDetail = getList().get(pos);
+			    		String idTask = String.valueOf(taskDetail.getIdTask());
+						switch(menuId) {
+						case R.id.ctx_menu_delete:
+//							Toast.makeText(getApplicationContext(), "You've clicked on menu item 2", 1000).show();
+							DeleteSprintTask dst = new DeleteSprintTask(activity);
+							dst.execute(idTask);
+							break;
+						}
+					}
+		        });
 
 	}
-
-	// Menu que sale al dejar pulsado una tarea
-	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
-		super.onCreateContextMenu(menu, v, menuInfo);
-
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu_ctx_task, menu);
+	public List<TaskDetail> getList(){
+		return this.taskList;
 	}
-
-	@Override
-	public boolean onContextItemSelected(MenuItem item) {
-		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
-				.getMenuInfo();
-		TaskDetail taskdetail = this.taskList.get(info.position);
-
-		switch (item.getItemId()) {
-		case R.id.deleteTask:
-			// Delete task
-			DeleteTaskTask daleteTaskTask = new DeleteTaskTask(this);
-			daleteTaskTask.execute(Integer.toString(taskdetail.getIdTask()));
-
+	/**
+     * list item long click handler
+     * used to show the context menu
+     */
+    private OnItemLongClickListener itemLongClickHandler = new OnItemLongClickListener() {
+    	
+		public boolean onItemLongClick(AdapterView<?> parent, View view,
+				int position, long id) {
+			pos = position;
+			showDialog(CONTEXT_MENU_ID);
 			return true;
-		default:
-			return super.onContextItemSelected(item);
 		}
+	};
+	
+	/**
+	 * create context menu
+	 */
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		if (id == CONTEXT_MENU_ID) {
+			return iconContextMenu.createMenu(getResources().getString(R.string.Tasks));
+		}
+		return super.onCreateDialog(id);
 	}
+
+//	// Menu que sale al dejar pulsado una tarea
+//	@Override
+//	public void onCreateContextMenu(ContextMenu menu, View v,
+//			ContextMenuInfo menuInfo) {
+//		super.onCreateContextMenu(menu, v, menuInfo);
+//
+//		MenuInflater inflater = getMenuInflater();
+//		inflater.inflate(R.menu.menu_ctx_task, menu);
+//	}
+//
+//	@Override
+//	public boolean onContextItemSelected(MenuItem item) {
+//		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+//				.getMenuInfo();
+//		TaskDetail taskdetail = this.taskList.get(info.position);
+//
+//		switch (item.getItemId()) {
+//		case R.id.deleteTask:
+//			// Delete task
+//			DeleteTaskTask daleteTaskTask = new DeleteTaskTask(this);
+//			daleteTaskTask.execute(Integer.toString(taskdetail.getIdTask()));
+//
+//			return true;
+//		default:
+//			return super.onContextItemSelected(item);
+//		}
+//	}
 
 	// Menu que sale al pulsar tecla menu
 	@Override
