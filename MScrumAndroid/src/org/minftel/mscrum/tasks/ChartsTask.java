@@ -58,7 +58,7 @@ public class ChartsTask extends AsyncTask<String, Integer, String> {
 			OutputStream out = connection.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(out);
 			
-			dos.writeInt(ScrumConstants.ACTION_REQUEST_LIST_TASKS);
+			dos.writeInt(ScrumConstants.ACTION_REQUEST_CHART);
 			dos.writeUTF(params[0]); // ID sprint
 			
 			// To receive to the server			
