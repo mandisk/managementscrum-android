@@ -2,7 +2,6 @@ package org.minftel.mscrum.utils;
 
 import java.util.ArrayList;
 
-import android.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -19,10 +18,6 @@ import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-/**
- * @author nguyendt
- * 
- */
 public class IconContextMenu implements DialogInterface.OnCancelListener, 
 										DialogInterface.OnDismissListener{
 
@@ -161,10 +156,8 @@ public class IconContextMenu implements DialogInterface.OnCancelListener,
 	        	temp.setLayoutParams(param);
 	        	temp.setPadding((int)toPixel(res, 20), 20, (int)toPixel(res, 20), 20);
 	        	temp.setGravity(android.view.Gravity.CENTER_VERTICAL);
-//	        	context.setTheme(android.R.style.Theme);
 	        	Theme th = context.getTheme();
 				TypedValue tv = new TypedValue();
-//				android.R.attr.textAppearanceLargeInverse
 				if (th.resolveAttribute(android.R.attr.textAppearanceLargeInverse, tv, true)) {
 					temp.setTextAppearance(context, tv.resourceId);
 				}
@@ -179,7 +172,6 @@ public class IconContextMenu implements DialogInterface.OnCancelListener,
 			textView.setText(item.text);
 			textView.setCompoundDrawablesWithIntrinsicBounds(item.image, null, null, null);
 			textView.setBackgroundColor(Color.WHITE);
-//			textView.setHeight(80);
         	
 	        return textView;
 		}
