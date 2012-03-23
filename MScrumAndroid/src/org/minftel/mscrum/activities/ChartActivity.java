@@ -22,8 +22,7 @@ import org.minftel.mscrum.activities.R;
 
 public class ChartActivity extends Activity {
 
-	private ArrayList<Integer> totalTimes;
-	private ArrayList<Integer> dates;
+	private List<Long> totalTimes;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -31,14 +30,14 @@ public class ChartActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		// Get the task list
-		String json = getIntent().getExtras().getString("tasks");
+		String json = getIntent().getExtras().getString("hours");
 		Log.i(ScrumConstants.TAG, json);
-//
-//		try {
-//			// tasks = JSONConverter.fromJSONtoTaskList(json);
-//		} catch (JSONException e) {
-//			Log.i(ScrumConstants.TAG, "JSONException" + e.getMessage());
-//		}
+
+		try {
+			totalTimes = JSONConverter.fromJSONtoHoursList(json);
+		} catch (JSONException e) {
+			Log.i(ScrumConstants.TAG, "JSONException" + e.getMessage());
+		}
 
 		Vector<SeriesData> sds = new Vector<SeriesData>();
 
@@ -46,14 +45,12 @@ public class ChartActivity extends Activity {
 
 		Vector<PointData> pds = new Vector<PointData>();
 
-		int max = 0;
-
-		for (int i = 0; i < dates.size(); i++) {
-			for (int j = 0; j < totalTimes.size(); j++) {
-				pds.add(new PointData(dates.get(i), totalTimes.get(j)));
-				if (max < totalTimes.get(j)) {
-					max = totalTimes.get(j);
-				}
+		long max = 0;
+		int size = totalTimes.size();
+		for (int i = 0; i < size; i++) {
+			pds.add(new PointData(i, totalTimes.get(i)));
+			if (max < totalTimes.get(i)) {
+				max = totalTimes.get(i);
 			}
 		}
 

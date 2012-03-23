@@ -54,11 +54,12 @@ public class ModifyTaskSendTask extends AsyncTask<String, Integer, String>{
 			OutputStream out = connection.getOutputStream();
 			DataOutputStream dos = new DataOutputStream(out);
 			
-			//dos.writeInt(ScrumConstants.ACTION_MODIFY_TASK_SEND);
-			dos.writeUTF(params[0]);	// state Task
-			dos.writeUTF(params[1]);	// id user task
-			dos.writeUTF(params[2]);	//time task
-			dos.writeUTF(params[3]);	//description task
+			dos.writeInt(ScrumConstants.ACTION_MODIFY_TASK_SEND);
+			dos.writeUTF(params[0]);	// id Task
+			dos.writeUTF(params[1]);	// state Task
+			dos.writeUTF(params[2]);	// id user task
+			dos.writeUTF(params[3]);	// time task
+			dos.writeUTF(params[4]);	// description task
 			
 			// Receive from server
 			InputStream in = connection.getInputStream();
@@ -96,6 +97,12 @@ public class ModifyTaskSendTask extends AsyncTask<String, Integer, String>{
 		        activity.startActivity(intent);
 				return;
 			}
+			
+			if (result.equals(ScrumConstants.ERROR_EDIT_TASK)) {
+				Log.w(ScrumConstants.TAG, "Edit task error");
+				return;
+			}
+			
 			try {
 				
 				JSONObject json = new JSONObject(result);

@@ -55,7 +55,8 @@
                 android:id="@+id/button1"
                 android:text="@string/Save"
                 style="@style/BUTTON_MW"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:onClick="modify" />
         </LinearLayout>
 
 </ScrollView>

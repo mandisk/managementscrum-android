@@ -3,6 +3,7 @@ package org.minftel.mscrum.activities;
 import java.util.List;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.model.UserDetail;
 import org.minftel.mscrum.tasks.ModifyTaskSendTask;
@@ -14,8 +15,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -47,7 +50,15 @@ public class EditTaskActivity extends Activity {
 			
 			//Buscamos e inicializamos los distintos componentes
 			taskSpinner = (Spinner)findViewById(R.id.spinner2);
-			taskState = taskSpinner.getSelectedItem().toString();
+			taskSpinner.setOnItemSelectedListener(
+			        new AdapterView.OnItemSelectedListener() {
+			        public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
+			        	taskState = (String) taskSpinner.getSelectedItem();
+			        }
+			 
+			        public void onNothingSelected(AdapterView<?> parent) {
+			        }
+			});
 			
 			
 			String a = String.valueOf(task.getState());
@@ -117,9 +128,9 @@ public class EditTaskActivity extends Activity {
 			
 			userSpinner.setOnItemSelectedListener(
 			        new AdapterView.OnItemSelectedListener() {
-			        public void onItemSelected(AdapterView<?> parent,
-			            android.view.View v, int position, long id) {
-			        	userSelected = userList.get(position);
+			        public void onItemSelected(AdapterView<?> parent, android.view.View v, int position, long id) {
+			        	UserDetail userDetail = userList.get(position);
+			        	userSelected = userDetail;
 			        }
 			 
 			        public void onNothingSelected(AdapterView<?> parent) {
@@ -144,16 +155,16 @@ public class EditTaskActivity extends Activity {
 
 		String stateTask = "";
 
-		if(taskState.equalsIgnoreCase("todo"))
+		if(taskState.equalsIgnoreCase(getResources().getString(R.string.ToDo)))
 			stateTask = "t";
-		if(taskState.equalsIgnoreCase("doing"))
+		if(taskState.equalsIgnoreCase(getResources().getString(R.string.Doing)))
 			stateTask = "i";
-		if(taskState.equalsIgnoreCase("done"))
+		if(taskState.equalsIgnoreCase(getResources().getString(R.string.Done)))
 			stateTask = "d";
 		
 		if (chekValues(stateTask, userSelected.getName(), timeTask, descriptionTask)) {
 			ModifyTaskSendTask modifyTaskTask = new ModifyTaskSendTask(this);
-			modifyTaskTask.execute(Integer.toString(task.getIdTask()),stateTask, Integer.toString(userSelected.getId()), timeTask,
+			modifyTaskTask.execute(String.valueOf(task.getIdTask()), stateTask, Integer.toString(userSelected.getId()), timeTask,
 					descriptionTask);
 		} else {
 			Toast.makeText(this, R.string.check_empty_fields,
@@ -164,6 +175,11 @@ public class EditTaskActivity extends Activity {
 
 	public boolean chekValues(String stateTask, String userTask,
 			String timeTask, String descriptionTask) {
+
+    	Log.i(ScrumConstants.TAG, "stateTask: " + stateTask);
+    	Log.i(ScrumConstants.TAG, "userTask: " + userTask);
+    	Log.i(ScrumConstants.TAG, "timeTask: " + timeTask);
+    	Log.i(ScrumConstants.TAG, "edscriptionTask: " + descriptionTask);
 
 		if (stateTask.isEmpty() || userTask.isEmpty() || timeTask.isEmpty()
 				|| descriptionTask.isEmpty()) {
