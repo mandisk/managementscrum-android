@@ -103,15 +103,16 @@ public class ChartsTask extends AsyncTask<String, Integer, String> {
 			
 			try {
 				
+				Log.i(ScrumConstants.TAG, result);
 				JSONObject json = new JSONObject(result);
-				JSONArray jsonTasks = json.getJSONArray("tasks");
+				JSONArray jsonTasks = json.getJSONArray("hours");
 				
 				Log.i(ScrumConstants.TAG, jsonTasks.toString());
 				
-				// Send broadcast to open ProjectActivity
+				// Send broadcast to open ChartActivity
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_CHARTS);
-			    broadCastIntent.putExtra("tasks", jsonTasks.toString());
+			    broadCastIntent.putExtra("hours", jsonTasks.toString());
 				this.activity.sendBroadcast(broadCastIntent);
 				
 			} catch (JSONException e) {

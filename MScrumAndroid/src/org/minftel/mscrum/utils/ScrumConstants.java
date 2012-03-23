@@ -60,6 +60,7 @@ public class ScrumConstants {
 	public static final String ERROR_EDITING_TASK_ASK = "ERROR_EDITING_TASK_ASK";
     public static final String REGISTER_OK = "REGISTER_OK";
 	public static final String SESSION_EXPIRED = "SESSION_EXPIRED";
+	public static final String ERROR_EDIT_TASK = "ERROR_EDIT_TASK";
 	
 	// RECEIVERS ACTIONS
 	public static final String BROADCAST_GO_PROJECTS = "org.minftel.receiver.action.GO_PROJECTS";

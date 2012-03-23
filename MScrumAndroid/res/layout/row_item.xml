@@ -6,8 +6,7 @@
 	
 	<CheckBox
 		android:id="@+id/checkItem"
-		android:visibility="visible"
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content"/>
+		android:visibility="visible" 
+		style="@style/CB"/>
 	
 </LinearLayout>

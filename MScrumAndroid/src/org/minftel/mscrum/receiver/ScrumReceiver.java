@@ -80,8 +80,8 @@ public class ScrumReceiver extends BroadcastReceiver {
 			Intent chartsIntent = new Intent(context, ChartActivity.class);
 			chartsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			
-			String json = intent.getStringExtra("tasks");
-			chartsIntent.putExtra("tasks", json);
+			String json = intent.getStringExtra("hours");
+			chartsIntent.putExtra("hours", json);
 			
 			context.startActivity(chartsIntent);
 			

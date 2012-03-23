@@ -176,4 +176,34 @@ public class JSONConverter {
 		return taskDetail;
 	}
 	
+	/**
+	 * Convert JSONObject to Hours
+	 * @param jsonObject
+	 * @return
+	 * @throws JSONException
+	 */
+	public static Long fromJSONObjectToHours(JSONObject jsonObject) throws JSONException {
+		return jsonObject.getLong("time");
+	}
+	
+	/**
+	 * Convert JSON String to Hours list
+	 * @param json String
+	 * @return Hour list
+	 * @throws JSONException
+	 */
+	public static List<Long> fromJSONtoHoursList(String json) throws JSONException {
+		JSONArray jsonHours = new JSONArray(json);
+		List<Long> hours = new ArrayList<Long>();
+		
+		for (int i = 0; i < jsonHours.length(); i++) {
+			JSONObject hour = jsonHours.getJSONObject(i);
+			
+			hours.add(fromJSONObjectToHours(hour));
+			
+		}
+		
+		return hours;
+	}
+	
 }
