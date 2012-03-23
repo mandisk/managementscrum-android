@@ -1,67 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scrollView1"
-    style="@style/LWMP.LHMP.OV" >
+    style="@style/LWFP.LHFP.PAD20.OV" >
 
-    <LinearLayout
-        android:id="@+id/linearLayout0"
-        style="@style/LWFP.LHFP.PAD20.OV" >
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        style="@style/LWMP.LHWC" >
 
-        <TableLayout
-            android:id="@+id/tableLayout1"
+        <ImageView
+            android:id="@+id/imageContact"
+            style="@style/userPhoto"
+            android:contentDescription="@string/PhotoContentDescription"
+            android:src="@drawable/android" />
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/TV.P9DP" >
+        </TextView>
+
+        <TableRow
+            android:id="@+id/tableRow1"
             style="@style/LWMP.LHWC" >
 
-            <LinearLayout
-                android:id="@+id/linearLayout1"
-                style="@style/LWFP.LHWC.OV" 
-                android:gravity="center_horizontal">
+            <ImageView
+                android:id="@+id/userContactCall"
+                style="@style/LWWC.LHWC.IMAGE"
+                android:clickable="true"
+                android:contentDescription="@string/bt_call"
+                android:src="@drawable/call" />
 
-                <ImageView
-                    android:id="@+id/imageContact"
-                    style="@style/userPhoto"
-                    android:contentDescription="Imagen del contacto"
-                    android:src="@drawable/android" />
+            <TextView
+                android:id="@+id/phone"
+                style="@style/TVWCWC" >
+            </TextView>
+        </TableRow>
 
-                <TextView
-                    android:id="@+id/name"
-                    style="@style/TV.P9DP" >
-                </TextView>
-            </LinearLayout>
+        <TableRow
+            android:id="@+id/tableRow2"
+            style="@style/LWMP.LHWC" >
 
-            <TableRow
-                android:id="@+id/tableRow1"
-                style="@style/LWMP.LHWC" >
+            <ImageView
+                android:id="@+id/userContactEmail"
+                style="@style/LWWC.LHWC.IMAGE"
+                android:clickable="true"
+                android:contentDescription="@string/bt_send_message"
+                android:src="@drawable/email" />
 
-                <ImageView
-                    android:id="@+id/userContactCall"
-                    style="@style/LWWC.LHWC.IMAGE"
-                    android:clickable="true"
-                    android:contentDescription="@string/bt_call"
-                    android:src="@drawable/call" />
-
-                <TextView
-                    android:id="@+id/phone"
-                    style="@style/TVWCWC" >
-                </TextView>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/tableRow2"
-                style="@style/LWMP.LHWC" >
-
-                <ImageView
-                    android:id="@+id/userContactEmail"
-                    style="@style/LWWC.LHWC.IMAGE"
-                    android:clickable="true"
-                    android:contentDescription="@string/bt_send_message"
-                    android:src="@drawable/email" />
-
-                <TextView
-                    android:id="@+id/email"
-                    style="@style/TV.P9DP" >
-                </TextView>
-            </TableRow>
-        </TableLayout>
-    </LinearLayout>
+            <TextView
+                android:id="@+id/email"
+                style="@style/TV.P9DP" >
+            </TextView>
+        </TableRow>
+    </TableLayout>
 
 </ScrollView>
