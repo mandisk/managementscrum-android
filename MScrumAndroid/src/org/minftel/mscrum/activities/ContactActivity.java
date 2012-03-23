@@ -10,7 +10,6 @@ import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
