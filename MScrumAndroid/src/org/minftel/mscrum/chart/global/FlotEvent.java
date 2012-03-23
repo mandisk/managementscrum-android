@@ -19,8 +19,6 @@ package org.minftel.mscrum.chart.global;
 
 import java.util.EventObject;
 
-import org.minftel.mscrum.chart.flot.data.RectOffset;
-
 import android.view.MotionEvent;
 
 
