@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import org.minftel.mscrum.activities.AddSprintActivity;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.R;
+import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
@@ -29,11 +30,17 @@ public class AddSprintTask extends AsyncTask<String, Integer, String> {
 
 	private AddSprintActivity activity;
 	private ProgressDialog progressDialog;
+	private ProjectDetail projectDetail;
 	
 	public AddSprintTask(Activity activity) {
 		this.activity = (AddSprintActivity) activity;
 		this.progressDialog = new ProgressDialog(activity);
 	}	
+	public AddSprintTask(Activity activity, ProjectDetail p) {
+		this.activity = (AddSprintActivity) activity;
+		this.progressDialog = new ProgressDialog(activity);
+		this.projectDetail = p;
+	}
 	
 	@Override
 	protected String doInBackground(String... params) {
@@ -121,6 +128,7 @@ public class AddSprintTask extends AsyncTask<String, Integer, String> {
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_SPRINTS);
 				broadCastIntent.putExtra("sprints", jsonSprints.toString());
+				broadCastIntent.putExtra("selectedProject", projectDetail);
 				this.activity.sendBroadcast(broadCastIntent);
 				
 			} catch (JSONException e) {

@@ -15,10 +15,12 @@ import org.json.JSONObject;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.R;
+import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -29,10 +31,16 @@ public class ProjectsTask extends AsyncTask<String, Integer, String> {
 	
 	private ProjectActivity activity;
 	private ProgressDialog progressDialog;
-
+	private ProjectDetail projectDetail;
 	public ProjectsTask(Activity activity) {
 		this.activity = (ProjectActivity) activity;
 		this.progressDialog = new ProgressDialog(activity);
+	}
+	
+	public ProjectsTask(Activity activity,ProjectDetail selectedProject){
+		this.activity = (ProjectActivity) activity;
+		this.progressDialog = new ProgressDialog(activity);
+		this.projectDetail = selectedProject;
 	}
 	
 	public String doInBackground(String...params) {
@@ -116,6 +124,7 @@ public class ProjectsTask extends AsyncTask<String, Integer, String> {
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_SPRINTS);
 				broadCastIntent.putExtra("sprints", jsonSprints.toString());
+				broadCastIntent.putExtra("selectedProject", projectDetail);
 				this.activity.sendBroadcast(broadCastIntent);
 				
 				Log.i(ScrumConstants.TAG, "Project selected");

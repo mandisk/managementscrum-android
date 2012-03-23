@@ -182,7 +182,7 @@ public class ProjectActivity extends ListActivity implements OnGesturePerformedL
 		ProjectDetail selectedProject = this.projectList.get(position);
 		String idProject = String.valueOf(selectedProject.getIdProject());
 
-		ProjectsTask projectTask = new ProjectsTask(this);
+		ProjectsTask projectTask = new ProjectsTask(this,selectedProject);
 		projectTask.execute(idProject);
 
 	}
