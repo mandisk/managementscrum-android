@@ -22,6 +22,7 @@ import android.provider.ContactsContract.CommonDataKinds.Email;
 import android.provider.ContactsContract.Contacts;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -36,6 +37,8 @@ public class Register extends Activity implements OnGesturePerformedListener {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		// No title
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.register);
 		Log.w(ScrumConstants.TAG, "id nombre: "+nombre);
 		// Gesture Detection
