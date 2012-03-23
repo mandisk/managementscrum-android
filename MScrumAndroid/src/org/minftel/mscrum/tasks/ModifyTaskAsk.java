@@ -101,7 +101,7 @@ public class ModifyTaskAsk extends AsyncTask<String, Integer, String>{
 			}
 			
 			if (result.equals(ScrumConstants.ERROR_EDITING_TASK_ASK)) {
-				Log.w(ScrumConstants.TAG, "Edit project error");
+				Log.w(ScrumConstants.TAG, "Error editing the task ");
 				return;
 			}
 			
