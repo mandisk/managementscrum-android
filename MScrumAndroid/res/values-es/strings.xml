@@ -23,7 +23,7 @@
     <string name="descriptionAddProject">Descripción del proyecto</string>
     <string name="initialDateAddProject">Fecha inicio:</string>
     <string name="endDateAddProject">Fecha fin:</string>
-    <string name="buttonAddProject">añadir proyecto</string>
+    <string name="buttonAddProject">Añadir proyecto</string>
     <string name="dialog_loading">Cargando</string>
     <string name="menu_view_users">Ver usuarios</string>
     <string name="menu_delete_project">Borrar proyecto</string>

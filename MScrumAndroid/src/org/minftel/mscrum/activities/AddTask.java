@@ -3,6 +3,7 @@ package org.minftel.mscrum.activities;
 import java.util.ArrayList;
 
 import org.minftel.mscrum.tasks.AddTaskTask;
+import org.minftel.mscrum.tasks.CloseSessionTask;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
@@ -95,12 +96,9 @@ public class AddTask extends Activity implements OnGesturePerformedListener {
 	}
 
 	public void logOut() {
-
-		SharedPreferences prefs = getSharedPreferences(
-				ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
-		prefs.edit().clear().commit();
-		Intent intent = new Intent(this, LoginActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(intent);
+		Log.i(ScrumConstants.TAG, "Antes de CloseSessionTask");
+		CloseSessionTask closeSessionTask = new CloseSessionTask(this);
+		closeSessionTask.execute();
+		Log.i(ScrumConstants.TAG, "Despues de CloseSessionTask");
 	}
 }
