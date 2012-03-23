@@ -94,4 +94,5 @@
     <string name="Sprint">Sprint</string>
     <string name="Task">Tarea</string>
     <string name="UserInProject">Usuarios del Proyecto</string>
+    <string name="PhotoContentDescription">Imagen del contacto</string>
 </resources>
