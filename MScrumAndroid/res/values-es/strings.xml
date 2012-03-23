@@ -96,4 +96,5 @@
     <string name="UserInProject">Usuarios del Proyecto</string>
     <string name="PhotoContentDescription">Imagen del contacto</string>
     <string name="info_no_tasks">El sprint no tiene tareas para representar</string>
+    <string name="charts_title">Chart</string>
 </resources>

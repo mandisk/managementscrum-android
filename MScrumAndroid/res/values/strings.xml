@@ -97,4 +97,5 @@
     <string name="PhotoContentDescription">Contact photo</string>
     <string name="info_no_tasks">Selected sprint has not tasks to draw</string>
     <string name="logoString">Logo image</string>
+    <string name="charts_title">Estadística </string>
 </resources>
