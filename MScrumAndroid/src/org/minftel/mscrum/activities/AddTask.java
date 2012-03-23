@@ -7,8 +7,6 @@ import org.minftel.mscrum.tasks.CloseSessionTask;
 import org.minftel.mscrum.utils.ScrumConstants;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;

@@ -11,7 +11,6 @@ import org.minftel.mscrum.utils.ScrumConstants;
 import org.minftel.mscrum.utils.TextAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.gesture.Gesture;
 import android.gesture.GestureLibraries;
 import android.gesture.GestureLibrary;
