@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.tasks.CloseSessionTask;
-import org.minftel.mscrum.tasks.DeleteSprintTask;
+import org.minftel.mscrum.tasks.DeleteTaskTask;
 import org.minftel.mscrum.tasks.ModifyTaskAsk;
 import org.minftel.mscrum.utils.IconContextMenu;
 import org.minftel.mscrum.utils.JSONConverter;
@@ -108,7 +108,7 @@ public class TaskActivity extends ListActivity implements
 						String idTask = String.valueOf(taskDetail.getIdTask());
 						switch (menuId) {
 						case R.id.ctx_menu_delete:
-							DeleteSprintTask dst = new DeleteSprintTask(
+							DeleteTaskTask dst = new DeleteTaskTask(
 									activity);
 							dst.execute(idTask);
 							break;

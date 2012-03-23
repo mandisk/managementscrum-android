@@ -10,7 +10,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import org.minftel.mscrum.activities.LoginActivity;
-import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.R;
 import org.minftel.mscrum.utils.ScrumConstants;
 
@@ -22,11 +21,11 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 public class CloseSessionTask extends AsyncTask<String, Integer, String> {
-	private ProjectActivity activity;
+	private Activity activity;
 	private ProgressDialog progressDialog;
 
 	public CloseSessionTask(Activity activity) {
-		this.activity = (ProjectActivity) activity;
+		this.activity = activity;
 		this.progressDialog = new ProgressDialog(activity);
 	}
 
