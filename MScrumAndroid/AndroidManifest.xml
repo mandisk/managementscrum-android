@@ -47,7 +47,7 @@
         <activity android:name="UserActivity" android:label="@string/users"></activity>
         <activity android:name="ContactActivity" android:label="@string/userInfo"></activity>
         <activity android:name="EditProjectActivity" android:label="@string/EditProject"></activity>
-        <activity android:name="ChartActivity" android:label="ESTADISTICAS"></activity>
+        <activity android:name="ChartActivity" android:label="@string/charts_title"></activity>
         <activity android:name="EditUserProjectActivity" android:label="@string/EditUsers"></activity>
     </application>
 
