@@ -130,6 +130,9 @@
 	<style name="LWWC.LHWC.IMAGE">
 	    <item name="android:padding">3dp</item>
 	</style>
+	<style name="LWWC.LHWC.IMAGE.GC">
+	    <item name="android:gravity">center_horizontal</item>
+	</style>
 	
 	<style name="userPhoto">
 	    <item name="android:layout_width">250dp</item>
