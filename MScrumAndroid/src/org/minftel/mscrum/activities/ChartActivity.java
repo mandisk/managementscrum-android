@@ -47,12 +47,10 @@ public class ChartActivity extends Activity {
 
 		int size = totalTimes.size();
 
-		if (size > 0) {
-			for (int i = 0; i < size; i++) {
-				pds.add(new PointData(i, totalTimes.get(i)));
-				if (max < totalTimes.get(i)) {
-					max = totalTimes.get(i);
-				}
+		for (int i = 0; i < size; i++) {
+			pds.add(new PointData(i, totalTimes.get(i)));
+			if (max < totalTimes.get(i)) {
+				max = totalTimes.get(i);
 			}
 		}
 
