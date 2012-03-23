@@ -8,6 +8,7 @@ import org.minftel.mscrum.activities.ProjectActivity;
 import org.minftel.mscrum.activities.SprintsActivity;
 import org.minftel.mscrum.activities.TaskActivity;
 import org.minftel.mscrum.activities.UserActivity;
+import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.utils.ScrumConstants;
 
@@ -44,7 +45,9 @@ public class ScrumReceiver extends BroadcastReceiver {
 			sprintIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			
 			String json = intent.getStringExtra("sprints");
+			ProjectDetail projectDetail = (ProjectDetail) intent.getSerializableExtra("selectedProject");
 			sprintIntent.putExtra("sprints", json);
+			sprintIntent.putExtra("selectedProject", projectDetail);
 			
 			context.startActivity(sprintIntent);
 		

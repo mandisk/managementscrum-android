@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.tasks.AddSprintTask;
 import org.minftel.mscrum.tasks.CloseSessionTask;
 import org.minftel.mscrum.utils.ScrumConstants;
@@ -54,10 +55,14 @@ public class AddSprintActivity extends Activity implements
 	static final int DATE_DIALOG_ID1 = 0;
 	static final int DATE_DIALOG_ID2 = 1;
 
+	private ProjectDetail projectDetail;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addsprint);
+		
+		projectDetail = (ProjectDetail) getIntent().getExtras().getSerializable("selectedProject");
 
 		// Gesture detection
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
@@ -169,10 +174,14 @@ public class AddSprintActivity extends Activity implements
 		int res1 = checkDate(mYear1, mMonth1, mDay1, mYear2, mMonth2, mDay2);
 		int res2 = checkDate(actualYear, actualMonth, actualDay, mYear1,
 				mMonth1, mDay1);
+		Calendar c = new GregorianCalendar();
+		c.setTime(projectDetail.getEndDate());
+		
+		int res3 = checkDate(projectDetail.getEndDate(), mYear2, mMonth2, mDay2);
 
 		String sSprintNumber = mSprintNumber.getText().toString().trim();
 
-		if (res1 > 0 || res2 > 0) {
+		if (res1 > 0 || res2 > 0 || res3 > 0) {
 			Toast.makeText(this, R.string.wrong_dates, Toast.LENGTH_SHORT)
 					.show();
 			envio--;
@@ -195,10 +204,19 @@ public class AddSprintActivity extends Activity implements
 
 			Log.w(ScrumConstants.TAG, sDay1 + "/" + sMonth1 + "/" + sYear1
 					+ "/" + sDay2 + "/" + sMonth2 + "/" + sYear2);
-			AddSprintTask addSprintTask = new AddSprintTask(this);
+			AddSprintTask addSprintTask = new AddSprintTask(this, projectDetail);
 			addSprintTask.execute(sSprintNumber, sDay1, sMonth1, sYear1, sDay2,
 					sMonth2, sYear2);
 		}
+	}
+
+	private int checkDate(Date endDate, int y2, int m2, int d2) {
+		Calendar c2 = new GregorianCalendar();
+		c2.set(y2, m2, d2);
+		Date date2 = c2.getTime();
+		Log.w(ScrumConstants.TAG, endDate.toString()
+				+ "/" + d2 + "/" + m2 + "/" + y2);
+		return date2.compareTo(endDate);
 	}
 
 	public int checkDate(int y1, int m1, int d1, int y2, int m2, int d2) {

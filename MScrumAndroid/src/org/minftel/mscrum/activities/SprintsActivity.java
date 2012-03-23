@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.minftel.mscrum.model.ProjectDetail;
 import org.minftel.mscrum.model.SprintDetail;
 import org.minftel.mscrum.tasks.ChartsTask;
 import org.minftel.mscrum.tasks.CloseSessionTask;
@@ -41,6 +42,8 @@ public class SprintsActivity extends ListActivity implements
 	private List<SprintDetail> sprintList = null;
 	private GestureLibrary gestureLib;
 
+	private ProjectDetail projectDetail;
+	
 	private final int CONTEXT_MENU_ID = 1;
 	private IconContextMenu iconContextMenu = null;
 	private int pos;
@@ -65,6 +68,7 @@ public class SprintsActivity extends ListActivity implements
 
 		// Gets the Sprints List
 		String json = getIntent().getExtras().getString("sprints");
+		projectDetail = (ProjectDetail) getIntent().getSerializableExtra("selectedProject");
 
 		try {
 			sprintList = JSONConverter.fromJSONtoSprintList(json);
@@ -115,8 +119,7 @@ public class SprintsActivity extends ListActivity implements
 						switch (menuId) {
 
 						case R.id.ctx_menu_delete:
-							DeleteSprintTask dst = new DeleteSprintTask(
-									activity);
+							DeleteSprintTask dst = new DeleteSprintTask(activity);
 							dst.execute(idSprint);
 							break;
 
@@ -131,6 +134,10 @@ public class SprintsActivity extends ListActivity implements
 
 	public List<SprintDetail> getList() {
 		return this.sprintList;
+	}
+	
+	public ProjectDetail getProjectDetail(){
+		return this.projectDetail;
 	}
 
 	/**
@@ -198,7 +205,7 @@ public class SprintsActivity extends ListActivity implements
 		ArrayList<Prediction> predictions = gestureLib.recognize(gesture);
 		for (Prediction prediction : predictions) {
 			if (prediction.score > 2.0) {
-				if (prediction.name.equalsIgnoreCase("toleft")) {
+				if (prediction.name.equalsIgnoreCase("toright")) {
 					onBackPressed();
 				}
 				if (prediction.name.equalsIgnoreCase("logout")) {
@@ -218,6 +225,7 @@ public class SprintsActivity extends ListActivity implements
 
 	public void add() {
 		Intent intent = new Intent(this, AddSprintActivity.class);
+		intent.putExtra("selectedProject", projectDetail);
 		startActivity(intent);
 	}
 }
