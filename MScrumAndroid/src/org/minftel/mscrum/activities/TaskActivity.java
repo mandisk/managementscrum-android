@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.minftel.mscrum.model.TaskDetail;
+import org.minftel.mscrum.tasks.CloseSessionTask;
 import org.minftel.mscrum.tasks.DeleteSprintTask;
 import org.minftel.mscrum.tasks.ModifyTaskAsk;
 import org.minftel.mscrum.utils.IconContextMenu;
@@ -199,13 +200,10 @@ public class TaskActivity extends ListActivity implements
 	}
 
 	public void logOut() {
-
-		SharedPreferences prefs = getSharedPreferences(
-				ScrumConstants.SHARED_PREFERENCES_FILE, MODE_PRIVATE);
-		prefs.edit().clear().commit();
-		Intent intent = new Intent(this, LoginActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(intent);
+		Log.i(ScrumConstants.TAG, "Antes de CloseSessionTask");
+		CloseSessionTask closeSessionTask = new CloseSessionTask(activity);
+		closeSessionTask.execute();
+		Log.i(ScrumConstants.TAG, "Despues de CloseSessionTask");
 	}
 
 	public void add() {
