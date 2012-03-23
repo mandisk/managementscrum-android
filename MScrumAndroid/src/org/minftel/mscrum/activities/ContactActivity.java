@@ -38,7 +38,7 @@ public class ContactActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.usercontact);
 		
-		// Detección de gesto
+		// Gesture detection
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.usercontact, null);
 		gestureOverlayView.addView(inflate);
@@ -58,7 +58,7 @@ public class ContactActivity extends Activity implements
 		final TextView txtemail = (TextView) findViewById(R.id.email);
 		ImageView photo = (ImageView) findViewById(R.id.imageContact);
 
-		// Get data from UserActivity
+		// Gets the data from UserActivity
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			String name = extras.getString("name");
