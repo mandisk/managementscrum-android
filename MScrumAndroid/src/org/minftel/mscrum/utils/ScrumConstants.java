@@ -10,11 +10,12 @@ public class ScrumConstants {
 	
 	// DIRECCION SERVLET FRONTAL
 //	private static String DIRECCION_IP_SERVER = "10.0.2.2";
-//	private static String DIRECCION_IP_SERVER = "192.168.1.107";
+//	private static String DIRECCION_IP_SERVER = "192.168.1.120";
 //	private static String DIRECCION_IP_SERVER = "10.0.2.2";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.134";
+//	private static String DIRECCION_IP_SERVER = "192.168.1.120";
 //	private static String DIRECCION_IP_SERVER = "192.168.1.16";
-//	private static String DIRECCION_IP_SERVER = "192.168.1.23";
+//	private static String DIRECCION_IP_SERVER = "192.168.1.13";
 	private static String DIRECCION_IP_SERVER = "192.168.1.118";
 //	private static String DIRECCION_IP_SERVER = "192.168.133.151";
 	public static String BASE_URL = "http://" + DIRECCION_IP_SERVER + ":8080/MScrum-war/Dispatcher";
@@ -38,6 +39,7 @@ public class ScrumConstants {
 	public static final int ACTION_EDIT_USER_PROJECT_ASK = 14;
 	public static final int ACTION_EDIT_USER_PROJECT_SEND = 15;
 	public static final int ACTION_MODIFY_TASK_SEND = 16;
+	public static final int ACTION_CLOSE_SESSION = 17;
 	
 	// SERVER RESPONSES
 	public static final String ERROR_ADD_PROJECT = "ERROR_ADD_PROJECT";
@@ -68,5 +70,6 @@ public class ScrumConstants {
 	public static final String BROADCAST_GO_CHARTS = "org.minftel.receiver.action.GO_CHARTS";
 	public static final String BROADCAST_GO_EDIT_PROJECT = "org.minftel.receiver.action.GO_EDIT_PROJECT";
 	public static final String BROADCAST_GO_EDIT_USER_PROJECT = "org.minftel.receiver.action.GO_EDIT_USER_PROJECT";
+
 	public static final String BROADCAST_GO_EDIT_TASK = "org.minftel.receiver.action.BROADCAST_GO_EDIT_TASK";
 }
