@@ -37,6 +37,7 @@ public class ContactActivity extends Activity implements
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.usercontact);
+		
 		// Detección de gesto
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.usercontact, null);
@@ -46,7 +47,6 @@ public class ContactActivity extends Activity implements
 		gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
 		gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
 		if (!gestureLib.load()) {
-			// finish();
 			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
 		}
 		setContentView(gestureOverlayView);
@@ -69,13 +69,6 @@ public class ContactActivity extends Activity implements
 			txtname.setText(name + " " + surname);
 			txtphone.setText(phone);
 			txtemail.setText(email);
-			//
-			// Uri contactUri =
-			// Uri.withAppendedPath(PhoneLookup.CONTENT_FILTER_URI,
-			// Uri.encode(phone));
-			// Uri photoUri = Uri.withAppendedPath(contactUri,
-			// ContactsContract.CommonDataKinds.Photo.PHOTO);
-			//
 			photo.setImageBitmap(getFacebookPhoto(phone));
 
 			// Action invoked when call button is pressed.
@@ -161,9 +154,7 @@ public class ContactActivity extends Activity implements
 	}
 
 	public void logOut() {
-		Log.i(ScrumConstants.TAG, "Antes de CloseSessionTask");
 		CloseSessionTask closeSessionTask = new CloseSessionTask(this);
 		closeSessionTask.execute();
-		Log.i(ScrumConstants.TAG, "Despues de CloseSessionTask");
 	}
 }

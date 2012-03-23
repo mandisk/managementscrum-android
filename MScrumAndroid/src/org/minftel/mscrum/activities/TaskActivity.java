@@ -80,7 +80,7 @@ public class TaskActivity extends ListActivity implements
 					+ getString(R.string.time) + task.getTime();
 		}
 
-		// Detecci�n de gesto
+		// Deteccion de gesto
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.task, null);
 		gestureOverlayView.addView(inflate);
@@ -199,10 +199,8 @@ public class TaskActivity extends ListActivity implements
 	}
 
 	public void logOut() {
-		Log.i(ScrumConstants.TAG, "Antes de CloseSessionTask");
 		CloseSessionTask closeSessionTask = new CloseSessionTask(activity);
 		closeSessionTask.execute();
-		Log.i(ScrumConstants.TAG, "Despues de CloseSessionTask");
 	}
 
 	public void add() {
