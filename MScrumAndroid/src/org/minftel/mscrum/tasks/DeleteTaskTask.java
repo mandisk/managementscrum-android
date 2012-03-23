@@ -103,7 +103,7 @@ public class DeleteTaskTask extends AsyncTask<String, Integer, String>{
 				JSONObject json = new JSONObject(result);
 				JSONArray jsonTasks = json.getJSONArray("tasks");
 				
-				// Send broadcast to open ProjectActivity
+				// Send broadcast to open TaskActivity
 				Intent broadCastIntent = new Intent();
 				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_TASKS);
 				broadCastIntent.putExtra("tasks", jsonTasks.toString());
