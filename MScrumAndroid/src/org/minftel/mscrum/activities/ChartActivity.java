@@ -44,11 +44,15 @@ public class ChartActivity extends Activity {
 		Vector<PointData> pds = new Vector<PointData>();
 
 		long max = 0;
+
 		int size = totalTimes.size();
-		for (int i = 0; i < size; i++) {
-			pds.add(new PointData(i, totalTimes.get(i)));
-			if (max < totalTimes.get(i)) {
-				max = totalTimes.get(i);
+
+		if (size > 0) {
+			for (int i = 0; i < size; i++) {
+				pds.add(new PointData(i, totalTimes.get(i)));
+				if (max < totalTimes.get(i)) {
+					max = totalTimes.get(i);
+				}
 			}
 		}
 
