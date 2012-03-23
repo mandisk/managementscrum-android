@@ -1,6 +1,5 @@
 package org.minftel.mscrum.activities;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -10,7 +9,6 @@ import org.minftel.mscrum.chart.flot.FlotDraw;
 import org.minftel.mscrum.chart.flot.Options;
 import org.minftel.mscrum.chart.flot.data.PointData;
 import org.minftel.mscrum.chart.flot.data.SeriesData;
-import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.utils.JSONConverter;
 import org.minftel.mscrum.utils.ScrumConstants;
 
