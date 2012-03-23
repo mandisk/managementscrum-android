@@ -32,7 +32,6 @@ public class CloseSessionTask extends AsyncTask<String, Integer, String> {
 
 	@Override
 	protected String doInBackground(String... params) {
-		String result = null;
 
 		try {
 			String sessionId = activity.getSharedPreferences(
@@ -59,7 +58,7 @@ public class CloseSessionTask extends AsyncTask<String, Integer, String> {
 			InputStream in = connection.getInputStream();
 			DataInputStream dis = new DataInputStream(in);
 
-			result = dis.readUTF();
+			dis.readUTF();
 
 			dis.close();
 			dos.close();
@@ -71,6 +70,7 @@ public class CloseSessionTask extends AsyncTask<String, Integer, String> {
 		} catch (IOException e) {
 			Log.i(ScrumConstants.TAG, "IOException: " + e.getMessage());
 		}
+		
 		return null;
 	}
 
