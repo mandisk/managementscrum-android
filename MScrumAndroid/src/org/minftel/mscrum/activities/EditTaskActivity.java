@@ -3,7 +3,6 @@ package org.minftel.mscrum.activities;
 import java.util.List;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.minftel.mscrum.model.TaskDetail;
 import org.minftel.mscrum.model.UserDetail;
 import org.minftel.mscrum.tasks.ModifyTaskSendTask;
@@ -15,10 +14,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
