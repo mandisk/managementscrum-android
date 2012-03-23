@@ -226,9 +226,7 @@ public class AddProjectActivity extends Activity implements
 	}
 
 	public void logOut() {
-		Log.i(ScrumConstants.TAG, "Antes de CloseSessionTask");
 		CloseSessionTask closeSessionTask = new CloseSessionTask(this);
 		closeSessionTask.execute();
-		Log.i(ScrumConstants.TAG, "Despues de CloseSessionTask");
 	}
 }

@@ -67,7 +67,6 @@ public class UserActivity extends ListActivity implements
 		gestureOverlayView.setUncertainGestureColor(Color.TRANSPARENT);
 		gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
 		if (!gestureLib.load()) {
-			// finish();
 			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
 		}
 		setContentView(gestureOverlayView);
@@ -102,10 +101,8 @@ public class UserActivity extends ListActivity implements
 	}
 	
 	public void logOut() {
-		Log.i(ScrumConstants.TAG, "Antes de CloseSessionTask");
 		CloseSessionTask closeSessionTask = new CloseSessionTask(this);
 		closeSessionTask.execute();
-		Log.i(ScrumConstants.TAG, "Despues de CloseSessionTask");
 	}
 
 }

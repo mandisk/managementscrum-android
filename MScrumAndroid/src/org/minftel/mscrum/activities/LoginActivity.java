@@ -51,7 +51,6 @@ public class LoginActivity extends Activity implements
 		gestureOverlayView.addOnGesturePerformedListener(this);
 		gestureLib = GestureLibraries.fromRawResource(this, R.raw.gestures);
 		if (!gestureLib.load()) {
-			// finish();
 			Log.w(ScrumConstants.TAG, "Gesture not loaded!");
 		}
 		setContentView(gestureOverlayView);
