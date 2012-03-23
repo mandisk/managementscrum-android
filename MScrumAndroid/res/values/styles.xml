@@ -130,7 +130,10 @@
 	<style name="LWWC.LHWC.IMAGE">
 	    <item name="android:padding">3dp</item>
 	</style>
-	<style name="LWWC.LHWC.IMAGE.GC">
+	<style name="LWFP.LHWC.IMAGE">
+	    <item name="android:padding">3dp</item>
+	</style>
+	<style name="LWFP.LHWC.IMAGE.GC">
 	    <item name="android:gravity">center_horizontal</item>
 	</style>
 	
