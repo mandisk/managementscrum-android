@@ -6,6 +6,9 @@
 	<style name="LWFP.LHFP">
 	    <item name="android:layout_height">fill_parent</item>
 	</style>
+	<style name="LWFP.LHFP.OV">
+	    <item name="android:orientation">vertical</item>
+	</style>
 	<style name="LWFP.LHFP.PAD20">
 	    <item name="android:paddingLeft">20dp</item>
 	    <item name="android:paddingRight">20dp</item>
