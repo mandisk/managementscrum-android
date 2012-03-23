@@ -51,7 +51,8 @@ public class TaskActivity extends ListActivity implements
 
 		activity = this;
 		Resources res = getResources();
-		// init the menu
+		
+		// Initialize the menu
 		iconContextMenu = new IconContextMenu(this, CONTEXT_MENU_ID);
 		iconContextMenu.addItem(res, R.string.menu_delete_task,
 				R.drawable.discard, R.id.ctx_menu_delete);
@@ -80,7 +81,7 @@ public class TaskActivity extends ListActivity implements
 					+ getString(R.string.time) + task.getTime();
 		}
 
-		// Deteccion de gesto
+		// Gesture Detection
 		GestureOverlayView gestureOverlayView = new GestureOverlayView(this);
 		View inflate = getLayoutInflater().inflate(R.layout.task, null);
 		gestureOverlayView.addView(inflate);
@@ -95,11 +96,13 @@ public class TaskActivity extends ListActivity implements
 
 		// Context Menu
 		registerForContextMenu(getListView());
+		
 		// Load data in ListAdapter
 		setListAdapter(new TextAdapter(this, R.layout.list_item, taskNames,
 				taskTimes));
 		getListView().setOnItemLongClickListener(itemLongClickHandler);
-		// set onclick listener for context menu
+		
+		// Sets onClick listener for context menu
 		iconContextMenu
 				.setOnClickListener(new IconContextMenu.IconContextMenuOnClickListener() {
 
@@ -147,7 +150,7 @@ public class TaskActivity extends ListActivity implements
 		return super.onCreateDialog(id);
 	}
 
-	// Menu que sale al pulsar tecla menu
+	// Options Menu
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -173,7 +176,7 @@ public class TaskActivity extends ListActivity implements
 
 	public void onListItemClick(ListView parent, View v, int position, long id) {
 
-		// Get selected task
+		// Gets the selected task
 		TaskDetail selectedTask = this.taskList.get(position);
 
 		ModifyTaskAsk modifyTask = new ModifyTaskAsk(this,selectedTask);
