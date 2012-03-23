@@ -12,7 +12,6 @@ import java.net.URLConnection;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.minftel.mscrum.activities.AddTask;
 import org.minftel.mscrum.activities.EditTaskActivity;
 import org.minftel.mscrum.activities.LoginActivity;
 import org.minftel.mscrum.utils.ScrumConstants;
