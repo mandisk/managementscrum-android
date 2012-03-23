@@ -5,8 +5,13 @@
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/LWFP.LHFP.PAD20.OV" 
-        android:paddingTop="20dp">
+        style="@style/LWFP.LHFP.PAD20.OV.GC">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            style="@style/LWFP.LHWC.IMAGE.GC"
+            android:contentDescription="@string/logoString"
+            android:src="@drawable/logo" />
 
         <EditText
             android:id="@+id/editTextEmail"

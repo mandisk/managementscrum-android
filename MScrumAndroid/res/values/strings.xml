@@ -95,4 +95,5 @@
     <string name="Task">Task</string>
     <string name="UserInProject">User in Project</string>
     <string name="PhotoContentDescription">Contact photo</string>
+    <string name="logoString">Logo image</string>
 </resources>

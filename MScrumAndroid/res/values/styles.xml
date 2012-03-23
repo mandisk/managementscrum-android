@@ -134,7 +134,7 @@
 	    <item name="android:padding">3dp</item>
 	</style>
 	<style name="LWFP.LHWC.IMAGE">
-	    <item name="android:padding">30dpi</item>
+	    <item name="android:padding">30dip</item>
 	</style>
 	<style name="LWFP.LHWC.IMAGE.GC">
 	    <item name="android:gravity">center_horizontal</item>
