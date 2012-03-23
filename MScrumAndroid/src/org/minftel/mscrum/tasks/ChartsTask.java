@@ -23,6 +23,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 public class ChartsTask extends AsyncTask<String, Integer, String> {
 
@@ -110,10 +111,14 @@ public class ChartsTask extends AsyncTask<String, Integer, String> {
 				Log.i(ScrumConstants.TAG, jsonTasks.toString());
 				
 				// Send broadcast to open ChartActivity
-				Intent broadCastIntent = new Intent();
-				broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_CHARTS);
-			    broadCastIntent.putExtra("hours", jsonTasks.toString());
-				this.activity.sendBroadcast(broadCastIntent);
+				if (jsonTasks.length() > 0) {
+					Intent broadCastIntent = new Intent();
+					broadCastIntent.setAction(ScrumConstants.BROADCAST_GO_CHARTS);
+				    broadCastIntent.putExtra("hours", jsonTasks.toString());
+					this.activity.sendBroadcast(broadCastIntent);
+				} else {
+					Toast.makeText(activity,activity.getResources().getString(R.string.info_no_tasks),Toast.LENGTH_SHORT).show();
+				}
 				
 			} catch (JSONException e) {
 				Log.e(ScrumConstants.TAG, "JSONException: " + e.getMessage());
