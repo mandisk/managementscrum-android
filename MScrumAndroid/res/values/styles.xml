@@ -14,6 +14,9 @@
 	<style name="LWFP.LHFP.PAD20.OV">
 	    <item name="android:orientation">vertical</item>
 	</style>
+	<style name="LWFP.LHFP.PAD20.OV.GC">
+	    <item name="android:gravity">center_vertical</item>
+	</style>
 	<style name="LWFP.LHFP.PAD20.OV.all">
 	    <item name="android:paddingTop">20dp</item>
 	    
