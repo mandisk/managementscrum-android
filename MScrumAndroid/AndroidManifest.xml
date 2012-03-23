@@ -39,8 +39,7 @@
         <activity android:name="Preferences"></activity>
         <activity android:name="Register" android:label="@string/Register"></activity>
         <activity android:name="AddProjectActivity" android:label="@string/addProjectMenu"></activity>
-        <activity android:name="AddSprintActivity" android:label="@string/addSprintMenu"
-            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+        <activity android:name="AddSprintActivity" android:label="@string/addSprintMenu"></activity>
         <activity android:name="TaskActivity" android:label="@string/Tasks"></activity>
         <activity android:name="SprintsActivity" android:label="@string/Sprints"></activity>
         <activity android:name="AddTask" android:label="@string/addTask"></activity>
